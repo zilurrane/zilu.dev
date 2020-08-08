@@ -1,7 +1,7 @@
 {
-  "name": "react-webpack-starter",
+  "name": "zilu.dev",
   "version": "1.0.0",
-  "description": "Quick starter template to create ReactJS project with webpack",
+  "description": "Zilu's Portfolio",
   "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server --open --hot --mode development",
@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/zilurrane/react-webpack-starter.git"
+    "url": "git+https://github.com/zilurrane/zilu.dev.git"
   },
   "keywords": [
     "React",
@@ -19,9 +19,9 @@
   "author": "Zilu Rane",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/zilurrane/react-webpack-starter/issues"
+    "url": "https://github.com/zilurrane/zilu.dev/issues"
   },
-  "homepage": "https://github.com/zilurrane/react-webpack-starter#readme",
+  "homepage": "https://github.com/zilurrane/zilu.dev#readme",
   "devDependencies": {
     "@babel/core": "^7.11.1",
     "@babel/preset-env": "^7.11.0",
