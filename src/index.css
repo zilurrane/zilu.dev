@@ -1,0 +1,27 @@
+body {
+    background-color: teal;
+    font-family: cursive;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    text-align: center;
+    display: block;
+}
+
+.caption {
+    color: #EEE;
+    position: absolute;
+    z-index: 999;
+    margin: 0 auto;
+    margin-top: 10vh;
+    left: 0;
+    right: 0;
+}
+
+img {
+    margin-top: 5vh;
+    height: 90vh;
+    border: 5px solid #FFF;
+}
