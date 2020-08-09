@@ -1,6 +1,7 @@
 const path = require('path');
 const autoprefixer = require('autoprefixer');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = (_env, argv) => ({
     entry: './src/index.js',
@@ -21,18 +22,10 @@ module.exports = (_env, argv) => ({
             },
             {
                 test: /\.css$/,
-                exclude: /node_modules/,
+                exclude: /node_modules\/(?!bootstrap).*/,
                 use: [
-                    { loader: 'style-loader' },
-                    {
-                        loader: 'css-loader',
-                        options: {
-                            modules: {
-                                localIdentName: "[name]__[local]___[hash:base64:5]",
-                            },
-                            sourceMap: true
-                        }
-                    },
+                    MiniCssExtractPlugin.loader,
+                    'css-loader',
                     {
                         loader: 'postcss-loader',
                         options: {
@@ -47,6 +40,10 @@ module.exports = (_env, argv) => ({
             {
                 test: /\.(png|jpe?g|gif)$/,
                 loader: 'url-loader?limit=10000&name=img/[name].[ext]'
+            },
+            {
+                test: /\.svg$/,
+                use: ['@svgr/webpack'],
             }
         ]
     },
@@ -55,7 +52,10 @@ module.exports = (_env, argv) => ({
             template: __dirname + '/src/index.html',
             filename: 'index.html',
             inject: 'body'
-        })
+        }),
+        new MiniCssExtractPlugin({
+            filename: argv.mode === 'production' ? `[name].[contentHash].css` : `[name].[hash].css`,
+        }),
     ],
     optimization: {
         runtimeChunk: 'single',
