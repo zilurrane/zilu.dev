@@ -13,7 +13,8 @@ const Contact = () => {
       <Hero title="Contact" />
       <Row>
         <Col>
-          <Form name="contact" method="POST" netlify className="mb-5">
+          <Form name="contact" method="POST" className="mb-5">
+            <input type="hidden" name="form-name" value="contact" />
             <Form.Group
               className="d-flex flex-column align-items-center"
               controlId="exampleForm.ControlInput1"
