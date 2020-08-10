@@ -13,7 +13,7 @@ const Contact = () => {
       <Hero title="Contact" />
       <Row>
         <Col>
-          <Form name="contact" netlify className="mb-5">
+          <Form name="contact" method="POST" netlify className="mb-5">
             <Form.Group
               className="d-flex flex-column align-items-center"
               controlId="exampleForm.ControlInput1"
@@ -21,7 +21,7 @@ const Contact = () => {
               <Form.Label className="col-md-8 f16 pl-0 text-bold">
                 Full Name
               </Form.Label>
-              <Form.Control className="col-md-8 shadow-none" type="text" />
+              <Form.Control name="name" className="col-md-8 shadow-none" type="text" />
             </Form.Group>
 
             <Form.Group
@@ -31,7 +31,7 @@ const Contact = () => {
               <Form.Label className="col-md-8 f16 pl-0 text-bold">
                 Phone Number
               </Form.Label>
-              <Form.Control className="col-md-8 shadow-none" type="number" />
+              <Form.Control name="phoneNumber" className="col-md-8 shadow-none" type="number" />
             </Form.Group>
 
             <Form.Group
@@ -41,7 +41,7 @@ const Contact = () => {
               <Form.Label className="col-md-8 f16 pl-0 text-bold">
                 Email address
               </Form.Label>
-              <Form.Control className="col-md-8 shadow-none" type="email" />
+              <Form.Control name="email" className="col-md-8 shadow-none" type="email" />
             </Form.Group>
 
             <Form.Group
@@ -52,6 +52,7 @@ const Contact = () => {
                 Message
               </Form.Label>
               <Form.Control
+                name="message"
                 className="col-md-8 shadow-none"
                 as="textarea"
                 rows="5"
