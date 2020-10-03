@@ -32,7 +32,7 @@ const Home = () => {
         <Col className="col-12 w-100 col-lg-8 pb-sm-5">
           <animated.div style={slideDown}>
             <p style={slideDown} className="hi text-bold">
-              Hi, i am
+              Hi, I am Zilu
             </p>
             <h1 style={slideDown} delay="500" className="name">
               FullStack Engineer.

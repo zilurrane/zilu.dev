@@ -49,8 +49,8 @@ const App = () => {
                         <Head toggleTheme={toggleTheme} icon={setup.themeIcon} />
                         <Home />
                     </Row>
-                    <Projects />
                     <About />
+                    <Projects />
                     <Row className="wrapper_contact d-flex flex-column ">
                         <Contact />
                         <Footer />

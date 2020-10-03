@@ -9,11 +9,11 @@ const Head = props => {
       <Col className="head d-flex justify-content-between align-items-center">
         <p className="profil-link col-sm-6 col-8  text-bold">Zilu Rane</p>
         <div className="nav-link d-flex col-sm-6 col-4">
-          <Link to="projects" className="head-link">
-            Projects
-          </Link>
           <Link to="about" className="head-link">
             About Me
+          </Link>
+          <Link to="projects" className="head-link">
+            Projects
           </Link>
           <Link to="contact" className="head-link">
             Contact

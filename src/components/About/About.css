@@ -41,3 +41,7 @@
 .profil:hover::after {
   transform: translateX(-15px) translateY(15px);
 }
+
+.technologies img {
+  margin-left: 5px;
+}
