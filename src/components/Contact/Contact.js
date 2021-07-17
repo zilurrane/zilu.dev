@@ -6,7 +6,7 @@ import { Container, Row, Col, Form, Button } from "react-bootstrap";
 const Contact = () => {
   return (
     <Container
-      id="contact pt-2"
+      id="contact"
       className="contact"
       style={{ minHeight: "450px" }}
     >
