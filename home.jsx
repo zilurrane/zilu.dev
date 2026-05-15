@@ -59,10 +59,10 @@ function Home({ onNav, theme }) {
               <Frame title="status.json" color="var(--green)"
                 action={<span style={{ color: 'var(--green)' }}>● live</span>}>
                 <div style={{ padding: '14px 18px', fontSize: 12.5, lineHeight: 1.85 }}>
-                  <Row k="now_building"  v={<Str>a langchain + RAG playground</Str>} />
+                  <Row k="now_building"  v={<Str>linkedin-signal-agent on cloudflare workers ai</Str>} />
                   <Row k="now_leading"   v={<Str>e-Zest engineering team</Str>} />
-                  <Row k="now_learning"  v={<Str>vector stores beyond MongoDB Atlas</Str>} />
-                  <Row k="now_reading"   v={<Str>designing data-intensive applications</Str>} />
+                  <Row k="now_learning"  v={<Str>workers ai, edge inference, eval harnesses</Str>} />
+                  <Row k="philosophy"    v={<Str>keep it simple stupid</Str>} />
                   <Row k="open_to_chat"  v={<span style={{ color: 'var(--green)' }}>true</span>} />
                   <Row k="location"      v={<Str>Pune, IN — UTC+5:30</Str>} last />
                 </div>
@@ -87,7 +87,7 @@ function Home({ onNav, theme }) {
               </Frame>
 
               <div className="z-stats-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 8 }}>
-                {[['8+','years', 'var(--magenta)'],['5','certs', 'var(--green)'],['2','papers', 'var(--orange)'],['3','langs', 'var(--blue)']].map((s) => (
+                {[['8+','years', 'var(--magenta)'],['5','certs', 'var(--green)'],['2','papers', 'var(--orange)'],['5','langs', 'var(--blue)']].map((s) => (
                   <div key={s[1]} style={{ padding: '12px 8px', background: 'var(--paper)', border: '1px solid var(--rule)', borderRadius: 6, textAlign: 'center' }}>
                     <div style={{ fontFamily: "'Departure Mono', monospace", fontSize: 22, color: s[2], lineHeight: 1 }}>{s[0]}</div>
                     <div style={{ fontSize: 10, color: 'var(--mute)', marginTop: 5, letterSpacing: 1, textTransform: 'uppercase' }}>{s[1]}</div>
@@ -116,7 +116,11 @@ function Home({ onNav, theme }) {
                 Before e-Zest I was at LTI (Larsen &amp; Toubro Infotech) building enterprise
                 web apps in Angular and .NET. Before that, my undergrad research turned
                 into two published papers on sentiment analysis with Hadoop and ML —
-                still proud of those.
+                still proud of those. Somewhere along the way I founded{' '}
+                <a href="https://github.com/lifecompilers" target="_blank" rel="noopener"
+                  className="z-link" style={{ color: 'var(--magenta)', fontFamily: "'JetBrains Mono', monospace" }}>@lifecompilers</a>,
+                a little corner for useful open-source tools, and my code ended up in
+                the GitHub Arctic Code Vault (a small but cherished badge of nerd honor).
               </p>
               <p style={{ margin: 0 }}>
                 I write here when I have something worth saying, mostly about React, Node,
@@ -200,8 +204,8 @@ function Home({ onNav, theme }) {
                   </div>
                   <div style={{ paddingTop: 8 }}>
                     <span style={{ color: 'var(--orange)', marginRight: 8 }}>★</span>
-                    <span style={{ color: 'var(--ink)' }}>Pat on the Back</span>
-                    <div style={{ fontSize: 11, color: 'var(--mute)', marginLeft: 22 }}>internal recognition · e-Zest</div>
+                    <span style={{ color: 'var(--ink)' }}>Arctic Code Vault Contributor</span>
+                    <div style={{ fontSize: 11, color: 'var(--mute)', marginLeft: 22 }}>code preserved by GitHub for 1000 years</div>
                   </div>
                 </div>
               </Frame>
@@ -335,12 +339,19 @@ function ProjectCard({ p }) {
         </div>
         <div style={{ marginTop: 14, paddingTop: 12, borderTop: '1px dashed var(--rule)', fontSize: 12, color: 'var(--mute)',
           display: 'flex', gap: 14, flexWrap: 'wrap' }}>
-          {p.links.map((l) => (
-            <a key={l} href="#" onClick={(e) => e.preventDefault()} className="z-link"
-              style={{ color: 'var(--ink2)', whiteSpace: 'nowrap' }}>
-              <span style={{ color: 'var(--mute)' }}>{'> '}</span>{l}
-            </a>
-          ))}
+          {p.links.map((l) => {
+            const isExternal = !!p.href && (l === 'github' || l.includes('/'));
+            return (
+              <a key={l} href={isExternal ? p.href : '#'}
+                target={isExternal ? '_blank' : undefined}
+                rel={isExternal ? 'noopener noreferrer' : undefined}
+                onClick={isExternal ? undefined : (e) => e.preventDefault()}
+                className="z-link"
+                style={{ color: 'var(--ink2)', whiteSpace: 'nowrap' }}>
+                <span style={{ color: 'var(--mute)' }}>{'> '}</span>{l}
+              </a>
+            );
+          })}
         </div>
       </div>
     </div>

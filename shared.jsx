@@ -5,52 +5,56 @@
 // React-Native, Node + microservices, MongoDB). Swap with real repos any time.
 const PROJECTS = [
   {
-    dir: 'rag-playground/',
-    name: 'RAG Playground',
+    dir: 'linkedin-signal-agent/',
+    name: 'LinkedIn Signal Agent',
     role: 'side · genai',
-    year: '2025 — present',
+    year: '2026 — present',
     color: 'var(--magenta)',
-    lang: 'react · langchain · node',
+    lang: 'typescript · cloudflare workers · workers ai',
     stars: '★ —',
-    desc: 'A hands-on lab for retrieval-augmented chat: ingest docs, swap embeddings, compare retrievers, watch tokens stream. Built while certifying on LangChain + RAG.',
+    desc: 'A Cloudflare Worker that drafts daily LinkedIn posts from AI/dev/security signals using Workers AI — a small daily writing loop running at the edge.',
     status: 'active',
-    links: ['github', 'demo', 'writeup'],
+    links: ['github', 'zilurrane/linkedin-signal-agent'],
+    href: 'https://github.com/zilurrane/linkedin-signal-agent',
   },
   {
-    dir: 'rn-amplify-starter/',
-    name: 'RN-Amplify Starter',
-    role: 'open source · mobile',
-    year: '2024 — present',
+    dir: 'whatsapp-actions/',
+    name: 'WhatsApp Actions',
+    role: 'open source · automation',
+    year: '2023 — present',
     color: 'var(--green)',
-    lang: 'react native · aws amplify',
-    stars: '★ —',
-    desc: 'A batteries-included React Native starter wired to AWS Amplify (auth, GraphQL, storage). The setup I wished existed when I first picked up Amplify.',
-    status: 'active',
-    links: ['github', 'readme'],
-  },
-  {
-    dir: 'microservices-kit/',
-    name: 'Microservices Kit',
-    role: 'open source · node',
-    year: '2023',
-    color: 'var(--blue)',
-    lang: 'node · react · docker',
-    stars: '★ —',
-    desc: 'A reference monorepo for Node + React microservices: docker-compose, GraphQL gateway, Jest tests, Jenkins pipeline. Built while certifying on microservices.',
+    lang: 'python · twilio',
+    stars: '★ 14',
+    desc: 'Send WhatsApp messages from any GitHub Action via Twilio — handy for build notifications, scheduled reminders, and personal automation. The most-starred thing I’ve shipped.',
     status: 'maintained',
-    links: ['github', 'docs'],
+    links: ['github', 'zilurrane/whatsapp-actions'],
+    href: 'https://github.com/zilurrane/whatsapp-actions',
   },
   {
-    dir: 'twelve-factor-template/',
-    name: 'Twelve-Factor Template',
-    role: 'open source · cloud',
-    year: '2022',
+    dir: 'learnings/',
+    name: 'Learnings',
+    role: 'side · genai',
+    year: '2024 — present',
     color: 'var(--orange)',
-    lang: 'node · pcf · docker',
+    lang: 'openai · langchain',
     stars: '★ —',
-    desc: 'A Node service skeleton that takes the twelve-factor principles seriously — config, logs, processes, all of it. Deploys cleanly to Pivotal Cloud Foundry.',
+    desc: 'A scratchpad for OpenAI and LangChain experiments — prompts that worked, evals that didn’t, and the patterns I keep reaching for again.',
+    status: 'active',
+    links: ['github', 'zilurrane/learnings'],
+    href: 'https://github.com/zilurrane/learnings',
+  },
+  {
+    dir: 'ticketing/',
+    name: 'Ticketing Microservices',
+    role: 'open source · node',
+    year: '2021',
+    color: 'var(--blue)',
+    lang: 'typescript · node · react · docker',
+    stars: '★ —',
+    desc: 'A working reference for Node + React microservices: NATS event bus, Kubernetes manifests, a shared types package, and Jest tests across every service.',
     status: 'stable',
-    links: ['github'],
+    links: ['github', 'zilurrane/ticketing'],
+    href: 'https://github.com/zilurrane/ticketing',
   },
   {
     dir: 'sentiment-hadoop/',
@@ -62,7 +66,7 @@ const PROJECTS = [
     stars: '★ —',
     desc: 'Undergrad research that became two published papers: web-based sentiment analysis on Twitter feeds, running on a Hadoop cluster. Still my favourite first-principles project.',
     status: 'archived',
-    links: ['paper · ieee', 'github'],
+    links: ['paper · ieee'],
   },
 ];
 
@@ -194,7 +198,7 @@ function Footer() {
         </div>
         <div style={{ display: 'flex', flexDirection: 'column', gap: 4, fontSize: 13, textAlign: 'right' }}>
           <span><span style={{ color: 'var(--mute)' }}>linkedin/</span><a href="https://www.linkedin.com/in/zilurane" target="_blank" rel="noopener" className="z-link" style={{ color: 'var(--ink)' }}>zilurane</a></span>
-          <span><span style={{ color: 'var(--mute)' }}>github/</span><a href="https://github.com/zilurane" target="_blank" rel="noopener" className="z-link" style={{ color: 'var(--ink)' }}>zilurane</a></span>
+          <span><span style={{ color: 'var(--mute)' }}>github/</span><a href="https://github.com/zilurrane" target="_blank" rel="noopener" className="z-link" style={{ color: 'var(--ink)' }}>zilurrane</a></span>
           <span><span style={{ color: 'var(--mute)' }}>mail/</span><a href="mailto:zilurrane@gmail.com" className="z-link" style={{ color: 'var(--ink)' }}>zilurrane@gmail.com</a></span>
           <a href="/feed.rss" onClick={(e) => e.preventDefault()} className="z-link" style={{ color: 'var(--orange)' }}>./feed.rss ↗</a>
         </div>
