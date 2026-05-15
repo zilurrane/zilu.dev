@@ -63,6 +63,7 @@ function Home({ onNav, theme }) {
                   <Row k="now_leading"   v={<Str>e-Zest engineering team</Str>} />
                   <Row k="now_learning"  v={<Str>workers ai, edge inference, eval harnesses</Str>} />
                   <Row k="philosophy"    v={<Str>keep it simple stupid</Str>} />
+                  <Row k="speaks"        v={<Str>marathi, english, hindi</Str>} />
                   <Row k="open_to_chat"  v={<span style={{ color: 'var(--green)' }}>true</span>} />
                   <Row k="location"      v={<Str>Pune, IN — UTC+5:30</Str>} last />
                 </div>
@@ -202,10 +203,15 @@ function Home({ onNav, theme }) {
                     <span style={{ color: 'var(--ink)' }}>Dewang Mehta Excellence Award</span>
                     <div style={{ fontSize: 11, color: 'var(--mute)', marginLeft: 22 }}>recognition for academic achievement</div>
                   </div>
-                  <div style={{ paddingTop: 8 }}>
+                  <div style={{ paddingTop: 8, paddingBottom: 8, borderBottom: '1px dashed var(--rule)' }}>
                     <span style={{ color: 'var(--orange)', marginRight: 8 }}>★</span>
                     <span style={{ color: 'var(--ink)' }}>Arctic Code Vault Contributor</span>
                     <div style={{ fontSize: 11, color: 'var(--mute)', marginLeft: 22 }}>code preserved by GitHub for 1000 years</div>
+                  </div>
+                  <div style={{ paddingTop: 8 }}>
+                    <span style={{ color: 'var(--orange)', marginRight: 8 }}>★</span>
+                    <span style={{ color: 'var(--ink)' }}>Pat on the Back</span>
+                    <div style={{ fontSize: 11, color: 'var(--mute)', marginLeft: 22 }}>internal recognition · e-Zest</div>
                   </div>
                 </div>
               </Frame>
