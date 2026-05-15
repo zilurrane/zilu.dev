@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Zilu Rane — Technical Lead · zilu.dev</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Zilu Rane — Technical Lead at e-Zest. React, Node, React Native, LangChain, RAG. 8+ years building useful things, based in Pune." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=Geist+Mono:wght@300;400;500;600;700&family=Geist:wght@300;400;500;600;700&family=Departure+Mono&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ───── theme tokens ───── */
+    :root, [data-theme="light"] {
+      --bg:      #ede4cf;
+      --panel:   #f6efdb;
+      --paper:   #fbf6e6;
+      --ink:     #1a1612;
+      --ink2:    #3a342b;
+      --mute:    #857a68;
+      --rule:    #c9bda3;
+      --rule2:   #d9cfb6;
+      --magenta: #c33b85;
+      --green:   #177a4f;
+      --orange:  #d4632a;
+      --blue:    #2a5fb8;
+      --yellow:  #b8951a;
+      --cyan:    #16808a;
+      --shadow:  0 1px 0 rgba(60,40,20,.04), 0 4px 16px rgba(60,40,20,.04);
+    }
+    [data-theme="dark"] {
+      --bg:      #14110d;
+      --panel:   #1c1811;
+      --paper:   #221d16;
+      --ink:     #ede4cf;
+      --ink2:    #c9bda3;
+      --mute:    #7a715f;
+      --rule:    #3a3329;
+      --rule2:   #2a2620;
+      --magenta: #f06bb0;
+      --green:   #6ad08e;
+      --orange:  #f0925a;
+      --blue:    #82a8f0;
+      --yellow:  #e6c376;
+      --cyan:    #6ebec8;
+      --shadow:  0 1px 0 rgba(0,0,0,.3), 0 4px 24px rgba(0,0,0,.25);
+    }
+
+    /* ───── reset ───── */
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body {
+      margin: 0; padding: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: 'JetBrains Mono', 'Geist Mono', ui-monospace, monospace;
+      font-size: 15px;
+      line-height: 1.55;
+      transition: background .35s ease, color .35s ease;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+    a { color: inherit; text-decoration: none; }
+    img, svg { display: block; max-width: 100%; }
+
+    /* terminal scanline texture on bg */
+    body::before {
+      content: '';
+      position: fixed; inset: 0; pointer-events: none; z-index: 1;
+      background-image: repeating-linear-gradient(
+        0deg, transparent 0, transparent 2px,
+        rgba(0,0,0,.012) 2px, rgba(0,0,0,.012) 3px
+      );
+      mix-blend-mode: multiply;
+    }
+    [data-theme="dark"] body::before {
+      background-image: repeating-linear-gradient(
+        0deg, transparent 0, transparent 2px,
+        rgba(255,240,200,.018) 2px, rgba(255,240,200,.018) 3px
+      );
+      mix-blend-mode: screen;
+    }
+
+    /* ───── ghost cursor ───── */
+    .z-ghost {
+      position: fixed; left: 0; top: 0;
+      width: 14px; height: 18px;
+      border: 1.5px solid var(--magenta);
+      pointer-events: none;
+      z-index: 9999;
+      transform: translate(-100px, -100px);
+      animation: zBlink 1.1s steps(1) infinite;
+      transition: border-color .2s, width .15s, height .15s, background .15s;
+      will-change: transform;
+    }
+    .z-ghost[data-mode="link"] {
+      border-color: var(--orange);
+      background: color-mix(in oklab, var(--orange) 25%, transparent);
+    }
+    .z-ghost[data-mode="text"] {
+      width: 3px; height: 18px;
+      background: var(--magenta);
+      border: none;
+    }
+    @keyframes zBlink { 0%, 49% { opacity: 1; } 50%, 100% { opacity: 0; } }
+    @media (hover: none) { .z-ghost { display: none; } }
+
+    /* ───── reveal-on-scroll ───── */
+    .z-reveal {
+      opacity: 0;
+      transform: translateY(14px);
+      transition: opacity .65s ease, transform .65s cubic-bezier(.2,.7,.3,1);
+    }
+    .z-reveal.in { opacity: 1; transform: none; }
+
+    /* ───── view-transition overlay (typewriter) ───── */
+    .z-transition {
+      position: fixed; inset: 0; z-index: 9998;
+      background: var(--bg);
+      display: flex; align-items: center; justify-content: center;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity .14s ease;
+    }
+    .z-transition.show { opacity: 1; }
+    .z-transition-inner {
+      font-family: 'Departure Mono', 'JetBrains Mono', monospace;
+      font-size: 28px;
+      color: var(--ink);
+      letter-spacing: 0.5px;
+    }
+    .z-tx-prompt { color: var(--green); }
+    .z-tx-arg    { color: var(--blue); }
+
+    /* ───── primitives reused ───── */
+    .z-link { transition: color .15s; cursor: pointer; }
+    .z-link:hover { color: var(--magenta); }
+    .z-prompt { color: var(--green); }
+    .z-mute   { color: var(--mute); }
+    .z-comment { color: var(--mute); }
+
+    /* selection */
+    ::selection { background: var(--magenta); color: var(--paper); }
+
+    /* fine scrollbar */
+    ::-webkit-scrollbar { width: 10px; height: 10px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--rule); border-radius: 5px; border: 2px solid var(--bg); }
+    ::-webkit-scrollbar-thumb:hover { background: var(--mute); }
+
+    /* main content layer above scanlines */
+    #root { position: relative; z-index: 2; }
+
+    /* simple focus ring */
+    button:focus-visible, a:focus-visible {
+      outline: 2px solid var(--magenta);
+      outline-offset: 2px;
+    }
+  </style>
+
+  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+</head>
+<body>
+  <div id="root"></div>
+  <script type="text/babel" src="shared.jsx"></script>
+  <script type="text/babel" src="home.jsx"></script>
+  <script type="text/babel" src="writing.jsx"></script>
+  <script type="text/babel" src="post.jsx"></script>
+  <script type="text/babel" src="app.jsx"></script>
+</body>
+</html>

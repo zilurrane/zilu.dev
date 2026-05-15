@@ -1,0 +1,561 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Zilu Rane — Resume</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=Geist:wght@300;400;500;600;700&family=Departure+Mono&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg:      #ede4cf;
+      --panel:   #f6efdb;
+      --paper:   #fbf6e6;
+      --ink:     #1a1612;
+      --ink2:    #3a342b;
+      --mute:    #857a68;
+      --rule:    #c9bda3;
+      --magenta: #c33b85;
+      --green:   #177a4f;
+      --orange:  #d4632a;
+      --blue:    #2a5fb8;
+      --cyan:    #16808a;
+      --mono:    'JetBrains Mono', ui-monospace, monospace;
+      --display: 'Departure Mono', 'JetBrains Mono', monospace;
+      --sans:    'Geist', system-ui, sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; background: var(--bg); color: var(--ink);
+      font-family: var(--mono); font-size: 13.5px; line-height: 1.55;
+      -webkit-font-smoothing: antialiased; }
+
+    body::before {
+      content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 1;
+      background-image: repeating-linear-gradient(0deg, transparent 0, transparent 2px,
+        rgba(0,0,0,.012) 2px, rgba(0,0,0,.012) 3px); mix-blend-mode: multiply;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    .prompt { color: var(--green); }
+    .arg    { color: var(--blue); }
+    .mute   { color: var(--mute); }
+    .magenta{ color: var(--magenta); }
+    .green  { color: var(--green); }
+    .orange { color: var(--orange); }
+    .cyan   { color: var(--cyan); }
+    .ink    { color: var(--ink); }
+
+    .toolbar {
+      position: sticky; top: 0; z-index: 10;
+      background: color-mix(in oklab, var(--panel) 92%, transparent);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px dashed var(--rule);
+      padding: 12px clamp(20px, 4vw, 40px);
+      display: flex; align-items: center; justify-content: space-between;
+      font-size: 12.5px;
+    }
+    .toolbar .dots { display: flex; gap: 6px; margin-right: 14px; }
+    .toolbar .dots span { width: 11px; height: 11px; border-radius: 99px; display: block; }
+    .toolbar .dots span:nth-child(1) { background: var(--orange); }
+    .toolbar .dots span:nth-child(2) { background: #b8951a; }
+    .toolbar .dots span:nth-child(3) { background: var(--green); }
+    .toolbar .left  { display: flex; align-items: center; }
+    .toolbar .right { display: flex; gap: 12px; align-items: center; }
+    .toolbar a, .toolbar button {
+      font-family: inherit; font-size: 12.5px; border: 1px solid var(--rule);
+      background: var(--paper); color: var(--ink2); padding: 5px 12px; border-radius: 4px;
+      cursor: pointer; display: inline-flex; align-items: center; gap: 6px;
+    }
+    .toolbar a:hover, .toolbar button:hover { border-color: var(--magenta); color: var(--magenta); }
+    .toolbar .primary { background: var(--magenta); border-color: var(--magenta); color: var(--paper); }
+    .toolbar .primary:hover { background: var(--ink); border-color: var(--ink); color: var(--paper); }
+
+    .page {
+      max-width: 900px; margin: 0 auto; padding: 32px clamp(20px, 4vw, 40px) 80px;
+      position: relative; z-index: 2;
+    }
+
+    .head {
+      display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: 32px;
+      padding-bottom: 24px; border-bottom: 1px dashed var(--rule);
+    }
+    .name {
+      font-family: var(--display);
+      font-size: clamp(46px, 8.4vw, 88px); line-height: 0.9; letter-spacing: -2.5px;
+      color: var(--ink); margin: 0;
+    }
+    .name .dot { color: var(--mute); }
+    .name .dev { color: var(--magenta); }
+    .nick { font-family: var(--display); font-size: 14px; color: var(--mute);
+      letter-spacing: 2px; margin-top: 8px; }
+    .role { margin-top: 10px; font-size: 14px; color: var(--ink2); max-width: 480px; }
+    .contact { font-size: 12.5px; line-height: 2.05; text-align: right;
+      align-self: end; }
+    .contact .k { color: var(--mute); display: inline-block; width: 7.5em; text-align: left; }
+    .contact a:hover .v { color: var(--magenta); }
+
+    section { padding: 26px 0 6px; }
+    .secthead {
+      display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap;
+      padding-bottom: 10px; border-bottom: 1px dashed var(--rule); margin-bottom: 16px;
+    }
+    .secthead h2 {
+      margin: 0; font-family: var(--display); font-weight: 400;
+      font-size: 22px; letter-spacing: 0.4px; color: var(--ink);
+    }
+    .secthead .caption { font-size: 12px; color: var(--mute); }
+    .secthead .arg { color: var(--blue); }
+
+    .summary {
+      font-family: var(--sans); font-size: 16px; line-height: 1.65; color: var(--ink2);
+      max-width: 760px;
+    }
+    .summary .hi { color: var(--magenta); }
+
+    .xp {
+      display: grid; grid-template-columns: 130px minmax(0, 1fr) minmax(0, 1.2fr);
+      gap: 18px; padding: 14px 0; border-top: 1px dashed var(--rule);
+      align-items: baseline;
+    }
+    .xp:first-of-type { border-top: none; padding-top: 4px; }
+    .xp .yr  { color: var(--mute); font-variant-numeric: tabular-nums; white-space: nowrap; }
+    .xp .role { color: var(--ink); font-weight: 500; }
+    .xp .where { color: var(--magenta); }
+    .xp .note  { color: var(--ink2); grid-column: 2 / -1; margin-top: 6px;
+      font-family: var(--sans); font-size: 14px; line-height: 1.55; }
+    .xp .note ul { margin: 6px 0 0; padding-left: 18px; }
+    .xp .note li::marker { color: var(--green); }
+    .xp .note li { margin: 2px 0; }
+
+    .projects {
+      display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px;
+    }
+    .proj {
+      border: 1px solid var(--rule); border-radius: 6px; background: var(--paper);
+      padding: 14px 16px;
+    }
+    .proj .ph {
+      display: flex; justify-content: space-between; align-items: baseline;
+      gap: 10px; padding-bottom: 6px; border-bottom: 1px dashed var(--rule);
+      font-size: 11px; color: var(--mute);
+    }
+    .proj .name { font-family: var(--display); font-size: 22px; color: var(--ink);
+      letter-spacing: -0.4px; line-height: 1; margin-top: 8px; }
+    .proj .desc { margin-top: 8px; font-family: var(--sans); font-size: 13.5px;
+      line-height: 1.5; color: var(--ink2); }
+
+    .skills { display: grid; grid-template-columns: 130px 1fr; gap: 10px 18px;
+      font-size: 13px; }
+    .skills .k { color: var(--mute); }
+    .skills .v { color: var(--ink); }
+    .skills .v .chip {
+      display: inline-block; margin: 0 6px 6px 0;
+      padding: 2px 8px; border: 1px solid var(--rule); border-radius: 3px;
+      background: var(--paper); font-size: 12px; color: var(--ink2);
+    }
+    .skills .v .chip.hl { color: var(--magenta); border-color: var(--magenta); }
+
+    .certs { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 18px; font-size: 13px; }
+    .certs .item { display: grid; grid-template-columns: 20px 1fr; gap: 8px;
+      padding: 6px 0; align-items: baseline; }
+    .certs .check { color: var(--green); }
+    .certs .where { color: var(--mute); font-size: 11px; }
+
+    .pubs { font-size: 13px; line-height: 1.6; }
+    .pubs .pub { padding: 8px 0; }
+    .pubs .pub + .pub { border-top: 1px dashed var(--rule); }
+    .pubs .key { color: var(--cyan); font-family: var(--mono); }
+    .pubs .title { color: var(--ink); }
+
+    .edu { display: grid; grid-template-columns: 130px minmax(0, 1fr) minmax(0, 1.2fr);
+      gap: 18px; align-items: baseline; padding: 8px 0; font-size: 13.5px; }
+    .edu .yr { color: var(--mute); }
+    .edu .deg { color: var(--ink); }
+    .edu .school { color: var(--magenta); }
+
+    .foot {
+      margin-top: 36px; padding-top: 18px; border-top: 1px dashed var(--rule);
+      font-size: 11.5px; color: var(--mute); display: flex; justify-content: space-between;
+      flex-wrap: wrap; gap: 10px;
+    }
+
+    @page { size: letter; margin: 0.5in 0.55in; }
+    @media print {
+      :root {
+        --bg: #fff; --panel: #fff; --paper: #fff;
+        --ink: #111; --ink2: #1f1c18; --mute: #555;
+        --rule: #c0b89a;
+        --magenta: #a82c6c; --green: #136840; --orange: #b9531f;
+        --blue: #224d99; --cyan: #156876;
+      }
+      body { background: #fff; }
+      body::before { display: none; }
+      .toolbar { display: none; }
+      .page { max-width: none; padding: 0; }
+      section { padding: 14px 0 4px; break-inside: avoid; }
+      .head { padding-bottom: 12px; }
+      .name { font-size: 56px; }
+      .role { font-size: 12.5px; }
+      .summary { font-size: 13px; }
+      .xp, .edu { padding: 7px 0; }
+      .xp .note { font-size: 12px; }
+      .proj { padding: 10px 12px; }
+      .proj .name { font-size: 17px; }
+      .proj .desc { font-size: 11.5px; }
+      .projects { gap: 8px; }
+      a { color: inherit !important; }
+    }
+
+    @media (max-width: 720px) {
+      .head { grid-template-columns: 1fr; }
+      .contact { text-align: left; }
+      .xp { grid-template-columns: 90px 1fr; }
+      .xp .where { grid-column: 2; }
+      .xp .note { grid-column: 1 / -1; }
+      .projects, .skills, .edu, .certs { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="toolbar">
+    <div class="left">
+      <span class="dots"><span></span><span></span><span></span></span>
+      <span class="mute"><span class="magenta">zilu</span>@<span class="cyan">dev</span>:<span class="green">/resume</span>$&nbsp;<span class="ink">cat zilu.resume</span></span>
+    </div>
+    <div class="right">
+      <a href="index.html"><span class="green">$</span> cd ~</a>
+      <button class="primary" onclick="window.print()">save as PDF ⇩</button>
+    </div>
+  </div>
+
+  <main class="page">
+
+    <!-- HEAD -->
+    <header class="head">
+      <div>
+        <h1 class="name">ZILU<span class="dot"> </span><span class="dev">RANE</span></h1>
+        <div class="nick">// zilu.dev — Technical Lead, e-Zest</div>
+        <p class="role">
+          React · Node.js · React Native · LangChain · RAG. Eight-plus years of
+          building web and mobile apps for enterprise clients out of Pune, India.
+        </p>
+      </div>
+      <div class="contact">
+        <div><span class="k">location</span>: <span class="v">Pune, Maharashtra · IN</span></div>
+        <div><span class="k">email</span>:    <a href="mailto:zilurrane@gmail.com"><span class="v orange">zilurrane@gmail.com</span></a></div>
+        <div><span class="k">phone</span>:    <span class="v">+91 84467 74967</span></div>
+        <div><span class="k">site</span>:     <a href="https://zilu.dev"><span class="v">zilu.dev</span></a></div>
+        <div><span class="k">linkedin</span>: <a href="https://www.linkedin.com/in/zilurane"><span class="v">/in/zilurane</span></a></div>
+        <div><span class="k">github</span>:   <a href="https://github.com/zilurane"><span class="v">/zilurane</span></a></div>
+        <div><span class="k">last updated</span>: <span class="v" id="updated">May 2026</span></div>
+      </div>
+    </header>
+
+    <!-- SUMMARY -->
+    <section>
+      <div class="secthead">
+        <h2><span class="green">$</span> cat <span class="arg">summary.md</span></h2>
+        <span class="caption">// short version</span>
+      </div>
+      <p class="summary">
+        Technical Lead at e-Zest Solutions with eight-plus years of full-stack development
+        and automation-testing experience across Microsoft and open-source ecosystems. Strong
+        analytical, problem-solving and communication skills with a habit of getting to the
+        point of client requirements quickly. Recently spending most of my time at the
+        intersection of front-end engineering and Gen AI — <span class="hi">LangChain</span>,
+        <span class="hi">RAG</span>, and the patterns that survive production.
+      </p>
+      <p class="summary" style="margin-top: 12px;">
+        Comfortable across <span class="ink">React-Redux, Angular, Node.js, GraphQL,
+        C#/.NET Core, MongoDB, MSSQL, Jenkins, AWS, PCF, Docker</span>, and mobile work in
+        React Native with AWS Amplify. Unit testing in Jest/Jasmine/NUnit; automation in
+        Selenium WebdriverIO. Have shipped under SAFe agile and lean processes.
+      </p>
+    </section>
+
+    <!-- EXPERIENCE -->
+    <section>
+      <div class="secthead">
+        <h2><span class="green">$</span> cat <span class="arg">experience.log</span></h2>
+        <span class="caption">// most recent first</span>
+      </div>
+
+      <div class="xp">
+        <span class="yr">Mar 2023 — now</span>
+        <span class="role">Technical Lead</span>
+        <span class="where">e-Zest Solutions · Pune</span>
+        <div class="note">
+          Leading delivery on a React + Node platform for an enterprise client, with growing
+          Gen AI work on top — LangChain pipelines, retrieval-augmented chat, prompt versioning.
+          <ul>
+            <li>Own architecture, design reviews and code quality across a multi-team frontend.</li>
+            <li>Hands-on coding 60% of the week; the rest is mentoring, hiring, and unblocking.</li>
+            <li>Drive SAFe ceremonies for the train; act as primary technical point of contact for the client.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="xp">
+        <span class="yr">Feb 2019 — Nov 2023</span>
+        <span class="role">Software Engineer</span>
+        <span class="where">e-Zest Solutions · Pune</span>
+        <div class="note">
+          Full-stack across React, Node.js, .NET Core, MongoDB and AWS for multiple enterprise
+          clients. Grew from senior IC into technical-lead responsibilities over four years.
+          <ul>
+            <li>Built React-Redux SPAs and React Native mobile apps with AWS Amplify (auth, GraphQL, storage).</li>
+            <li>Set up Jenkins pipelines, Docker images, and unit/automation suites (Jest, Selenium WebdriverIO).</li>
+            <li>Mentored junior engineers; ran internal sessions on testing and clean architecture.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="xp">
+        <span class="yr">Sep 2016 — Feb 2019</span>
+        <span class="role">Software Engineer</span>
+        <span class="where">Larsen &amp; Toubro Infotech (LTI)</span>
+        <div class="note">
+          Enterprise web apps in Angular, C# / Web API, .NET Framework, MSSQL on IIS. First
+          professional exposure to large-codebase work and disciplined release management.
+          <ul>
+            <li>Wrote unit tests with NUnit and ran an early-career automation push using Selenium.</li>
+            <li>Owned feature delivery end-to-end for two long-running engagements.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="xp">
+        <span class="yr">Aug 2015 — Aug 2016</span>
+        <span class="role">Web Developer</span>
+        <span class="where">LifeCOMPILERS · Ratnagiri</span>
+        <div class="note">
+          First full-time gig out of engineering. Built the company&rsquo;s public site and a couple
+          of small client projects; learned the difference between &ldquo;works on my machine&rdquo; and
+          &ldquo;works on the client&rsquo;s machine.&rdquo;
+        </div>
+      </div>
+
+      <div class="xp">
+        <span class="yr">Jul 2015</span>
+        <span class="role">Internship Trainee</span>
+        <span class="where">ASHIDA Electronics · Thane</span>
+        <div class="note">
+          One-month industrial trainee internship — first exposure to industrial software in a
+          professional engineering setting.
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section>
+      <div class="secthead">
+        <h2><span class="green">$</span> ls <span class="arg">~/projects</span></h2>
+        <span class="caption">// side projects, OSS, undergrad research</span>
+      </div>
+      <div class="projects">
+        <div class="proj">
+          <div class="ph"><span><span class="magenta">●</span> rag-playground/</span><span>react · langchain · node</span></div>
+          <div class="name">RAG Playground</div>
+          <div class="desc">A hands-on lab for retrieval-augmented chat: ingest docs, swap embeddings, compare retrievers, watch tokens stream. Built alongside the LangChain + RAG certification.</div>
+        </div>
+        <div class="proj">
+          <div class="ph"><span><span class="green">●</span> rn-amplify-starter/</span><span>react native · aws amplify</span></div>
+          <div class="name">RN-Amplify Starter</div>
+          <div class="desc">A batteries-included React Native starter wired to AWS Amplify (auth, GraphQL, storage). The setup I wish existed when I first picked up Amplify.</div>
+        </div>
+        <div class="proj">
+          <div class="ph"><span><span class="blue">●</span> microservices-kit/</span><span>node · react · docker</span></div>
+          <div class="name">Microservices Kit</div>
+          <div class="desc">A reference monorepo for Node + React microservices: docker-compose, GraphQL gateway, Jest tests, Jenkins pipeline.</div>
+        </div>
+        <div class="proj">
+          <div class="ph"><span><span class="orange">●</span> twelve-factor-template/</span><span>node · pcf · docker</span></div>
+          <div class="name">Twelve-Factor Template</div>
+          <div class="desc">A Node service skeleton that takes the twelve-factor principles seriously — config, logs, processes, all of it. Deploys cleanly to Pivotal Cloud Foundry.</div>
+        </div>
+        <div class="proj">
+          <div class="ph"><span><span class="cyan">●</span> sentiment-hadoop/</span><span>java · hadoop · ml</span></div>
+          <div class="name">Hadoop Sentiment Analysis</div>
+          <div class="desc">Undergrad research project that became two published papers — web-based sentiment analysis on Twitter feeds, running on a Hadoop cluster.</div>
+        </div>
+        <div class="proj" style="background: transparent; border-style: dashed;">
+          <div class="ph"><span><span class="green">●</span> blog/</span><span class="mute">zilu.dev</span></div>
+          <div class="name">zilu.dev/writing</div>
+          <div class="desc">A personal blog on React, Node, and shipping useful things with LLMs. Updated whenever there&rsquo;s something worth saying.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section>
+      <div class="secthead">
+        <h2><span class="green">$</span> cat <span class="arg">skills.json</span></h2>
+        <span class="caption">// tools I actually use</span>
+      </div>
+      <div class="skills">
+        <span class="k">frontend</span>
+        <span class="v">
+          <span class="chip hl">React</span><span class="chip hl">React-Redux</span><span class="chip">Angular</span>
+          <span class="chip">TypeScript</span><span class="chip">JavaScript</span><span class="chip">HTML/CSS</span>
+        </span>
+
+        <span class="k">mobile</span>
+        <span class="v">
+          <span class="chip hl">React Native</span><span class="chip">AWS Amplify</span>
+        </span>
+
+        <span class="k">backend</span>
+        <span class="v">
+          <span class="chip hl">Node.js</span><span class="chip">GraphQL</span><span class="chip">REST · Web API</span>
+          <span class="chip">C# · .NET Core</span><span class="chip">MongoDB</span><span class="chip">MSSQL</span>
+        </span>
+
+        <span class="k">genai</span>
+        <span class="v">
+          <span class="chip hl">LangChain</span><span class="chip hl">Retrieval-Augmented Generation</span>
+          <span class="chip">Prompt versioning</span><span class="chip">Embeddings &amp; vector search</span>
+        </span>
+
+        <span class="k">devops · cloud</span>
+        <span class="v">
+          <span class="chip">AWS</span><span class="chip">Pivotal Cloud Foundry</span><span class="chip">Docker</span>
+          <span class="chip">Jenkins</span><span class="chip">IIS · TomCat</span>
+        </span>
+
+        <span class="k">testing</span>
+        <span class="v">
+          <span class="chip">Jest</span><span class="chip">Jasmine</span><span class="chip">NUnit</span><span class="chip">Selenium WebdriverIO</span>
+        </span>
+
+        <span class="k">process</span>
+        <span class="v">
+          <span class="chip">SAFe agile</span><span class="chip">Lean</span><span class="chip">Code review &amp; mentoring</span>
+        </span>
+
+        <span class="k">languages</span>
+        <span class="v">
+          <span class="chip">English</span><span class="chip">Hindi</span><span class="chip">Marathi</span>
+        </span>
+      </div>
+    </section>
+
+    <!-- CERTIFICATIONS -->
+    <section>
+      <div class="secthead">
+        <h2><span class="green">$</span> cat <span class="arg">certifications.list</span></h2>
+        <span class="caption">// in chronological-ish order</span>
+      </div>
+      <div class="certs">
+        <div class="item">
+          <span class="check">✓</span>
+          <div>
+            <div class="ink">Generative AI for JavaScript Developers — LangChain, RAG</div>
+            <div class="where">LangChain &amp; partners · 2024</div>
+          </div>
+        </div>
+        <div class="item">
+          <span class="check">✓</span>
+          <div>
+            <div class="ink">Microservices with Node.js and React</div>
+            <div class="where">Udemy / Stephen Grider · 2023</div>
+          </div>
+        </div>
+        <div class="item">
+          <span class="check">✓</span>
+          <div>
+            <div class="ink">M220JS: MongoDB for JavaScript Developers</div>
+            <div class="where">MongoDB University</div>
+          </div>
+        </div>
+        <div class="item">
+          <span class="check">✓</span>
+          <div>
+            <div class="ink">Cloud Native Twelve-Factor Applications</div>
+            <div class="where">Pivotal · Cloud Foundry track</div>
+          </div>
+        </div>
+        <div class="item">
+          <span class="check">✓</span>
+          <div>
+            <div class="ink">.NET Framework</div>
+            <div class="where">Microsoft</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- HONORS + PUBLICATIONS -->
+    <section>
+      <div class="secthead">
+        <h2><span class="green">$</span> cat <span class="arg">honors.txt</span></h2>
+        <span class="caption">// recognition · publications</span>
+      </div>
+      <div style="display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr); gap: 24px;">
+        <div>
+          <div style="color: var(--mute); font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 8px;">awards</div>
+          <div style="padding: 6px 0; border-bottom: 1px dashed var(--rule);">
+            <span class="orange">★</span> <span class="ink">Dewang Mehta Excellence Award</span>
+            <div style="font-size: 11.5px; color: var(--mute); margin-left: 18px;">recognition for academic achievement</div>
+          </div>
+          <div style="padding: 6px 0;">
+            <span class="orange">★</span> <span class="ink">Pat on the Back</span>
+            <div style="font-size: 11.5px; color: var(--mute); margin-left: 18px;">internal recognition · e-Zest Solutions</div>
+          </div>
+        </div>
+        <div>
+          <div style="color: var(--mute); font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 8px;">publications</div>
+          <div class="pubs">
+            <div class="pub">
+              <span class="key">@paper&#123;rane2016hadoop&#125;</span>
+              <div class="title">Use of Hadoop Framework for Web-Based Sentiment Analysis</div>
+            </div>
+            <div class="pub">
+              <span class="key">@paper&#123;rane2016twitter&#125;</span>
+              <div class="title">Machine Learning Algorithm for Sentiment Analysis of Twitter Feeds</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- EDUCATION -->
+    <section>
+      <div class="secthead">
+        <h2><span class="green">$</span> cat <span class="arg">education.list</span></h2>
+        <span class="caption">// degrees + schooling</span>
+      </div>
+      <div class="edu">
+        <span class="yr">2012 — 2016</span>
+        <span class="deg">B.E. Computer Engineering</span>
+        <span class="school">RMCET · Mumbai University</span>
+      </div>
+      <div class="edu">
+        <span class="yr">2011 — 2012</span>
+        <span class="deg">HSC</span>
+        <span class="school">Kudal Highschool, Kudal</span>
+      </div>
+      <div class="edu">
+        <span class="yr">2008 — 2010</span>
+        <span class="deg">SSC · Science</span>
+        <span class="school">Kudal Highschool, Kudal</span>
+      </div>
+    </section>
+
+    <div class="foot">
+      <span><span class="green">$</span> echo "<span class="ink">thanks for reading — references on request</span>"</span>
+      <span>:wq</span>
+    </div>
+  </main>
+
+  <script>
+    (function () {
+      const now = new Date();
+      const m = ['January','February','March','April','May','June','July','August','September','October','November','December'][now.getMonth()];
+      document.getElementById('updated').textContent = m + ' ' + now.getFullYear();
+    })();
+  </script>
+</body>
+</html>
