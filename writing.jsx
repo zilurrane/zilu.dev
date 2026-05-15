@@ -67,7 +67,7 @@ function Writing({ onNav }) {
           backdropFilter: 'blur(8px)',
           padding: '12px 0', marginBottom: 24,
           borderTop: '1px dashed var(--rule)', borderBottom: '1px dashed var(--rule)' }}>
-          <div style={{ display: 'flex', gap: 10, alignItems: 'center', flexWrap: 'wrap', fontSize: 13 }}>
+          <div className="z-filter-bar" style={{ display: 'flex', gap: 10, alignItems: 'center', flexWrap: 'wrap', fontSize: 13 }}>
             <span style={{ color: 'var(--mute)', whiteSpace: 'nowrap' }}>
               <span style={{ color: 'var(--green)' }}>$</span> grep
             </span>
@@ -87,7 +87,7 @@ function Writing({ onNav }) {
               );
             })}
             <span style={{ flex: 1, minWidth: 12 }}/>
-            <div style={{ display: 'flex', alignItems: 'center', gap: 8, border: '1px solid var(--rule)', borderRadius: 4,
+            <div className="z-filter-search" style={{ display: 'flex', alignItems: 'center', gap: 8, border: '1px solid var(--rule)', borderRadius: 4,
               padding: '4px 10px', background: 'var(--paper)', minWidth: 200 }}>
               <span style={{ color: 'var(--green)' }}>/</span>
               <input value={query} onChange={(e) => setQuery(e.target.value)}

@@ -159,6 +159,71 @@
       outline: 2px solid var(--magenta);
       outline-offset: 2px;
     }
+
+    /* ───── responsive overrides ─────
+       Inline `style` grids in JSX are tagged with these classnames; the
+       !important keeps the media query winning over the inline style. */
+
+    /* tablet */
+    @media (max-width: 900px) {
+      .z-hero-grid        { grid-template-columns: 1fr !important; gap: 28px !important; }
+      .z-about-grid       { grid-template-columns: 1fr !important; gap: 24px !important; }
+      .z-credentials-grid { grid-template-columns: 1fr !important; gap: 14px !important; }
+      .z-post-layout      { grid-template-columns: 1fr !important; gap: 24px !important; }
+      .z-post-toc         { position: static !important; }
+    }
+
+    /* phone */
+    @media (max-width: 640px) {
+      html, body { font-size: 14px; }
+      .z-projects-grid    { grid-template-columns: 1fr !important; }
+      .z-stats-grid       { grid-template-columns: repeat(2, 1fr) !important; }
+      .z-prevnext         { grid-template-columns: 1fr !important; }
+
+      /* Nav — tighter padding, smaller bits */
+      .z-nav              { padding: 10px 16px !important; font-size: 12px !important; }
+      .z-nav-links        { gap: 12px !important; }
+      .z-nav-resume       { display: none !important; }
+
+      /* Resume rows: stack year + role + place + note */
+      .z-resume-row {
+        grid-template-columns: 1fr !important;
+        gap: 2px !important;
+        padding: 12px 14px !important;
+      }
+
+      /* Writing post rows: keep date + title only, hide read-time / arrow */
+      .z-postrow {
+        grid-template-columns: 70px 56px 1fr !important;
+        gap: 10px !important;
+        padding: 12px 14px !important;
+      }
+      .z-postrow-read,
+      .z-postrow-arrow { display: none !important; }
+
+      /* Section heads: stack the right-side action */
+      .z-section-head {
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        gap: 6px !important;
+      }
+      .z-section-head > *:first-child { font-size: 20px !important; }
+
+      /* Hero TOC sidebar inside post: hide on phone (article still has H2 anchors) */
+      .z-post-toc { display: none !important; }
+
+      /* Footer two-column → stacked */
+      .z-footer-row {
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        gap: 18px !important;
+      }
+      .z-footer-row > div:last-child { text-align: left !important; }
+
+      /* Writing filter bar wraps tighter */
+      .z-filter-bar { gap: 8px !important; }
+      .z-filter-search { min-width: 100% !important; order: 99; }
+    }
   </style>
 
   <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>

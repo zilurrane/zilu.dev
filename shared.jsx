@@ -117,7 +117,7 @@ function Nav({ route, theme, onTheme, onNav }) {
     </a>
   );
   return (
-    <div style={{
+    <div className="z-nav" style={{
       position: 'sticky', top: 0, zIndex: 50,
       background: 'color-mix(in oklab, var(--panel) 92%, transparent)',
       backdropFilter: 'blur(8px)',
@@ -125,6 +125,7 @@ function Nav({ route, theme, onTheme, onNav }) {
       padding: '12px clamp(20px, 4vw, 48px)',
       display: 'flex', alignItems: 'center', justifyContent: 'space-between',
       fontFamily: "'JetBrains Mono', monospace", fontSize: 13,
+      gap: 12, flexWrap: 'wrap',
     }}>
       <a href="#/" onClick={(e) => { e.preventDefault(); onNav(''); }} style={{ display: 'flex', alignItems: 'center', gap: 14, cursor: 'pointer' }}>
         <span style={{ display: 'flex', gap: 6 }}>
@@ -143,10 +144,10 @@ function Nav({ route, theme, onTheme, onNav }) {
         </span>
       </a>
 
-      <div style={{ display: 'flex', gap: 'clamp(14px, 2vw, 28px)', alignItems: 'center' }}>
+      <div className="z-nav-links" style={{ display: 'flex', gap: 'clamp(14px, 2vw, 28px)', alignItems: 'center', flexWrap: 'wrap' }}>
         {link('', '~', 'home')}
         {link('writing', '/writing', 'writing')}
-        <a href="resume.html" target="_blank" rel="noopener" className="z-link" style={{ color: 'var(--mute)' }}>
+        <a href="resume.html" target="_blank" rel="noopener" className="z-link z-nav-resume" style={{ color: 'var(--mute)' }}>
           <span style={{ color: 'var(--mute)' }}>cat </span>/resume
         </a>
         <a href="/feed.rss" className="z-link" onClick={(e) => e.preventDefault()}
@@ -178,7 +179,7 @@ function Footer() {
       fontFamily: "'JetBrains Mono', monospace", fontSize: 13,
       color: 'var(--mute)', marginTop: 80,
     }}>
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', flexWrap: 'wrap', gap: 24 }}>
+      <div className="z-footer-row" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', flexWrap: 'wrap', gap: 24 }}>
         <div>
           <div style={{ fontFamily: "'Departure Mono', monospace", fontSize: 32, color: 'var(--ink)', letterSpacing: -0.5 }}>
             <span style={{ color: 'var(--magenta)' }}>zilu</span>.<span style={{ color: 'var(--green)' }}>dev</span>

@@ -215,9 +215,9 @@ function Post({ slug, onNav }) {
       </div>
 
       {/* TWO-COL: TOC + ARTICLE */}
-      <div style={{ marginTop: 40, display: 'grid', gridTemplateColumns: 'minmax(0, 180px) minmax(0, 1fr)', gap: 40 }}>
+      <div className="z-post-layout" style={{ marginTop: 40, display: 'grid', gridTemplateColumns: 'minmax(0, 180px) minmax(0, 1fr)', gap: 40 }}>
         {/* TOC */}
-        <aside style={{ position: 'sticky', top: 72, alignSelf: 'start', fontSize: 12,
+        <aside className="z-post-toc" style={{ position: 'sticky', top: 72, alignSelf: 'start', fontSize: 12,
           color: 'var(--mute)', lineHeight: 2, fontFamily: "'JetBrains Mono', monospace" }}>
           <div style={{ color: 'var(--ink)', marginBottom: 6 }}>
             <span style={{ color: 'var(--green)' }}>#</span> contents
@@ -264,7 +264,7 @@ function Post({ slug, onNav }) {
       </div>
 
       {/* PREV / NEXT */}
-      <div style={{ marginTop: 56, display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 14 }}>
+      <div className="z-prevnext" style={{ marginTop: 56, display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 14 }}>
         {prev ? (
           <a href={`#/writing/${prev.slug}`} onClick={(e) => { e.preventDefault(); onNav(`writing/${prev.slug}`); }}
             style={navCardStyle}>

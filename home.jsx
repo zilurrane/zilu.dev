@@ -7,7 +7,7 @@ function Home({ onNav, theme }) {
       {/* ─────────── HERO ─────────── */}
       <section style={{ padding: '56px 0 28px' }}>
         <Reveal>
-          <div style={{ display: 'grid', gridTemplateColumns: 'minmax(0, 1.5fr) minmax(0, 1fr)', gap: 36, alignItems: 'flex-start' }}>
+          <div className="z-hero-grid" style={{ display: 'grid', gridTemplateColumns: 'minmax(0, 1.5fr) minmax(0, 1fr)', gap: 36, alignItems: 'flex-start' }}>
             <div>
               <div style={{ fontSize: 13, color: 'var(--mute)', letterSpacing: 1.4, marginBottom: 18 }}>
                 <span style={{ color: 'var(--green)' }}>$</span> whoami <span style={{ color: 'var(--mute)' }}>--verbose</span>
@@ -86,7 +86,7 @@ function Home({ onNav, theme }) {
                 </div>
               </Frame>
 
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 8 }}>
+              <div className="z-stats-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 8 }}>
                 {[['8+','years', 'var(--magenta)'],['5','certs', 'var(--green)'],['2','papers', 'var(--orange)'],['3','langs', 'var(--blue)']].map((s) => (
                   <div key={s[1]} style={{ padding: '12px 8px', background: 'var(--paper)', border: '1px solid var(--rule)', borderRadius: 6, textAlign: 'center' }}>
                     <div style={{ fontFamily: "'Departure Mono', monospace", fontSize: 22, color: s[2], lineHeight: 1 }}>{s[0]}</div>
@@ -103,7 +103,7 @@ function Home({ onNav, theme }) {
       <section style={{ padding: '40px 0 24px' }}>
         <SectionHead cmd="cat" arg="about.md" caption="the short version" />
         <Reveal>
-          <div style={{ display: 'grid', gridTemplateColumns: 'minmax(0, 2fr) minmax(0, 1fr)', gap: 36, marginTop: 18 }}>
+          <div className="z-about-grid" style={{ display: 'grid', gridTemplateColumns: 'minmax(0, 2fr) minmax(0, 1fr)', gap: 36, marginTop: 18 }}>
             <div style={{ fontFamily: "'Geist', system-ui, sans-serif", fontSize: 17, lineHeight: 1.7, color: 'var(--ink2)' }}>
               <p style={{ margin: '0 0 14px' }}>
                 Hi — I&rsquo;m Zilu. I&rsquo;m a Technical Lead at e-Zest Solutions in Pune,
@@ -143,7 +143,7 @@ function Home({ onNav, theme }) {
       {/* ─────────── PROJECTS ─────────── */}
       <section style={{ padding: '40px 0 24px' }}>
         <SectionHead cmd="ls" arg="~/projects" caption="five things worth talking about" />
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, minmax(0, 1fr))', gap: 14, marginTop: 18 }}>
+        <div className="z-projects-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(2, minmax(0, 1fr))', gap: 14, marginTop: 18 }}>
           {PROJECTS.map((p, i) => (
             <Reveal key={p.dir} delay={i * 50}>
               <ProjectCard p={p} />
@@ -166,7 +166,7 @@ function Home({ onNav, theme }) {
       <section style={{ padding: '40px 0 24px' }}>
         <SectionHead cmd="cat" arg="~/credentials" caption="certs, awards, papers" />
         <Reveal>
-          <div style={{ marginTop: 18, display: 'grid', gridTemplateColumns: 'minmax(0, 1.3fr) minmax(0, 1fr)', gap: 14 }}>
+          <div className="z-credentials-grid" style={{ marginTop: 18, display: 'grid', gridTemplateColumns: 'minmax(0, 1.3fr) minmax(0, 1fr)', gap: 14 }}>
             {/* Certifications */}
             <Frame title="certifications.list" color="var(--green)">
               <div style={{ padding: '4px 0' }}>
@@ -237,7 +237,7 @@ function Home({ onNav, theme }) {
         <div style={{ marginTop: 14, border: '1px solid var(--rule)', borderRadius: 6, overflow: 'hidden', background: 'var(--paper)' }}>
           {RESUME.map((r, i) => (
             <Reveal key={i} delay={i * 30}>
-              <div style={{ display: 'grid', gridTemplateColumns: '120px minmax(0, 1fr) minmax(0, 1.2fr) minmax(0, 1.5fr)', gap: 18,
+              <div className="z-resume-row" style={{ display: 'grid', gridTemplateColumns: '120px minmax(0, 1fr) minmax(0, 1.2fr) minmax(0, 1.5fr)', gap: 18,
                 padding: '14px 18px', borderBottom: i === RESUME.length - 1 ? 'none' : '1px dashed var(--rule)',
                 alignItems: 'baseline', fontSize: 13.5 }}>
                 <span style={{ color: 'var(--mute)', fontVariantNumeric: 'tabular-nums' }}>{r.year}</span>
@@ -286,7 +286,7 @@ function Row({ k, v, last }) {
 
 function SectionHead({ cmd, arg, caption, right }) {
   return (
-    <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between',
+    <div className="z-section-head" style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between',
       paddingBottom: 10, borderBottom: '1px dashed var(--rule)' }}>
       <div style={{ fontFamily: "'Departure Mono', monospace", fontSize: 26, color: 'var(--ink)', letterSpacing: 0.3 }}>
         <span style={{ color: 'var(--green)' }}>$</span> {cmd} <span style={{ color: 'var(--blue)' }}>{arg}</span>
@@ -350,6 +350,7 @@ function ProjectCard({ p }) {
 function PostRow({ p, onNav, last }) {
   return (
     <a href={`#/writing/${p.slug}`} onClick={(e) => { e.preventDefault(); onNav(`writing/${p.slug}`); }}
+      className="z-postrow"
       style={{ display: 'grid', gridTemplateColumns: '120px 90px 50px minmax(0, 1fr) 24px', gap: 16,
       padding: '13px 18px', borderBottom: last ? 'none' : '1px dashed var(--rule)',
       fontSize: 14, alignItems: 'baseline', cursor: 'pointer', transition: 'background .15s' }}
@@ -358,9 +359,9 @@ function PostRow({ p, onNav, last }) {
     >
       <span style={{ color: 'var(--mute)', fontVariantNumeric: 'tabular-nums' }}>{p.date}</span>
       <span style={{ color: TAG_COLORS[p.tag] }}>[{p.tag}]</span>
-      <span style={{ color: 'var(--mute)', textAlign: 'right' }}>{p.read}</span>
+      <span className="z-postrow-read" style={{ color: 'var(--mute)', textAlign: 'right' }}>{p.read}</span>
       <span style={{ color: 'var(--ink)' }}>{p.title}</span>
-      <span style={{ color: 'var(--mute)', textAlign: 'right' }}>→</span>
+      <span className="z-postrow-arrow" style={{ color: 'var(--mute)', textAlign: 'right' }}>→</span>
     </a>
   );
 }
