@@ -70,25 +70,33 @@ const PROJECTS = [
   },
 ];
 
-// Blog posts seeded from areas Zilu actually works in (React, Node, RAG,
-// LangChain, React Native, microservices). Replace with real posts as they
-// get written.
+// Real posts published on DEV.to (dev.to/zilurrane). Each entry has a `url`
+// so the writing list routes externally instead of opening the internal stub.
 const POSTS = [
-  { date: '2025-11-14', slug: 'taste-gap',           tag: 'craft',   read: '9m',  title: 'The taste gap in AI-generated UIs' },
-  { date: '2025-10-02', slug: 'rag-eval-first',      tag: 'eng',     read: '11m', title: 'Evaluating RAG before you ship it (and why I keep getting it wrong)' },
-  { date: '2025-09-09', slug: 'langchain-prod',      tag: 'eng',     read: '8m',  title: 'LangChain in production: the patterns that stuck' },
-  { date: '2025-08-21', slug: 'react-native-amplify',tag: 'eng',     read: '12m', title: 'Twelve months of React Native + AWS Amplify, the honest review' },
-  { date: '2025-07-03', slug: 'reading-code',        tag: 'craft',   read: '5m',  title: 'Reading code is the actual skill' },
-  { date: '2025-06-12', slug: 'redux-2025',          tag: 'eng',     read: '7m',  title: 'Does React still need Redux in 2025? (a sober take)' },
-  { date: '2025-05-04', slug: 'graphql-vs-rest',     tag: 'eng',     read: '9m',  title: 'GraphQL vs REST in legacy enterprise apps — five things I learned the hard way' },
-  { date: '2025-03-22', slug: 'tech-lead-year',      tag: 'journal', read: '5m',  title: 'A year of being a Technical Lead: what nobody tells you' },
-  { date: '2025-02-11', slug: 'mongodb-patterns',    tag: 'eng',     read: '10m', title: 'Five MongoDB schema patterns I keep reaching for' },
-  { date: '2024-12-22', slug: 'year-in-rest',        tag: 'journal', read: '3m',  title: 'Year in code, year in rest' },
-  { date: '2024-10-30', slug: 'safe-honest',         tag: 'journal', read: '4m',  title: 'SAFe in the real world — an honest sticky-note review' },
-  { date: '2024-08-11', slug: 'jest-or-not',         tag: 'eng',     read: '6m',  title: 'When Jest is too much (and when it isn\u2019t)' },
-  { date: '2024-05-17', slug: 'small-interfaces',    tag: 'craft',   read: '5m',  title: 'Small interfaces, fewer regrets' },
-  { date: '2024-03-04', slug: 'naming-things',       tag: 'craft',   read: '6m',  title: 'Naming things, six years later' },
-  { date: '2023-11-28', slug: 'reading-list-2023',   tag: 'reading', read: '2m',  title: 'A short reading list for senior engineers' },
+  {
+    date: '2021-06-29',
+    slug: 'express-cors-cookies',
+    tag: 'eng',
+    read: '1m',
+    title: 'Express CORS middleware unable to store cookies in the browser',
+    url: 'https://dev.to/zilurrane/express-js-cors-middleware-unable-to-store-cookies-on-browser-55g6',
+  },
+  {
+    date: '2018-11-22',
+    slug: 'docker-together',
+    tag: 'eng',
+    read: '1m',
+    title: 'Playing and learning Docker together',
+    url: 'https://dev.to/zilurrane/playing-and-learning-docker-together-45p5',
+  },
+  {
+    date: '2018-06-04',
+    slug: 'rn-release-apk',
+    tag: 'eng',
+    read: '1m',
+    title: 'Generate release-mode APK for a React Native project to publish on Play Store',
+    url: 'https://dev.to/zilurrane/generate-release-mode-apk-for-react-native-project-to-publish-on-playstore-5f78',
+  },
 ];
 
 const TAG_COLORS = {

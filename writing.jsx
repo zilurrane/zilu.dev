@@ -45,17 +45,18 @@ function Writing({ onNav }) {
           <div style={{ marginTop: 18, maxWidth: 720, fontFamily: "'Geist', system-ui, sans-serif",
             fontSize: 17, lineHeight: 1.65, color: 'var(--ink2)' }}>
             <span style={{ color: 'var(--mute)', fontFamily: "'JetBrains Mono', monospace" }}>{'/* '}</span>
-            Essays on building things with language models, on taste, and on the
-            unglamorous work that sits between them. Most are short, a few are too long.
-            Updated whenever I have something worth saying — usually monthly.
+            Short technical notes from things I’ve actually built — React, Express,
+            Docker, React Native. Published on{' '}
+            <a href="https://dev.to/zilurrane" target="_blank" rel="noopener noreferrer"
+              className="z-link" style={{ color: 'var(--magenta)' }}>dev.to/zilurrane</a>;
+            this page is the index. Longer essays land here as they get written.
             <span style={{ color: 'var(--mute)', fontFamily: "'JetBrains Mono', monospace" }}>{' */'}</span>
           </div>
           <div style={{ marginTop: 18, display: 'flex', gap: 18, flexWrap: 'wrap',
             fontSize: 13, color: 'var(--mute)' }}>
-            <span><span style={{ color: 'var(--ink)' }}>{POSTS.length}</span> essays</span>
-            <span><span style={{ color: 'var(--ink)' }}>~94k</span> words total</span>
-            <span><span style={{ color: 'var(--ink)' }}>since</span> 2022</span>
-            <span><span style={{ color: 'var(--orange)' }}>subscribe →</span> /feed.rss</span>
+            <span><span style={{ color: 'var(--ink)' }}>{POSTS.length}</span> notes</span>
+            <span><span style={{ color: 'var(--ink)' }}>since</span> 2018</span>
+            <span><span style={{ color: 'var(--orange)' }}>dev.to ↗</span> /zilurrane</span>
           </div>
         </Reveal>
       </section>

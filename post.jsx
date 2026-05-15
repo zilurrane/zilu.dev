@@ -1,124 +1,8 @@
 /* post.jsx — Individual blog post page + sample content */
 
-// ─────────── Sample post content ───────────
-// Only one is fully written ("taste-gap"); others show a friendly stub.
-const POST_CONTENT = {
-  'taste-gap': {
-    title: 'The taste gap in AI-generated UIs',
-    subtitle: 'A model can produce a plausible interface in seconds. The hard part — the part that still belongs to you — is knowing which of those interfaces is good.',
-    words: 1847,
-    updated: '2025-11-18',
-    toc: [
-      { id: 'demo-trap',  label: '01 the demo trap', color: 'var(--magenta)' },
-      { id: 'taste',      label: '02 what taste is' },
-      { id: 'keep-it',    label: '03 how to keep it' },
-      { id: 'further',    label: '04 further reading' },
-    ],
-    body: PostBodyTasteGap,
-  },
-};
-
-function PostBodyTasteGap() {
-  return (
-    <React.Fragment>
-      <p style={postP}>
-        <span style={dropCap}>I</span>
-        t took me about a week of using a frontier model to ship throwaway UIs
-        before I started to feel the gap. The first feeling was relief — here,
-        finally, was the tireless intern. The second feeling, slower to arrive,
-        was a low static of wrongness.
-      </p>
-      <p style={postP}>
-        The buttons were the right size. The spacing made sense. Nothing,
-        and I mean nothing, was <em>good</em>. What was missing wasn&rsquo;t skill —
-        the model could ape any visual language I named. What was missing was
-        the choice that comes <em>before</em> the skill: the decision about which
-        of a thousand competent interfaces is the one we should ship.
-      </p>
-      <p style={postP}>
-        That is taste, and taste is currently very expensive.
-      </p>
-
-      <PullQuote>
-        the model produced a hundred competent interfaces and could not tell me which one mattered.
-      </PullQuote>
-
-      <H2 id="demo-trap" color="var(--magenta)">the demo trap</H2>
-      <p style={postP}>
-        A demo is an interface in its first five minutes of life. The model is
-        exceptionally good at the first five minutes. That&rsquo;s a problem,
-        because the next five years are where everything that matters happens —
-        the edges, the misuses, the moment when the &ldquo;helpful&rdquo; ghost text
-        shows up at the worst possible time.
-      </p>
-      <p style={postP}>
-        I started keeping a list of demo-trap heuristics. They&rsquo;re embarrassingly
-        obvious in hindsight: <code style={inlineCode}>does it scroll past 200 items?</code>,
-        <code style={inlineCode}>what does the empty state say?</code>,
-        <code style={inlineCode}>does the error toast suggest the user is stupid?</code>.
-        Roughly half my reviews now consist of asking these questions to an
-        interface that hasn&rsquo;t had to answer them yet.
-      </p>
-
-      <CodeBlock filename="prompt.txt">
-{`# the exchange that got me thinking
-`}<S c="var(--magenta)">system</S>{`: `}<S c="var(--orange)">"generate a settings page"</S>{`
-`}<S c="var(--magenta)">model </S>{`: `}<S c="var(--orange)">&lt;200 perfectly average settings pages&gt;</S>{`
-`}<S c="var(--magenta)">me    </S>{`: `}<S c="var(--orange)">&lt;cries softly&gt;</S>
-      </CodeBlock>
-
-      <p style={postP}>
-        The way out is to put taste at the front of the loop, not the end.
-        Specify the texture you want before you specify the shape. Tell the
-        model what kind of <em>silence</em> the interface should hold.
-        That, it turns out, is something models can do — but only if you ask.
-      </p>
-
-      <H2 id="taste" color="var(--magenta)">what taste is</H2>
-      <p style={postP}>
-        Taste is the accumulation of <em>noticed</em> rejections. Every &ldquo;not&nbsp;quite&rdquo;
-        you ever felt and could explain. It is a database of small refusals, and
-        the only way to populate it is to look at a lot of things, on purpose,
-        with friends who will argue with you about them.
-      </p>
-      <p style={postP}>
-        It is also slow. There&rsquo;s no shortcut to having seen a thousand
-        bad sidebars and being able to describe, in a sentence, why the
-        thousand-and-first is bad too. The model can&rsquo;t do this part for you,
-        and probably shouldn&rsquo;t.
-      </p>
-
-      <Aside icon="↳" color="var(--cyan)">
-        Related: <Link slug="reading-code">reading code is the actual skill</Link>.
-        Same shape of argument, different domain.
-      </Aside>
-
-      <H2 id="keep-it" color="var(--green)">how to keep it</H2>
-      <p style={postP}>
-        First, look at a lot of stuff. Look at it on purpose, not while
-        you&rsquo;re building. Take screenshots. Write down a sentence about each
-        one. The act of writing it down is the work.
-      </p>
-      <p style={postP}>
-        Second, <em>stop showing the model your bad first ideas.</em> Once you start
-        feeding it your own slop, the next round of slop wears your face. Pull
-        from a reference, not from yesterday&rsquo;s output.
-      </p>
-      <p style={postP}>
-        Third, find one or two people whose taste you trust and ask them
-        before you ask the model. They&rsquo;ll be slower and more annoying. They
-        also won&rsquo;t agree with everything you say, which is the entire point.
-      </p>
-
-      <H2 id="further" color="var(--cyan)">further reading</H2>
-      <ul style={postUl}>
-        <li><a href="#" onClick={(e) => e.preventDefault()} style={postLink}>Ira Glass on the taste gap</a> — the original, still the best framing</li>
-        <li><a href="#" onClick={(e) => e.preventDefault()} style={postLink}>Maggie Appleton — squish meets structure</a></li>
-        <li><a href="#" onClick={(e) => e.preventDefault()} style={postLink}>Frank Chimero — The Web&rsquo;s Grain</a></li>
-      </ul>
-    </React.Fragment>
-  );
-}
+// No internal essays yet — all posts route externally via POSTS[i].url.
+// PostStub is the fallback if someone navigates to a slug without content.
+const POST_CONTENT = {};
 
 // ─────────── Post page ───────────
 function Post({ slug, onNav }) {
@@ -143,7 +27,7 @@ function Post({ slug, onNav }) {
   const prev = idx >= 0 ? POSTS[idx + 1] : null; // older
   const next = idx > 0 ? POSTS[idx - 1] : null;  // newer
 
-  if (!post) return <PostStub meta={meta} slug={slug} onNav={onNav} />;
+  if (!post || !meta) return <PostStub meta={meta} slug={slug} onNav={onNav} />;
 
   const Body = post.body;
 
@@ -317,10 +201,10 @@ function PostStub({ meta, slug, onNav }) {
       </h1>
       <div style={{ marginTop: 14, fontSize: 16, color: 'var(--ink2)', lineHeight: 1.65, maxWidth: 600 }}>
         <span style={{ color: 'var(--mute)', fontFamily: "'JetBrains Mono', monospace" }}>{'/* '}</span>
-        This essay isn&rsquo;t fully written yet — the prototype only ships one full post
-        (<a href="#/writing/taste-gap" onClick={(e) => { e.preventDefault(); onNav('writing/taste-gap'); }}
-          className="z-link" style={{ color: 'var(--magenta)' }}>the taste gap</a>) as a template.
-        The list, meta, and chrome are real;<br/>the body is a placeholder until I sit down and write it.
+        Long-form essays land here when they’re ready. Until then, head over to{' '}
+        <a href="https://dev.to/zilurrane" target="_blank" rel="noopener noreferrer"
+          className="z-link" style={{ color: 'var(--magenta)' }}>dev.to/zilurrane</a>{' '}
+        for short technical notes.
         <span style={{ color: 'var(--mute)', fontFamily: "'JetBrains Mono', monospace" }}>{' */'}</span>
       </div>
       <div style={{ marginTop: 28 }}>

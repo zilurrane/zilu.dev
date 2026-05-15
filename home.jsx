@@ -265,7 +265,7 @@ function Home({ onNav, theme }) {
         <SectionHead cmd="head -5" arg="~/writing/" caption="recent essays"
           right={<button onClick={() => onNav('writing')} className="z-link"
             style={{ border: 'none', background: 'transparent', color: 'var(--orange)', fontFamily: 'inherit', fontSize: 14, cursor: 'pointer' }}>
-            all 28 →
+            all {POSTS.length} →
           </button>} />
         <div style={{ marginTop: 14, border: '1px solid var(--rule)', borderRadius: 6, overflow: 'hidden', background: 'var(--paper)' }}>
           {POSTS.slice(0, 5).map((p, i) => (
@@ -365,8 +365,12 @@ function ProjectCard({ p }) {
 }
 
 function PostRow({ p, onNav, last }) {
+  const external = !!p.url;
   return (
-    <a href={`#/writing/${p.slug}`} onClick={(e) => { e.preventDefault(); onNav(`writing/${p.slug}`); }}
+    <a href={external ? p.url : `#/writing/${p.slug}`}
+      target={external ? '_blank' : undefined}
+      rel={external ? 'noopener noreferrer' : undefined}
+      onClick={external ? undefined : (e) => { e.preventDefault(); onNav(`writing/${p.slug}`); }}
       className="z-postrow"
       style={{ display: 'grid', gridTemplateColumns: '120px 90px 50px minmax(0, 1fr) 24px', gap: 16,
       padding: '13px 18px', borderBottom: last ? 'none' : '1px dashed var(--rule)',
@@ -378,7 +382,7 @@ function PostRow({ p, onNav, last }) {
       <span style={{ color: TAG_COLORS[p.tag] }}>[{p.tag}]</span>
       <span className="z-postrow-read" style={{ color: 'var(--mute)', textAlign: 'right' }}>{p.read}</span>
       <span style={{ color: 'var(--ink)' }}>{p.title}</span>
-      <span className="z-postrow-arrow" style={{ color: 'var(--mute)', textAlign: 'right' }}>→</span>
+      <span className="z-postrow-arrow" style={{ color: 'var(--mute)', textAlign: 'right' }}>{external ? '↗' : '→'}</span>
     </a>
   );
 }
