@@ -125,7 +125,7 @@ function Nav({ route, theme, onTheme, onNav }) {
         textDecoration: route === key ? 'underline' : 'none',
         textUnderlineOffset: '4px', textDecorationColor: 'var(--magenta)',
         textDecorationThickness: '1.5px' }}>
-      <span style={{ color: 'var(--mute)' }}>cd </span>{label}
+      <span className="z-cmd-prefix" style={{ color: 'var(--mute)' }}>cd </span>{label}
     </a>
   );
   return (
@@ -149,18 +149,20 @@ function Nav({ route, theme, onTheme, onNav }) {
           <span style={{ color: 'var(--magenta)' }}>zilu</span>
           <span>@</span>
           <span style={{ color: 'var(--blue)' }}>dev</span>
-          <span>:</span>
-          <span style={{ color: 'var(--green)' }}>/{path}</span>
-          <span>$</span>
-          <span style={{ color: 'var(--ink)', marginLeft: 4 }}>_</span>
+          <span className="z-nav-prompt-tail">
+            <span>:</span>
+            <span style={{ color: 'var(--green)' }}>/{path}</span>
+            <span>$</span>
+            <span style={{ color: 'var(--ink)', marginLeft: 4 }}>_</span>
+          </span>
         </span>
       </a>
 
       <div className="z-nav-links" style={{ display: 'flex', gap: 'clamp(14px, 2vw, 28px)', alignItems: 'center', flexWrap: 'wrap' }}>
         {link('', '~', 'home')}
         {link('writing', '/writing', 'writing')}
-        <a href="resume.html" target="_blank" rel="noopener" className="z-link z-nav-resume" style={{ color: 'var(--mute)' }}>
-          <span style={{ color: 'var(--mute)' }}>cat </span>/resume
+        <a href="resume.html" target="_blank" rel="noopener" className="z-link" style={{ color: 'var(--mute)' }}>
+          <span className="z-cmd-prefix" style={{ color: 'var(--mute)' }}>cat </span>/resume
         </a>
         <a href="/feed.rss" className="z-link" onClick={(e) => e.preventDefault()}
           style={{ color: 'var(--orange)', display: 'inline-flex', alignItems: 'center', gap: 4 }}

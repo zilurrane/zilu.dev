@@ -180,10 +180,20 @@
       .z-stats-grid       { grid-template-columns: repeat(2, 1fr) !important; }
       .z-prevnext         { grid-template-columns: 1fr !important; }
 
-      /* Nav — tighter padding, smaller bits */
-      .z-nav              { padding: 10px 16px !important; font-size: 12px !important; }
-      .z-nav-links        { gap: 12px !important; }
-      .z-nav-resume       { display: none !important; }
+      /* Nav — slim logo (drop :/path$_ tail), drop cd/cat prefixes,
+         enlarge tap targets to ~44px while keeping a single-row layout. */
+      .z-nav              { padding: 4px 12px !important; font-size: 12px !important; gap: 4px !important; }
+      .z-nav-prompt-tail  { display: none !important; }
+      .z-cmd-prefix       { display: none !important; }
+      .z-nav-links        { gap: 0 !important; }
+      .z-nav-links > a,
+      .z-nav-links > button {
+        padding: 12px 10px !important;
+        margin: 0 !important;
+        min-height: 44px;
+        display: inline-flex !important;
+        align-items: center;
+      }
 
       /* Resume rows: stack year + role + place + note */
       .z-resume-row {
@@ -232,10 +242,10 @@
 </head>
 <body>
   <div id="root"></div>
-  <script type="text/babel" src="shared.jsx"></script>
-  <script type="text/babel" src="home.jsx"></script>
-  <script type="text/babel" src="writing.jsx"></script>
-  <script type="text/babel" src="post.jsx"></script>
-  <script type="text/babel" src="app.jsx"></script>
+  <script type="text/babel" src="shared.jsx?v=2"></script>
+  <script type="text/babel" src="home.jsx?v=2"></script>
+  <script type="text/babel" src="writing.jsx?v=2"></script>
+  <script type="text/babel" src="post.jsx?v=2"></script>
+  <script type="text/babel" src="app.jsx?v=2"></script>
 </body>
 </html>
