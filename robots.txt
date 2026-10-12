@@ -1,40 +1,19 @@
-# Index published news while leaving the rest of the personal site private to crawlers.
-# Training-oriented crawlers remain blocked; search/answer crawlers may access news.
+# Public portfolio: discoverable in search engines and AI search.
+# Training crawler access remains restricted independently from search visibility.
 User-agent: *
-Disallow: /
-Allow: /news/
-Allow: /sitemap.xml
-Allow: /robots.txt
-
-User-agent: Googlebot
-Disallow: /
-Allow: /news/
-Allow: /sitemap.xml
-
-User-agent: Bingbot
-Disallow: /
-Allow: /news/
-Allow: /sitemap.xml
+Allow: /
 
 User-agent: OAI-SearchBot
-Disallow: /
-Allow: /news/
+Allow: /
 
 User-agent: ChatGPT-User
-Disallow: /
-Allow: /news/
+Allow: /
 
 User-agent: Claude-SearchBot
-Disallow: /
-Allow: /news/
+Allow: /
 
 User-agent: PerplexityBot
-Disallow: /
-Allow: /news/
-
-User-agent: Applebot
-Disallow: /
-Allow: /news/
+Allow: /
 
 User-agent: GPTBot
 Disallow: /
