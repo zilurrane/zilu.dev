@@ -161,6 +161,7 @@ function Nav({ route, theme, onTheme, onNav }) {
       <div className="z-nav-links" style={{ display: 'flex', gap: 'clamp(14px, 2vw, 28px)', alignItems: 'center', flexWrap: 'wrap' }}>
         {link('', '~', 'home')}
         {link('writing', '/writing', 'writing')}
+        <a href="/news/" className="z-link" style={{ color: 'var(--mute)' }}><span className="z-cmd-prefix" style={{ color: 'var(--mute)' }}>cd </span>/news</a>
         <a href="resume.html" target="_blank" rel="noopener" className="z-link" style={{ color: 'var(--mute)' }}>
           <span className="z-cmd-prefix" style={{ color: 'var(--mute)' }}>cat </span>/resume
         </a>
