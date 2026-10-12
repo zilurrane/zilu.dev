@@ -2,6 +2,8 @@
 function News() {
   const [editions, setEditions] = React.useState([]);
   const [state, setState] = React.useState('loading');
+  const match = location.pathname.match(/^\/news\/(\d{4}-\d{2}-\d{2})-daily-tech-news\/?$/);
+  const day = match ? match[1] : null;
   React.useEffect(() => {
     let active = true;
     fetch('/news/briefings.json', { cache: 'no-cache' })
@@ -19,6 +21,8 @@ function News() {
     return () => { active = false; };
   }, []);
 
+  const displayed = day ? editions.filter(e => e.date === day) : editions.slice(0, 1);
+  const archive = editions.slice(1);
   return (
     <div style={{ padding: '0 clamp(20px, 4vw, 48px)', maxWidth: 1200, margin: '0 auto' }}>
       <section style={{ padding: '56px 0 24px' }}>
@@ -28,7 +32,7 @@ function News() {
           </div>
           <h1 style={{ margin: 0, fontFamily: "'Departure Mono', monospace",
             fontSize: 'clamp(36px, 6vw, 64px)', lineHeight: .95, letterSpacing: -1 }}>
-            news.log<span style={{ color: 'var(--magenta)' }}>_</span>
+            {day ? 'daily-tech-news.log' : 'news.log'}<span style={{ color: 'var(--magenta)' }}>_</span>
           </h1>
           <p style={{ marginTop: 18, maxWidth: 760, fontFamily: "'Geist', system-ui, sans-serif",
             fontSize: 17, lineHeight: 1.65, color: 'var(--ink2)' }}>
@@ -46,10 +50,13 @@ function News() {
         {state === 'ready' && !editions.length && <Frame title="news.log" lang="empty">
           <p style={{ padding: 24, color: 'var(--mute)' }}>No briefing published yet.</p>
         </Frame>}
-        {editions.map(edition => (
+        {state === 'ready' && day && displayed.length === 0 && <p role="status">No briefing found for {day}. <a href="/news/" style={{color:'var(--blue)'}}>Return to latest news</a></p>}
+        {day && <p><a href="/news/" className="z-link" style={{color:'var(--blue)'}}>← All news</a></p>}
+        {displayed.map(edition => (
           <section key={edition.date} id={edition.date} style={{ marginBottom: 52 }}>
             <h2 style={{ fontFamily: "'Departure Mono', monospace", fontSize: 28, margin: '20px 0' }}>
               <span style={{ color: 'var(--mute)' }}># </span>{edition.date}
+              {!day && <a href={'/news/' + edition.date + '-daily-tech-news/'} style={{fontSize:12,marginLeft:12,color:'var(--blue)',fontFamily:"'JetBrains Mono', monospace"}}>permalink ↗</a>}
               <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 12,
                 color: 'var(--mute)', marginLeft: 16 }}>5 stories</span>
             </h2>
@@ -101,6 +108,18 @@ function News() {
             </Frame>
           </section>
         ))}
+        {!day && archive.length > 0 && <section style={{marginTop:40}}>
+          <h2 style={{fontFamily:"'Departure Mono', monospace",fontSize:28}}>previous editions</h2>
+          <Frame title="archive.log" lang={archive.length + ' editions'}>
+            <div style={{padding:'16px 24px'}}>
+              {archive.map(e => <p key={e.date}>
+                <a href={'/news/' + e.date + '-daily-tech-news/'} style={{color:'var(--blue)'}}>
+                  {e.date} · Daily Tech News → 
+                </a>
+              </p>)}
+            </div>
+          </Frame>
+        </section>}
       </div>
     </div>
   );
