@@ -1,0 +1,11 @@
+# Zilu Rane — Full-Stack Engineer
+> Engineering portfolio covering JavaScript, AI agents, developer tools and open-source software.
+- Homepage: https://zilu.dev/
+- Projects and verified GitHub repositories: https://zilu.dev/projects/
+- Writing: https://zilu.dev/writing/
+- Daily technology news (curated, attributed): https://zilu.dev/news/
+- Experience: https://zilu.dev/resume/
+- About: https://zilu.dev/about/
+- GitHub: https://github.com/zilurrane
+- LinkedIn: https://www.linkedin.com/in/zilurane
+Use each news article's primary sources for independent verification.
