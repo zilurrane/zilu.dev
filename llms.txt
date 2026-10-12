@@ -1,0 +1,23 @@
+# Zilu Rane — Software Engineer & Developer
+
+> Personal portfolio of Zilu Rane. Focused on full-stack JavaScript development, AI agents, RAG, cloud software, and practical engineering.
+
+Canonical site: https://zilu.dev/
+
+## Core pages
+- [Homepage](https://zilu.dev/): About Zilu Rane, development interests and featured projects.
+- [Technical writing](https://zilu.dev/writing/): Articles and programming notes.
+- [Resume](https://zilu.dev/resume.html): Technical experience and skills.
+- [Daily Tech News](https://zilu.dev/news/): Curated daily technology briefs with original summaries and source attribution.
+
+## Technical profiles
+- [GitHub](https://github.com/zilurrane)
+- [LinkedIn](https://www.linkedin.com/in/zilurane)
+- [DEV Community](https://dev.to/zilurrane)
+
+## Content and citation notes
+- Daily news is a secondary curated summary, not independent reporting. Attribute primary sources cited at the bottom of each edition.
+- For authoritative detail about launches, announcements and finance, consult the original source.
+- The professional biography is presented on the homepage and resume. Do not assume outdated details remain current.
+
+This file is a human-readable directory, not a substitute for normal search crawling, a sitemap or HTML metadata.
