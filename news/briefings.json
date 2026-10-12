@@ -3,38 +3,38 @@
     "date": "2026-10-12",
     "stories": [
       {
-        "category": "AI / Developer tools",
-        "headline": "Claude API now reports model tool capabilities",
-        "summary": "Anthropic's Models API now exposes whether a model supports web search and code execution tools. The October 6 update makes capability discovery more reliable than maintaining model-specific assumptions in application code.",
-        "why_it_matters": "Useful for routing agent tasks to compatible models and dynamically selecting tools.",
-        "source_url": "https://platform.claude.com/docs/en/release-notes/overview"
+        "category": "AI Models",
+        "headline": "Claude Haiku 5.5 launches with much lower prices",
+        "summary": "Anthropic released Claude Haiku 5.5 on October 7, describing it as its fastest and most affordable small model. It targets repetitive and high-volume tasks such as summaries, classification, customer support and subagents. Anthropic says average running costs are approximately 75% lower than Haiku 4.5.",
+        "why_it_matters": "Smaller models can reduce API costs for frequent tasks in SaaS applications and AI agents.",
+        "source_url": "https://www.anthropic.com/claude-haiku-5-5"
       },
       {
-        "category": "AI / Cybersecurity",
-        "headline": "Rubrik introduces Code Guardian for AI-generated code",
-        "summary": "Rubrik announced Code Guardian as an expansion of Project Hourglass. The tool is intended to scan AI-generated code for weaknesses within isolated environments, as organizations consider increasingly advanced AI-assisted attacks.",
-        "why_it_matters": "Another sign that security testing is becoming integral to AI coding workflows.",
-        "source_url": "https://indianexpress.com/article/technology/artificial-intelligence/rubrik-project-hourglass-new-ai-security-tool-mythos-10913866/"
+        "category": "Developer Tools",
+        "headline": "GitHub Copilot adds local models and safer agents",
+        "summary": "GitHub's October 9 weekly release highlighted local Ollama model discovery from Copilot CLI using /model, plus generally available sandboxing for coding agents. It also introduced improvements for managing agent sessions in VS Code.",
+        "why_it_matters": "Local models and sandboxed execution give developers more control over model choices, access to files and credentials, and coding agent safety.",
+        "source_url": "https://github.blog/changelog/2026-10-09-github-copilot-weekly-releases-october-5/"
       },
       {
-        "category": "Startups / Observability",
-        "headline": "New Relic announces AI Evaluation for production GenAI",
-        "summary": "New Relic introduced AI Evaluation to assess generative AI application response quality and security risks. The feature connects evaluation signals with observability traces, helping teams investigate failures across prompts and backend components.",
-        "why_it_matters": "A useful pattern for observability and evaluation in production RAG and agent platforms.",
-        "source_url": "https://yourstory.com/2026/10/startup-news-and-updates-daily-roundup-october-9-2026"
+        "category": "Indian SaaS",
+        "headline": "Juspay expands into AI agents and enterprise software",
+        "summary": "Juspay is expanding beyond payment infrastructure into AI-powered SaaS products. Its Xyne platform helps businesses build AI agents using their own data and selected models, while other products span AI voice, AI commerce and payment analytics.",
+        "why_it_matters": "Juspay demonstrates how an Indian infrastructure company can turn AI tools into commercial enterprise software.",
+        "source_url": "https://www.financialexpress.com/business/news-juspay-repositions-as-saas-firm-with-ai-bet-4357850/"
       },
       {
-        "category": "India / IPO",
-        "headline": "Zetwerk sets IPO price band and targets $2.64 billion valuation",
-        "summary": "India's Zetwerk set a price band of ₹143–151 per share for its upcoming offering, Reuters reported on October 12. Public subscription is expected October 15–19, with trading slated to start October 23.",
-        "why_it_matters": "An important Indian manufacturing and technology-enabled supply-chain listing to track this week.",
-        "source_url": "https://www.reuters.com/world/india/indias-zetwerk-sets-price-band-143-151-rupees-per-share-518-million-ipo-2026-10-12/"
+        "category": "Cybersecurity",
+        "headline": "FBI shuts down hacking infrastructure",
+        "summary": "On October 8, the US Justice Department and FBI announced the seizure of infrastructure used by alleged China-linked Flax Typhoon hackers. The operation disrupted the Microscan and FishHub tools, which authorities say targeted critical infrastructure and other networks.",
+        "why_it_matters": "The case reinforces the importance of patching, network controls and monitoring for publicly exposed services.",
+        "source_url": "https://www.justice.gov/opa/pr/justice-department-and-fbi-seize-vulnerability-scanning-and-spear-phishing-tools-operated"
       },
       {
-        "category": "India / Markets",
-        "headline": "Indian benchmarks decline despite RBI support for the rupee",
-        "summary": "Indian benchmark indices fell on October 12 amid worries about oil prices and inflation, according to Reuters. The RBI introduced measures aimed at stabilizing the rupee, but investors remained cautious about economic pressures and foreign outflows.",
-        "why_it_matters": "Oil and currency movements can affect both Indian equities and technology companies' operating costs.",
+        "category": "Indian Markets",
+        "headline": "Nifty expected to open higher as RBI supports rupee",
+        "summary": "Before the October 12 market open, GIFT Nifty signaled a positive start after Indian stocks ended an eight-week losing streak. Oil prices eased while the RBI introduced steps to support the rupee. Later that day, Indian benchmarks declined, so this headline reflects the original morning outlook rather than the closing result.",
+        "why_it_matters": "Oil prices, currency stability and capital flows remain significant drivers of Indian market sentiment.",
         "source_url": "https://www.reuters.com/world/india/indian-shares-set-open-higher-oil-eases-rbi-moves-support-rupee-2026-10-12/"
       }
     ]
