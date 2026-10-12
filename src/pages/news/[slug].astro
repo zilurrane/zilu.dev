@@ -1,0 +1,9 @@
+---
+import Base from '../../layouts/Base.astro';import editions from '../../../news/briefings.json';
+export function getStaticPaths(){return editions.map(edition=>({params:{slug:edition.date+'-daily-tech-news'},props:{edition}}))}
+const {edition}=Astro.props;const url='https://zilu.dev/news/'+edition.date+'-daily-tech-news/';
+const displayDate=new Date(edition.date+'T12:00:00Z').toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric',timeZone:'UTC'});
+const title='Daily Tech News — '+displayDate+' | Zilu Rane';
+---
+<Base title={title} description={edition.stories.map(s=>s.headline).slice(0,3).join('; ').slice(0,155)} canonical={url} type="article" schema={{'@type':'Article',headline:'Daily Tech News — '+displayDate,datePublished:edition.date,author:{'@id':'https://zilu.dev/#person'},publisher:{'@id':'https://zilu.dev/#person'},mainEntityOfPage:url,citation:edition.stories.map(s=>s.source_url)}}>
+<article class="wrap longform"><nav class="breadcrumb"><a href="/">Home</a> / <a href="/news/">News</a> / <time datetime={edition.date}>{displayDate}</time></nav><p class="eyebrow">Daily briefing · Five stories</p><h1>Daily Tech News — <span class="accent">{displayDate}</span></h1><p class="muted">A concise technology briefing with original summaries, practical implications and external sources.</p>{edition.stories.map((s,i)=><section><p class="eyebrow">{String(i+1).padStart(2,'0')} / {s.category}</p><h2>{s.headline}</h2><p>{s.summary}</p><blockquote style="margin:20px 0;padding:14px 20px;border-left:'3px solid var(--orange)';background:var(--soft)"><strong>Why it matters:</strong> {s.why_it_matters}</blockquote></section>)}<section class="sources"><h2>Sources & citations</h2><ol>{edition.stories.map(s=><li><a href={s.source_url} target="_blank" rel="noopener noreferrer">{s.headline} ↗</a></li>)}</ol><p class="muted mini">Curated summaries. Consult original reporting for primary details.</p></section></article></Base>

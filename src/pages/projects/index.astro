@@ -1,0 +1,5 @@
+---
+import Base from '../../layouts/Base.astro';import {projects} from '../../data/projects';
+---
+<Base title="Engineering Projects | Zilu Rane" description="Explore real open-source software projects by Zilu Rane, including AI agents, Cloudflare Workers, WhatsApp automation and microservices." canonical="https://zilu.dev/projects/" schema={{'@type':'CollectionPage',name:'Engineering Projects by Zilu Rane'}}>
+<div class="wrap"><header class="subhero"><p class="eyebrow">Portfolio / Open Source</p><h1>Selected <span class="accent">engineering work.</span></h1><p>Selected repositories and experiments. Each case study explains the problem, the architecture and key decisions without invented business results.</p></header><section class="section"><div class="grid">{projects.map(p=><a href={'/projects/'+p.slug+'/'} class="card"><p class="eyebrow">{p.category}</p><h3>{p.title} ↗</h3><p>{p.description}</p><div class="tags">{p.stack.map(t=><span class="tag">{t}</span>)}</div></a>)}</div></section></div></Base>
