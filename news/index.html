@@ -5,22 +5,23 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Daily News | zilu.dev</title>
 <meta name="description" content="Daily AI, developer, SaaS, security and market news.">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 :root{--bg:#ede4cf;--fg:#1a1612;--card:#fbf6e6;--line:#c9bda3;--accent:#c33b85;--muted:#857a68}
 @media(prefers-color-scheme:dark){:root{--bg:#14110d;--fg:#ede4cf;--card:#221d16;--line:#3a3329;--accent:#f06bb0;--muted:#a99d88}}
-body{background:var(--bg);color:var(--fg);font:15px/1.7 monospace;margin:0}
-header,main,footer{padding:20px max(20px,calc((100% - 940px)/2))}
-header,footer{border-bottom:1px dashed var(--line)}
+body{background:var(--bg);color:var(--fg);font:15px/1.7 'JetBrains Mono',monospace;margin:0} .news-nav{position:sticky;top:0;z-index:50;background:var(--card);border-bottom:1px dashed var(--line);padding:12px clamp(20px,4vw,48px);display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;font-size:13px}.news-nav a{text-decoration:none;color:var(--muted)}.news-nav a:hover{color:var(--accent)}.news-links{display:flex;align-items:center;gap:clamp(14px,2vw,28px)}.news-nav .active{color:var(--fg);text-decoration:underline;text-decoration-color:var(--accent);text-underline-offset:4px}.dots{display:inline-flex;gap:6px;margin-right:12px}.dots b{width:11px;height:11px;border-radius:50%;display:block}.news-logo{white-space:nowrap} @media(max-width:640px){.news-nav{padding:6px 12px;font-size:12px}.news-links{gap:12px}}
+main,footer{padding:20px max(20px,calc((100% - 940px)/2))}
+footer{border-top:1px dashed var(--line)}
 a{color:var(--accent)}
 h1{font-size:clamp(30px,5vw,55px)}
 article{border:1px solid var(--line);background:var(--card);padding:24px;margin:20px 0;border-radius:6px}
 small,.muted{color:var(--muted)}
 article img{display:block;max-width:320px;width:100%;border-radius:5px;margin:16px 0}
-</style>
+[data-theme="dark"]{--bg:#14110d;--fg:#ede4cf;--card:#221d16;--line:#3a3329;--accent:#f06bb0;--muted:#a99d88;--green:#6ad08e;--blue:#82a8f0}[data-theme="light"]{--bg:#ede4cf;--fg:#1a1612;--card:#fbf6e6;--line:#c9bda3;--accent:#c33b85;--muted:#857a68;--green:#177a4f;--blue:#2a5fb8}</style>
 </head>
 <body>
-<header><a href="/">zilu.dev</a> / news</header>
+<nav class="news-nav" aria-label="Main navigation"><a href="/" class="news-logo"><span class="dots"><b style="background:#d4632a"></b><b style="background:#b8951a"></b><b style="background:#177a4f"></b></span><span style="color:var(--accent)">zilu</span>@<span style="color:var(--blue)">dev</span>:<span style="color:var(--green)">/news</span>$ _</a><span class="news-links"><a href="/">~</a><a href="/#/writing">/writing</a><a href="/news/" class="active" aria-current="page">/news</a><a href="/resume.html" target="_blank" rel="noopener">/resume</a><a href="/feed.rss">rss</a><button id="theme-toggle" style="border:1px solid var(--line);background:transparent;color:var(--fg);padding:4px 10px;border-radius:4px;cursor:pointer" aria-label="Toggle theme">☀ / ☾</button></span></nav>
 <main><h1>news.log_</h1><p class="muted">Five important stories each day, summarized with original sources.</p><div id="feed">Loading daily news...</div></main>
 <footer>zilu.dev — sourced daily news</footer>
-<script src="./news.js"></script>
+<script>const saved=localStorage.getItem('zilu-theme');if(saved)document.documentElement.setAttribute('data-theme',saved);document.getElementById('theme-toggle').addEventListener('click',()=>{const t=document.documentElement.getAttribute('data-theme')==='dark'?'light':'dark';document.documentElement.setAttribute('data-theme',t);localStorage.setItem('zilu-theme',t)})</script><script src="./news.js"></script>
 </body></html>
