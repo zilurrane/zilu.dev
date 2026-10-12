@@ -28,6 +28,14 @@ function App() {
   const navigate = React.useCallback((next) => {
     // next forms: '' or '/' (home), 'writing', 'writing/<slug>'
     const target = (!next || next === '/') ? '' : String(next).replace(/^\/+/, '');
+    if (location.pathname.replace(/\/$/, '') === '/news' && target !== 'news') {
+      location.href = '/#/' + target;
+      return;
+    }
+    if (target === 'news' && location.pathname.replace(/\/$/, '') !== '/news') {
+      location.href = '/news/';
+      return;
+    }
     const nextRoute = parseRoute('#/' + target);
     if (route.key === nextRoute.key) return;
 
@@ -63,6 +71,7 @@ function App() {
       <main>
         {route.name === 'home'    && <Home onNav={navigate} theme={theme}/>}
         {route.name === 'writing' && <Writing onNav={navigate} />}
+        {route.name === 'news'    && <News onNav={navigate} />}
         {route.name === 'post'    && <Post slug={route.slug} onNav={navigate} />}
         {route.name === 'notfound'&& <NotFound onNav={navigate}/>}
       </main>
@@ -74,8 +83,9 @@ function App() {
 
 function parseRoute(hash) {
   const h = (hash || '').replace(/^#\/?/, '');
-  if (!h) return { name: 'home', key: 'home' };
+  if (!h) return location.pathname.replace(/\/$/, '') === '/news' ? { name: 'news', key: 'news' } : { name: 'home', key: 'home' };
   const parts = h.split('/').filter(Boolean);
+  if (parts[0] === 'news') return { name: 'news', key: 'news' };
   if (parts[0] === 'writing') {
     if (parts[1]) return { name: 'post', slug: parts[1], key: 'post:' + parts[1] };
     return { name: 'writing', key: 'writing' };
