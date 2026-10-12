@@ -117,7 +117,7 @@ const RESUME = [
 
 // ─────────── Navigation ───────────
 function Nav({ route, theme, onTheme, onNav }) {
-  const path = route === 'home' ? '~' : 'writing';
+  const path = route === 'home' ? '~' : route === 'news' ? 'news' : 'writing';
   const link = (href, label, key) => (
     <a href={`#/${href}`} onClick={(e) => { e.preventDefault(); onNav(href); }}
       className="z-link"
