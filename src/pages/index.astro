@@ -3,10 +3,56 @@ import Base from '../layouts/Base.astro';
 import {projects} from '../data/projects';
 import editions from '../../news/briefings.json';
 const edition=[...editions].sort((a,b)=>b.date.localeCompare(a.date))[0];
+const featured=projects[0];
 ---
-<Base title="Zilu Rane | Full-Stack Engineer, AI Agents & Developer Tools" description="Engineering portfolio of Zilu Rane in Pune, India. Explore real open-source projects, AI agents, full-stack JavaScript, technical writing and daily tech news." canonical="https://zilu.dev/" schema={{'@type':'ProfilePage',mainEntity:{'@id':'https://zilu.dev/#person'}}}>
-<div class="wrap"><section class="hero"><div><p class="eyebrow"><span class="accent">✦</span> Technical Lead · Accion Labs · Pune, India</p><h1>Engineering <span class="accent">useful things</span> for the real world.</h1><p class="lead">I'm Zilu Rane, a Technical Lead at Accion Labs with 9+ years of experience in full-stack development. I build web products, developer tools and AI-powered systems with React, Node.js, LangChain and cloud platforms.</p><p style="display:flex;gap:12px;flex-wrap:wrap;margin-top:28px"><a href="/projects/" class="btn primary">Explore my work ↗</a><a href="/writing/" class="btn">Read the journal ↗</a></p><div class="skill-row" style="margin-top:35px"><span>Full-stack</span><span>AI agents & RAG</span><span>Developer tools</span><span>Cloud & infrastructure</span></div></div><div class="dark-panel"><div class="window-dots"><i></i><i></i><i></i><small style="margin-left:12px;color:#a1a9a6">currently building / edge automation</small></div><p class="eyebrow" style="color:#9ed0b8">Featured architecture</p><h2 style="color:white">LinkedIn Signal Agent</h2><p style="color:#b8c2c0">Technology signals ranked with Workers AI, deduplicated and delivered as a daily digest.</p><div class="flow-steps" style="margin:32px 0"><span>RSS & GitHub</span><b>→</b><span>Workers AI</span><b>→</b><span>Daily digest</span></div><p class="mono mini" style="color:#9ed0b8">TypeScript · Workers AI · Cloudflare KV</p><a href="/projects/linkedin-signal-agent/" style="color:#ed9976">View case study ↗</a></div></section>
-<section class="section" id="work"><div class="section-header"><h2>Featured work</h2><a href="/projects/" class="accent mini">All projects ↗</a></div><div class="grid">{projects.slice(0,3).map(p=><a href={'/projects/'+p.slug+'/'} class="card"><span class="eyebrow">{p.category}</span><h3>{p.title} ↗</h3><p>{p.description}</p><div class="tags">{p.stack.slice(0,3).map(t=><span class="tag">{t}</span>)}</div></a>)}</div></section>
-<section class="section"><div class="split"><div><div class="section-header"><h2>From the journal</h2><a href="/writing/" class="accent mini">All writing ↗</a></div><div class="item"><a href="https://dev.to/zilurrane/express-js-cors-middleware-unable-to-store-cookies-on-browser-55g6">Express CORS middleware unable to store cookies in the browser ↗</a><p class="muted mini">Practical debugging notes · JavaScript</p></div><div class="item"><a href="https://dev.to/zilurrane/playing-and-learning-docker-together-45p5">Playing and learning Docker together ↗</a><p class="muted mini">Docker fundamentals · Engineering</p></div></div><div><div class="section-header"><h2>Daily tech news</h2><a href="/news/" class="accent mini">Latest briefing ↗</a></div><p class="eyebrow">{edition?.date ?? 'Technology briefing'} · 5 curated stories</p>{edition?.stories.slice(0,5).map((s,i)=><div class="item"><span class="news-number">{String(i+1).padStart(2,'0')}</span><a href={`/news/${edition.date}-daily-tech-news/`}>{s.headline}</a></div>)}</div></div></section>
-<section class="section"><div class="card" style="display:flex;align-items:center;justify-content:space-between;gap:22px;flex-wrap:wrap"><div><p class="eyebrow">Open to meaningful conversations</p><h2 style="margin-bottom:0">Let's build something useful.</h2><p>Engineering, AI workflows, architecture or open-source collaboration.</p></div><a class="btn primary" href="mailto:zilurrane@gmail.com">Get in touch ↗</a></div></section></div>
+<Base title="Zilu Rane — Technical Lead | Full-Stack Engineering & AI" description="Zilu Rane is a Pune-based Technical Lead at Accion Labs with 9+ years building web platforms, AI workflows and open-source developer tools. Explore his work, writing and experience." canonical="https://zilu.dev/" schema={{'@type':'ProfilePage',mainEntity:{'@id':'https://zilu.dev/#person'}}}>
+<div class="editorial-shell">
+  <section class="ed-hero" aria-labelledby="hero-heading">
+    <div class="ed-hero-copy">
+      <p class="ed-kicker"><span class="ed-status-dot"></span> TECHNICAL LEAD · ACCION LABS · PUNE</p>
+      <h1 id="hero-heading">Building software that <em>solves real problems.</em></h1>
+      <p class="ed-intro">I'm <strong>Zilu Rane</strong>, a full-stack engineer with 9+ years of experience creating web platforms, developer tools and AI-powered systems.</p>
+      <div class="ed-actions"><a href="/projects/" class="ed-button ed-button-primary">Explore my work <span aria-hidden="true">↗</span></a><a href="/about/" class="ed-button ed-button-ghost">More about me <span aria-hidden="true">→</span></a></div>
+      <div class="ed-credentials"><span>React & Node.js</span><span>AI agents & RAG</span><span>Architecture & cloud</span></div>
+    </div>
+    <aside class="ed-hero-side">
+      <div class="ed-portrait-art" aria-label="Portrait space reserved for Zilu Rane's actual photo">
+        <div class="ed-portrait-monogram" aria-hidden="true">ZR<span>.</span></div>
+        <p>ENGINEERING<br/>WITH INTENTION.</p>
+      </div>
+      <div class="ed-side-caption"><span>01 / THE ENGINEER</span><span>9+ years building software ↗</span></div>
+    </aside>
+  </section>
+
+  <section class="ed-feature" aria-labelledby="feature-heading">
+    <div class="ed-section-top"><p class="ed-kicker">01 / FEATURED WORK</p><a href="/projects/">Explore all projects <span aria-hidden="true">↗</span></a></div>
+    <div class="ed-feature-grid">
+      <div class="ed-feature-content"><p class="ed-kicker">CLOUDFLARE WORKERS · AI AUTOMATION</p><h2 id="feature-heading">LinkedIn Signal Agent</h2><p>A daily technology-signal workflow that collects developer news, ranks useful updates with Workers AI, and drafts a digest.</p><div class="ed-tagline"><span>TypeScript</span><span>Workers AI</span><span>Cloudflare KV</span></div><a class="ed-text-link" href="/projects/linkedin-signal-agent/">Read the engineering case study <span aria-hidden="true">↗</span></a></div>
+      <div class="ed-architecture" role="img" aria-label="LinkedIn Signal Agent pipeline: news sources flow to processing with Workers AI and then a daily digest."><div class="ed-terminal-label">SIGNAL PROCESSING / ARCHITECTURE</div><div class="ed-flow"><span>News sources<small>GitHub · RSS · HN</small></span><b>→</b><span>Workers AI<small>Rank & filter</small></span><b>→</b><span>Daily digest<small>Email summary</small></span></div><p>From information overload to useful engineering signals.</p></div>
+    </div>
+  </section>
+
+  <section class="ed-section" aria-labelledby="projects-heading">
+    <div class="ed-section-top"><p class="ed-kicker">02 / SELECTED PROJECTS</p><a href="/projects/">View all work <span aria-hidden="true">↗</span></a></div>
+    <h2 id="projects-heading" class="ed-heading">Products, experiments <em>& open source.</em></h2>
+    <div class="ed-project-list">{projects.slice(1).map((project,i)=><a class="ed-project-row" href={`/projects/${project.slug}/`}><span class="ed-project-number">{String(i+1).padStart(2,'0')}</span><div><h3>{project.title}</h3><p>{project.description}</p><div class="ed-tagline">{project.stack.slice(0,3).map(t=><span>{t}</span>)}</div></div><span class="ed-project-arrow" aria-hidden="true">↗</span></a>)}</div>
+  </section>
+
+  <section class="ed-about-strip" aria-labelledby="story-heading">
+    <p class="ed-kicker">03 / BEHIND THE CODE</p><div><h2 id="story-heading">An engineer with a <em>product mindset.</em></h2><p>I'm a Technical Lead at Accion Labs, following e-Zest's acquisition. My work spans full-stack development, enterprise software, AI systems and engineering collaboration. I care about software that remains useful long after its first release.</p><a href="/resume/" class="ed-text-link">Experience & résumé ↗</a></div>
+  </section>
+
+  <section class="ed-section" aria-labelledby="writing-heading">
+    <div class="ed-section-top"><p class="ed-kicker">04 / IDEAS & NOTES</p><a href="/writing/">Browse writing <span aria-hidden="true">↗</span></a></div>
+    <h2 id="writing-heading" class="ed-heading">Notes from <em>building things.</em></h2>
+    <div class="ed-reading-grid">
+      <a href="https://dev.to/zilurrane/express-js-cors-middleware-unable-to-store-cookies-on-browser-55g6"><span class="ed-kicker">NODE.JS · ENGINEERING</span><h3>Express CORS middleware unable to store cookies in the browser</h3><p>Hands-on debugging of cross-origin cookie handling.</p><span class="ed-text-link">Read original article ↗</span></a>
+      <a href="https://dev.to/zilurrane/playing-and-learning-docker-together-45p5"><span class="ed-kicker">DOCKER · DEVELOPMENT</span><h3>Playing and learning Docker together</h3><p>A practical introduction to getting familiar with containers.</p><span class="ed-text-link">Read original article ↗</span></a>
+    </div>
+  </section>
+
+  {edition && <section class="ed-section ed-news-block" aria-labelledby="news-heading"><div class="ed-section-top"><p class="ed-kicker">05 / THE DAILY BRIEFING</p><a href="/news/">All editions <span aria-hidden="true">↗</span></a></div><h2 id="news-heading" class="ed-heading">A little less noise. <em>A little more signal.</em></h2><p class="ed-date">Latest edition · <time datetime={edition.date}>{edition.date}</time></p><div class="ed-news-list">{edition.stories.map((story,i)=><a href={`/news/${edition.date}-daily-tech-news/`}><span>{String(i+1).padStart(2,'0')}</span><strong>{story.headline}</strong><span aria-hidden="true">↗</span></a>)}</div><a href={`/news/${edition.date}-daily-tech-news/`} class="ed-text-link">Read the full briefing with summaries and sources ↗</a></section>}
+
+  <section class="ed-contact" aria-labelledby="contact-heading"><p class="ed-kicker">HAVE SOMETHING INTERESTING IN MIND?</p><h2 id="contact-heading">Let's make something <em>worth building.</em></h2><a class="ed-button ed-button-primary" href="mailto:zilurrane@gmail.com">Get in touch ↗</a></section>
+</div>
 </Base>
