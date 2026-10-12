@@ -28,11 +28,11 @@ function App() {
   const navigate = React.useCallback((next) => {
     // next forms: '' or '/' (home), 'writing', 'writing/<slug>'
     const target = (!next || next === '/') ? '' : String(next).replace(/^\/+/, '');
-    if (location.pathname.replace(/\/$/, '') === '/news' && target !== 'news') {
+    if (location.pathname.replace(/\/$/, '').startsWith('/news') && target !== 'news') {
       location.href = '/#/' + target;
       return;
     }
-    if (target === 'news' && location.pathname.replace(/\/$/, '') !== '/news') {
+    if (target === 'news' && !location.pathname.replace(/\/$/, '').startsWith('/news')) {
       location.href = '/news/';
       return;
     }
@@ -83,7 +83,7 @@ function App() {
 
 function parseRoute(hash) {
   const h = (hash || '').replace(/^#\/?/, '');
-  if (!h) return location.pathname.replace(/\/$/, '') === '/news' ? { name: 'news', key: 'news' } : { name: 'home', key: 'home' };
+  if (!h) return location.pathname.replace(/\/$/, '').startsWith('/news') ? { name: 'news', key: 'news' } : { name: 'home', key: 'home' };
   const parts = h.split('/').filter(Boolean);
   if (parts[0] === 'news') return { name: 'news', key: 'news' };
   if (parts[0] === 'writing') {
