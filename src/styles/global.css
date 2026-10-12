@@ -61,3 +61,10 @@ body{line-height:1.7}h1,h2,h3{letter-spacing:-.04em}.site-head{backdrop-filter:b
 .site-head{box-shadow:0 1px 10px #050b1510}
 @media(max-width:900px){.ed-hero-band .ed-hero{grid-template-columns:1fr;gap:18px;min-height:auto}.ed-hero-band .ed-portrait-art{height:280px;min-height:0}.editorial-v5 .ed-feature-grid{grid-template-columns:1fr}.editorial-v5 .ed-feature-content{padding:10px 0}}
 @media(max-width:650px){.ed-hero-band .ed-hero{padding:55px 0 45px}.ed-hero-band .ed-hero h1{font-size:clamp(2.7rem,10.5vw,4.2rem)}.ed-hero-band .ed-portrait-art{height:220px}.ed-hero-band .ed-portrait-monogram{font-size:9rem}.editorial-v5>.editorial-shell{padding-top:28px}.editorial-v5 .ed-architecture{min-height:250px}.ed-hero-band .ed-actions{gap:9px}.ed-hero-band .ed-button{padding:12px 14px;gap:8px}}
+
+/* Portrait framing matching editorial hero mock */
+.ed-hero-band .ed-portrait-photo{display:flex;align-items:center;justify-content:center;position:relative;background:radial-gradient(circle at 50% 50%,#384770 0,#151e36 49%,#0e1527 100%);border-radius:22px;overflow:hidden}
+.ed-hero-band .ed-portrait-photo:before,.ed-hero-band .ed-portrait-photo:after{pointer-events:none}
+.ed-hero-band .ed-profile-image{position:relative;z-index:2;width:min(80%,340px);height:auto;aspect-ratio:1;object-fit:cover;border-radius:24px;box-shadow:0 20px 65px #0308168c;border:1px solid #aeb7d741}
+.ed-hero-band .ed-portrait-photo p{position:absolute;bottom:18px;left:26px;z-index:3;background:#101b31ce;padding:8px 12px;border-radius:5px;font-size:.59rem}
+@media(max-width:900px){.ed-hero-band .ed-profile-image{width:220px}.ed-hero-band .ed-portrait-photo p{bottom:10px;left:12px}}
