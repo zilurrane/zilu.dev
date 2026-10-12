@@ -1,0 +1,25 @@
+name: Astro build check
+on:
+  push:
+    branches: [astro-redesign]
+  pull_request:
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: package-lock.json
+      - run: npm install
+      - run: npm run build
+      - name: Check generated routes
+        run: |
+          test -f dist/index.html
+          test -f dist/projects/index.html
+          test -f dist/writing/index.html
+          test -f dist/news/index.html
+          test -f dist/resume/index.html
+          test -f dist/sitemap-index.xml
