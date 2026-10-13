@@ -1,0 +1,16 @@
+---
+const {slug}=Astro.props;
+---
+{slug==='querydeck'?
+  <div class="ed-work-image ed-image-query ed-case-preview" role="img" aria-label="Conceptual SQL Server editor for QueryDeck, not a product screenshot">
+    <div class="ed-app-header"><span class="ed-app-dots">● ● ●</span><span>QueryDeck / workspace</span><span>⌘ K</span></div>
+    <div class="ed-sql-ui"><div class="ed-sql-tree"><span>▾ DATABASE</span><span>▸ queries</span><span>▸ results</span><span>▸ history</span></div><div class="ed-sql-editor"><span><b>SELECT</b> name, status</span><span><b>FROM</b> projects</span><span><b>WHERE</b> active = <i>true</i>;</span><div class="ed-sql-grid"><span>ID</span><span>NAME</span><span>STATUS</span><span>01</span><span>QueryDeck</span><span>Active</span><span>02</span><span>Workspace</span><span>Active</span></div></div></div>
+    <div class="ed-concept-label">INTERFACE CONCEPT</div>
+  </div>
+:
+  <div class="ed-work-image ed-image-enterprise ed-case-preview" role="img" aria-label="Conceptual enterprise records workspace, not a product screenshot">
+    <div class="ed-light-app-head"><span class="ed-light-mark"></span><span>Enterprise workspace</span><span class="ed-light-pill">Published</span></div>
+    <div class="ed-light-app-content"><div class="ed-light-sidebar"><i></i><i></i><i></i><i></i></div><div class="ed-light-table"><strong>Decision records</strong><div class="ed-light-row"><span>Name</span><span>Version</span><span>Status</span></div><div class="ed-light-row"><span>Policy A</span><span>v3</span><em>Active</em></div><div class="ed-light-row"><span>Policy B</span><span>v2</span><em>Active</em></div><div class="ed-light-row"><span>Policy C</span><span>v1</span><em>Review</em></div></div></div>
+    <div class="ed-concept-label">INTERFACE CONCEPT</div>
+  </div>
+}
