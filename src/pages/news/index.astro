@@ -11,7 +11,7 @@ const topics=latest?[...new Set(latest.stories.map(s=>s.category))]:[];
   <div class="ed-news-page">
     <div class="ed-shell">
       <div class="ed-news-columns">
-        <main class="ed-news-main">
+        <section class="ed-news-main">
           <header class="ed-news-page-intro">
             <p class="ed-eyebrow">DAILY TECHNOLOGY BRIEFING</p>
             <h1>Five important<br/>technology stories.<br/><em>Every morning.</em></h1>
@@ -41,7 +41,7 @@ const topics=latest?[...new Set(latest.stories.map(s=>s.category))]:[];
             </article>)}
           </div>}
           <p id="news-empty" class="ed-news-empty" hidden>No stories match that search. Try another keyword or category.</p>
-        </main>
+        </section>
         <aside class="ed-news-aside">
           {latest&&<section class="ed-aside-card ed-latest">
             <div class="ed-aside-title"><h2>Latest edition</h2><a href={'/news/'+latest.date+'-daily-tech-news/'}>Read edition →</a></div>
