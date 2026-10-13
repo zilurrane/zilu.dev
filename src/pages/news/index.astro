@@ -4,7 +4,7 @@ import editions from '../../../news/briefings.json';
 const sorted=[...editions].sort((a,b)=>b.date.localeCompare(a.date));
 const latest=sorted[0];
 const displayDate=latest?new Date(latest.date+'T12:00:00Z').toLocaleDateString('en-GB',{weekday:'long',day:'numeric',month:'long',year:'numeric',timeZone:'UTC'}):'';
-const markers=['META','NODE','NOW','SEC','INDIA'];
+const markers=latest?latest.stories.map(s=>(s.headline.split(/\s+/)[0]||'TECH').replace(/[^\w.-]/g,'').slice(0,9).toUpperCase()):[];
 const topics=latest?[...new Set(latest.stories.map(s=>s.category))]:[];
 ---
 <Base title="Daily Technology Briefing — AI, Developer Tools, SaaS & India | zilu.dev" description="Five curated technology stories each day with practical summaries, why they matter, and original sources." canonical="https://zilu.dev/news/" schema={{'@type':'CollectionPage',name:'Daily Technology Briefing',url:'https://zilu.dev/news/',hasPart:sorted.map(e=>({'@type':'Article',url:'https://zilu.dev/news/'+e.date+'-daily-tech-news/',datePublished:e.date}))}}>
@@ -47,7 +47,7 @@ const topics=latest?[...new Set(latest.stories.map(s=>s.category))]:[];
             <div class="ed-aside-title"><h2>Latest edition</h2><a href={'/news/'+latest.date+'-daily-tech-news/'}>Read edition →</a></div>
             <time datetime={latest.date}>{displayDate}</time>
             <a href={'/news/'+latest.date+'-daily-tech-news/'} class="ed-latest-art" aria-label="Open latest technology briefing">
-              <span class="ed-latest-image-brand">META</span>
+              <span class="ed-latest-image-brand">{latest.stories[0].headline.split(/\s+/)[0]}</span>
               <span>AI / SOFTWARE / BUSINESS</span>
             </a>
             <h3>{latest.stories[0].headline}</h3>
