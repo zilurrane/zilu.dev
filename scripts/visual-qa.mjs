@@ -65,6 +65,20 @@ try {
  assert.equal(await page.locator('.ed-feature-grid .ed-work-card').count(),3,'Homepage must show 3 mockup-aligned projects');
  assert.equal(await page.locator('.ed-news-items .ed-news-item').count(),3,'Homepage must show 3 compact news previews');
  assert.equal(await page.locator('.ed-hero h1').count(),1,'Homepage must have one hero title');
+ const portrait = await page.locator('.ed-hero-portrait-frame img').evaluate(async img=>{
+   await img.decode();
+   const canvas=document.createElement('canvas');
+   canvas.width=img.naturalWidth;canvas.height=img.naturalHeight;
+   const ctx=canvas.getContext('2d',{willReadFrequently:true});
+   ctx.drawImage(img,0,0);
+   const corners=[[0,0],[canvas.width-1,0],[0,canvas.height-1],[canvas.width-1,canvas.height-1]];
+   return {src:new URL(img.currentSrc).pathname,width:canvas.width,height:canvas.height,
+      alphas:corners.map(([x,y])=>ctx.getImageData(x,y,1,1).data[3])};
+ });
+ assert.equal(portrait.src,'/images/zilu-cutout.webp','Homepage is still using the old photo with background');
+ assert(portrait.width>=240,'Portrait is unexpectedly low resolution: '+portrait.width);
+ assert(portrait.alphas.every(a=>a<32),'Portrait image has opaque background corners: '+JSON.stringify(portrait));
+
  await page.goto(origin+'/news/',{waitUntil:'domcontentloaded'});
  const inputs=page.locator('#news-search');
  await inputs.fill('__unfindable__');
