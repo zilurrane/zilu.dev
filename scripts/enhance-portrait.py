@@ -16,8 +16,8 @@ from PIL import Image, ImageFilter
 
 INPUT = Path("public/images/zilu-cutout.webp")
 OUTPUT = Path("public/images/zilu-cutout-hd.webp")
-MODEL = "https://raw.githubusercontent.com/Saafke/FSRCNN_Tensorflow/master/models/FSRCNN_x3.pb"
-FACTOR = 3
+MODEL = "https://raw.githubusercontent.com/Saafke/FSRCNN_Tensorflow/master/models/FSRCNN_x4.pb"
+FACTOR = 4
 
 def main() -> None:
     source = Image.open(INPUT).convert("RGBA")
