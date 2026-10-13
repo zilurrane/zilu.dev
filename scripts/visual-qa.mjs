@@ -5,7 +5,9 @@ import { mkdirSync, writeFileSync } from 'node:fs';
 const origin = process.env.VISUAL_QA_ORIGIN || 'http://127.0.0.1:4321';
 const browser = await chromium.launch({headless:true});
 const profiles = [
+  {name:'wide',width:1700,height:960},
   {name:'desktop',width:1440,height:900},
+  {name:'laptop',width:1024,height:900},
   {name:'tablet',width:768,height:1024},
   {name:'mobile',width:390,height:844}
 ];
@@ -37,6 +39,18 @@ try {
       assert(alpha.width>=900 && alpha.height>=1100,'Hero portrait must be at least 900×1100: '+JSON.stringify(alpha));
       assert(alpha.topLeft===0 && alpha.topRight===0,'Top corners of portrait must be genuinely transparent: '+JSON.stringify(alpha));
       assert(await portrait.evaluate(img=>getComputedStyle(img).clipPath==='none'),'The published transparent image must not depend on a hard CSS clip mask');
+      const fit=await page.evaluate(()=>{
+        const shell=document.querySelector('.ed-hero-content').getBoundingClientRect();
+        const visual=document.querySelector('.ed-hero-visual').getBoundingClientRect();
+        const photo=document.querySelector('.ed-hero-portrait-frame img').getBoundingClientRect();
+        const copy=document.querySelector('.ed-hero-copy').getBoundingClientRect();
+        return {shell:{left:shell.left,right:shell.right},visual:{left:visual.left,right:visual.right,top:visual.top},photo:{left:photo.left,right:photo.right},copy:{left:copy.left,right:copy.right,bottom:copy.bottom},viewport:innerWidth};
+      });
+      assert(fit.photo.left>=fit.shell.left-2 && fit.photo.right<=fit.shell.right+2,'Portrait escapes the content shell '+profile.name+' '+JSON.stringify(fit));
+      assert(fit.visual.left>=fit.shell.left-2 && fit.visual.right<=fit.shell.right+2,'Portrait container escapes the content shell '+profile.name+' '+JSON.stringify(fit));
+      assert(fit.photo.right<=fit.viewport-12 && fit.photo.left>=12,'Portrait clips against browser edge '+profile.name+' '+JSON.stringify(fit));
+      if(profile.width>900)assert(fit.copy.right+14<=fit.visual.left,'Portrait overlaps headline column '+profile.name+' '+JSON.stringify(fit));
+
     }
     await page.waitForTimeout(200);
     const diagnostics=await page.evaluate(()=>{
