@@ -20,7 +20,7 @@ const storyMarks = stories.map(s => (s.headline.split(/\s+/)[0] || 'TECH').repla
     <div class="ed-hero-visual">
       <div class="ed-hero-orb" aria-hidden="true"></div>
       <div class:list={["ed-hero-portrait-frame",{"ed-hero-portrait-transparent":hasTransparentHero}]}>
-        <img src={heroPhoto} alt="Portrait of Zilu Rane, full-stack software engineer" width={hasHighResHero?1200:hasTransparentHero?400:192} height={hasHighResHero?1500:hasTransparentHero?500:192} loading="eager" fetchpriority="high" decoding="async"/>
+        <img src={heroPhoto} alt="Portrait of Zilu Rane, full-stack software engineer" width={hasHighResHero?960:hasTransparentHero?400:192} height={hasHighResHero?1500:hasTransparentHero?500:192} loading="eager" fetchpriority="high" decoding="async"/>
       </div>
       <div class="ed-hero-noise" aria-hidden="true"></div>
     </div>
