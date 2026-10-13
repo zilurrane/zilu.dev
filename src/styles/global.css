@@ -105,3 +105,5 @@ h1,h2,h3{font-family:var(--font-sans);font-weight:600;letter-spacing:-.055em;tex
 .mock-prose .project-visual-node strong{font-size:.88rem}
 @media(max-width:1000px){.mock-hero{grid-template-columns:1fr;min-height:0;padding:65px 0 45px}.editorial-landscape{height:400px}.mock-hero h1{max-width:800px;font-size:clamp(3.4rem,7vw,5.5rem)}}
 @media(max-width:600px){.mock-hero{padding:40px 0 30px;gap:30px}.mock-hero h1{font-size:clamp(2.8rem,10vw,4.1rem)}.editorial-landscape{height:300px}.editorial-landscape figcaption{font-size:.48rem;left:12px;right:12px;bottom:12px}.project-visual-flow{gap:4px;padding:12px 7px}.project-visual-node{padding:11px 4px}.project-visual-node strong{font-size:.63rem}.project-visual-bottom{font-size:.46rem;flex-wrap:wrap}}
+
+.project-visual-step{display:flex;align-items:center;gap:8px;flex:1;min-width:0}.project-visual-step .project-visual-node{flex:1}.project-visual-step .project-visual-arrow{flex:0 0 auto}@media(max-width:600px){.project-visual-step{gap:4px}}
