@@ -80,8 +80,8 @@
   clip-path:none;
   image-rendering:auto;
   filter:none;
-  -webkit-mask-image:linear-gradient(to bottom,#000 0%,#000 84%,rgba(0,0,0,.9) 91%,transparent 100%);
-  mask-image:linear-gradient(to bottom,#000 0%,#000 84%,rgba(0,0,0,.9) 91%,transparent 100%);
+  -webkit-mask-image:linear-gradient(to bottom,#000 0%,#000 72%,rgba(0,0,0,.85) 80%,rgba(0,0,0,.3) 88%,transparent 94%);
+  mask-image:linear-gradient(to bottom,#000 0%,#000 72%,rgba(0,0,0,.85) 80%,rgba(0,0,0,.3) 88%,transparent 94%);
 }
 .ed-hero-orb{
   position:absolute;
