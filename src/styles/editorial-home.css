@@ -33,16 +33,13 @@
   overflow:visible;
 }
 .ed-hero-portrait-frame img{
-  display:block;
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  object-position:center 37%;
-  border:0;
-  border-radius:0;
+  display:block;width:100%;height:100%;object-fit:cover;object-position:center 37%;
+  border:0;border-radius:0;
   filter:saturate(.88) contrast(1.025);
-  -webkit-mask-image:radial-gradient(ellipse 68% 73% at 50% 49%,black 49%,rgba(0,0,0,.96) 62%,rgba(0,0,0,.57) 78%,transparent 99%);
-  mask-image:radial-gradient(ellipse 68% 73% at 50% 49%,black 49%,rgba(0,0,0,.96) 62%,rgba(0,0,0,.57) 78%,transparent 99%);
+  /* Follow the head-and-shoulders silhouette instead of displaying the source's rectangular room. */
+  clip-path:polygon(0% 100%,1% 88%,5% 77%,11% 67%,18% 63%,28% 58%,31% 54%,29% 46%,27% 37%,27% 26%,30% 18%,35% 13%,43% 9%,51% 9%,59% 11%,65% 17%,68% 26%,68% 36%,65% 46%,62% 53%,67% 57%,76% 60%,85% 66%,94% 75%,99% 89%,100% 100%);
+  -webkit-mask-image:linear-gradient(180deg,#000 0%,#000 66%,rgba(0,0,0,.97) 79%,transparent 100%);
+  mask-image:linear-gradient(180deg,#000 0%,#000 66%,rgba(0,0,0,.97) 79%,transparent 100%);
 }
 .ed-hero-portrait-frame:after{content:none}
 .ed-hero-orb{
@@ -296,11 +293,7 @@
   .ed-hero-content{min-height:635px;padding:49px 0 290px}
   .ed-hero-visual{inset:0;opacity:1}
   .ed-hero-portrait-frame{top:auto;bottom:1px;right:-7%;width:min(86vw,375px);height:325px}
-  .ed-hero-portrait-frame img{
-    object-position:center 35%;
-    -webkit-mask-image:radial-gradient(ellipse 73% 80% at 51% 48%,black 50%,rgba(0,0,0,.9) 66%,transparent 94%);
-    mask-image:radial-gradient(ellipse 73% 80% at 51% 48%,black 50%,rgba(0,0,0,.9) 66%,transparent 94%);
-  }
+  .ed-hero-portrait-frame img{object-position:center 35%}
   .ed-hero-orb{top:auto;bottom:-6px;right:-14%;width:clamp(280px,96vw,390px);filter:blur(24px)}
   .ed-hero-noise{background:linear-gradient(180deg,var(--ed-bg) 0%,var(--ed-bg) 38%,transparent 56%,transparent 83%,var(--ed-bg) 100%)}
   .ed-idea-card{right:auto;left:0;bottom:37px;top:auto;z-index:3;padding:12px 13px 22px;font-size:.61rem;min-width:114px;opacity:.88}
