@@ -1,0 +1,35 @@
+name: Generate HD portfolio portrait
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/enhance-portrait.py'
+      - 'public/images/zilu-cutout.webp'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  enhance:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install image tools
+        run: pip install --disable-pip-version-check Pillow==11.3.0 numpy==2.1.3 opencv-contrib-python-headless==4.10.0.84
+      - name: Enhance real portrait and retain alpha
+        run: python scripts/enhance-portrait.py
+      - name: Publish high-resolution transparent WebP
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add public/images/zilu-cutout-hd.webp
+          if ! git diff --cached --quiet; then
+            git commit -m "assets: publish high-resolution transparent portrait"
+            git push
+          fi
