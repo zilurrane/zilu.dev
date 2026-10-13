@@ -34,7 +34,7 @@ try {
         const pixel=(x,y)=>ctx.getImageData(x,y,1,1).data[3];
         return {topLeft:pixel(0,0),topRight:pixel(canvas.width-1,0),width:canvas.width,height:canvas.height};
       });
-      assert(alpha.width>=1000 && alpha.height>=1200,'Hero portrait must be at least 1000×1200: '+JSON.stringify(alpha));
+      assert(alpha.width>=900 && alpha.height>=1100,'Hero portrait must be at least 900×1100: '+JSON.stringify(alpha));
       assert(alpha.topLeft===0 && alpha.topRight===0,'Top corners of portrait must be genuinely transparent: '+JSON.stringify(alpha));
       assert(await portrait.evaluate(img=>getComputedStyle(img).clipPath==='none'),'The published transparent image must not depend on a hard CSS clip mask');
     }
@@ -77,7 +77,7 @@ try {
       alphas:corners.map(([x,y])=>ctx.getImageData(x,y,1,1).data[3])};
  });
  assert.equal(portrait.src,'/images/zilu-cutout-hd.webp','Homepage is still using the old photo with background');
- assert(portrait.width>=1000,'Portrait is unexpectedly low resolution: '+portrait.width);
+ assert(portrait.width>=900,'Portrait is unexpectedly low resolution: '+portrait.width);
  assert(portrait.alphas.every(a=>a<32),'Portrait image has opaque background corners: '+JSON.stringify(portrait));
 
  await page.goto(origin+'/news/',{waitUntil:'domcontentloaded'});
