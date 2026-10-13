@@ -19,6 +19,13 @@ try {
     const response=await page.goto(origin+path,{waitUntil:'domcontentloaded'});
     assert.equal(response?.status(),200,'Unexpected HTTP status at '+path);
     await page.evaluate(t=>{document.documentElement.dataset.theme=t},theme);
+    if(path==='/'){
+      const portrait=page.locator('.ed-hero-portrait-frame img');
+      assert.equal(await portrait.count(),1,'Homepage must show exactly one portrait');
+      assert.match(await portrait.getAttribute('alt'),/Zilu Rane/i,'Portrait alt text must identify the engineer');
+      await portrait.evaluate(async img=>{await img.decode();});
+      assert(await portrait.evaluate(img=>img.naturalWidth>0 && img.naturalHeight>0),'Portrait asset is missing or cannot decode');
+    }
     await page.waitForTimeout(200);
     const diagnostics=await page.evaluate(()=>{
       const h1=document.querySelector('h1');
