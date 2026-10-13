@@ -12,7 +12,7 @@ from urllib.request import Request, urlopen
 
 import cv2
 import numpy as np
-from PIL import Image, ImageFilter
+from PIL import Image, ImageFilter, ImageEnhance
 
 INPUT = Path("public/images/zilu-cutout.webp")
 OUTPUT = Path("public/images/zilu-cutout-hd.webp")
@@ -52,7 +52,10 @@ def main() -> None:
     except Exception as exc:
         print(f"Super-resolution model unavailable; using high-quality scaling: {exc}")
 
-    enhanced = enhanced.filter(ImageFilter.UnsharpMask(radius=1.0, percent=68, threshold=3))
+    # Mild local contrast plus small-radius edge definition on the existing photograph.
+    # Avoid heavy sharpening: the cutout source is only 240px wide.
+    enhanced = ImageEnhance.Contrast(enhanced).enhance(1.045)
+    enhanced = enhanced.filter(ImageFilter.UnsharpMask(radius=0.74, percent=108, threshold=3))
     alpha = source.getchannel("A").resize(target, Image.Resampling.LANCZOS)
     enhanced.putalpha(alpha)
     OUTPUT.parent.mkdir(parents=True, exist_ok=True)
