@@ -13,10 +13,12 @@ const storyMarks = stories.map(s => (s.headline.split(/\s+/)[0] || 'TECH').repla
 >
 <div class="editorial-page">
   <section class="ed-hero" aria-labelledby="home-title">
-    <div class="ed-hero-visual" aria-hidden="true">
-      <div class="ed-hero-mountains"></div>
-      <div class="ed-hero-orb"></div>
-      <div class="ed-hero-noise"></div>
+    <div class="ed-hero-visual">
+      <div class="ed-hero-orb" aria-hidden="true"></div>
+      <div class="ed-hero-portrait-frame">
+        <img src="/images/zilu.webp" alt="Portrait of Zilu Rane, full-stack software engineer" width="400" height="400" loading="eager" fetchpriority="high" decoding="async"/>
+      </div>
+      <div class="ed-hero-noise" aria-hidden="true"></div>
     </div>
     <div class="ed-shell ed-hero-content">
       <div class="ed-hero-copy">
