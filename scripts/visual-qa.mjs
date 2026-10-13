@@ -71,7 +71,7 @@ try {
    canvas.width=img.naturalWidth;canvas.height=img.naturalHeight;
    const ctx=canvas.getContext('2d',{willReadFrequently:true});
    ctx.drawImage(img,0,0);
-   const corners=[[0,0],[canvas.width-1,0],[0,canvas.height-1],[canvas.width-1,canvas.height-1]];
+   const corners=[[0,0],[canvas.width-1,0],[0,Math.round(canvas.height*.3)],[canvas.width-1,Math.round(canvas.height*.3)]];
    return {src:new URL(img.currentSrc).pathname,width:canvas.width,height:canvas.height,
       alphas:corners.map(([x,y])=>ctx.getImageData(x,y,1,1).data[3])};
  });
