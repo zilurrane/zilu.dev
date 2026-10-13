@@ -29,6 +29,8 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: portfolio-responsive-screenshots
-          path: visual-qa-results/
+          path: |
+            visual-qa-results/
+            public/images/zilu.webp
           if-no-files-found: ignore
           retention-days: 14
