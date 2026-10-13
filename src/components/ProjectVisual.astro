@@ -1,42 +1,33 @@
 ---
 const { project } = Astro.props;
-const diagrams = {
-  'linkedin-signal-agent': { label: 'Automated research pipeline', nodes: ['RSS + GitHub', 'Workers AI', 'Daily digest'], detail: 'Collect → score → send' },
-  'whatsapp-actions': { label: 'GitHub Actions integration', nodes: ['GitHub CI', 'Python action', 'Twilio WhatsApp'], detail: 'Workflow → message' },
-  'ticketing': { label: 'Event-driven architecture', nodes: ['React client', 'Node services', 'NATS events'], detail: 'Request → event → update' },
-  'learnings': { label: 'LLM experiments', nodes: ['Prompt', 'LangChain', 'Model output'], detail: 'Explore → test → learn' }
-};
-const diagram = diagrams[project.slug] || diagrams.learnings;
 ---
-<div class="project-visual" role="img" aria-label={diagram.label + ' diagram for ' + project.title}>
-  <div class="project-visual-top">
-    <span class="project-visual-dots" aria-hidden="true">● ● ●</span>
-    <span>{diagram.label}</span>
-  </div>
-  <div class="project-visual-flow">
-    <div class="project-visual-step">
-      <div class="project-visual-node">
-        <span class="project-visual-node-index">01</span>
-        <strong>{diagram.nodes[0]}</strong>
-      </div>
-      <span class="project-visual-arrow" aria-hidden="true">→</span>
+<div class={'project-showcase showcase-' + project.slug} role="img" aria-label={'Illustrative technical visualization for ' + project.title + ', not an application screenshot'}>
+  {project.slug === 'linkedin-signal-agent' ? (
+    <div class="showcase-signal">
+      <div class="showcase-topline"><span>TECH SIGNALS / DAILY</span><span>● PIPELINE</span></div>
+      <div class="showcase-signal-title">Signal over noise<span class="showcase-accent">.</span></div>
+      <div class="showcase-signal-bars"><span style="--bar:76%"></span><span style="--bar:45%"></span><span style="--bar:92%"></span><span style="--bar:58%"></span><span style="--bar:83%"></span><span style="--bar:37%"></span><span style="--bar:68%"></span><span style="--bar:94%"></span><span style="--bar:55%"></span><span style="--bar:79%"></span><span style="--bar:62%"></span></div>
+      <div class="showcase-bottomline"><span>RSS / GITHUB / HN</span><span>WORKERS AI → DIGEST</span></div>
     </div>
-    <div class="project-visual-step">
-      <div class="project-visual-node">
-        <span class="project-visual-node-index">02</span>
-        <strong>{diagram.nodes[1]}</strong>
-      </div>
-      <span class="project-visual-arrow" aria-hidden="true">→</span>
+  ) : project.slug === 'whatsapp-actions' ? (
+    <div class="showcase-message">
+      <div class="showcase-topline"><span>WORKFLOW / AUTOMATION</span><span>● ACTION</span></div>
+      <div class="showcase-chat"><div class="showcase-chat-header"><span class="showcase-avatar">W</span><span>Workflow notification<small>GitHub Actions → WhatsApp</small></span><span class="showcase-status">●</span></div><div class="showcase-bubble"><strong>Build notification</strong><span>Deployment workflow completed.</span><small>Sent via Twilio · 09:41 ✓✓</small></div></div>
+      <div class="showcase-bottomline"><span>PYTHON / TWILIO</span><span>CI → MESSAGE</span></div>
     </div>
-    <div class="project-visual-step">
-      <div class="project-visual-node">
-        <span class="project-visual-node-index">03</span>
-        <strong>{diagram.nodes[2]}</strong>
-      </div>
+  ) : project.slug === 'ticketing' ? (
+    <div class="showcase-services">
+      <div class="showcase-topline"><span>EVENT-DRIVEN SYSTEM</span><span>● DISTRIBUTED</span></div>
+      <div class="showcase-service-grid"><div class="showcase-service-box"><small>01 / CLIENT</small><strong>React</strong></div><div class="showcase-service-connector">→</div><div class="showcase-service-box"><small>02 / API</small><strong>Node.js</strong></div><div class="showcase-service-connector">→</div><div class="showcase-service-box"><small>03 / EVENTS</small><strong>NATS</strong></div></div>
+      <div class="showcase-service-trace"><span>EVENT BUS</span><span>● ─── ● ─── ●</span><span>ASYNC</span></div>
+      <div class="showcase-bottomline"><span>MICROSERVICES</span><span>KUBERNETES</span></div>
     </div>
-  </div>
-  <div class="project-visual-bottom">
-    <span>{diagram.detail}</span>
-    <span>ARCHITECTURE DIAGRAM · NOT A SCREENSHOT</span>
-  </div>
+  ) : (
+    <div class="showcase-learnings">
+      <div class="showcase-topline"><span>LLM EXPERIMENTS</span><span>● LAB</span></div>
+      <div class="showcase-learning-main"><span>prompt()</span><span class="showcase-learning-arrow">↗</span><strong>explore / iterate / learn</strong></div>
+      <div class="showcase-bottomline"><span>LANGCHAIN / JAVASCRIPT</span><span>EXPERIMENTAL</span></div>
+    </div>
+  )}
+  <span class="showcase-disclosure">CONCEPTUAL VISUAL · NOT A PRODUCT SCREENSHOT</span>
 </div>
