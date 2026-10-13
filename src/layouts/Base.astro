@@ -1,11 +1,13 @@
 ---
 import '../styles/global.css';
+import {existsSync} from 'node:fs';
+const portraitForMetadata=existsSync('public/images/zilu-original-hd.webp')?'zilu-original-hd.webp':'zilu-cutout-hd.webp';
 import '../styles/portfolio-polish.css';
 import '../styles/editorial-home.css';
 import '../styles/editorial-news.css';
 const {title='Zilu Rane — Full-Stack Engineer',description='Zilu Rane builds full-stack software, AI agents and developer tools.',canonical=Astro.url.href,type='website',schema=null,robots='index,follow,max-image-preview:large'} = Astro.props;
 const nav=[['/','Home'],['/projects/','Work'],['/writing/','Writing'],['/news/','News'],['/about/','About']];
-const person={'@type':'Person','@id':'https://zilu.dev/#person',name:'Zilu Rane',image:'https://zilu.dev/images/zilu-cutout-hd.webp',jobTitle:'Technical Lead',worksFor:{'@type':'Organization',name:'Accion Labs'},url:'https://zilu.dev/',sameAs:['https://github.com/zilurrane','https://www.linkedin.com/in/zilurane','https://dev.to/zilurrane'],knowsAbout:['JavaScript','TypeScript','React','Node.js','AI agents','RAG','Cloudflare Workers']};
+const person={'@type':'Person','@id':'https://zilu.dev/#person',name:'Zilu Rane',image:'https://zilu.dev/images/'+portraitForMetadata,jobTitle:'Technical Lead',worksFor:{'@type':'Organization',name:'Accion Labs'},url:'https://zilu.dev/',sameAs:['https://github.com/zilurrane','https://www.linkedin.com/in/zilurane','https://dev.to/zilurrane'],knowsAbout:['JavaScript','TypeScript','React','Node.js','AI agents','RAG','Cloudflare Workers']};
 const ld={'@context':'https://schema.org','@graph':[person,...(schema?[schema]:[])]};
 ---
 <!doctype html><html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><meta name="generator" content={Astro.generator}/><title>{title}</title><meta name="description" content={description}/><meta name="robots" content={robots}/><link rel="canonical" href={canonical}/><meta property="og:type" content={type}/><meta property="og:title" content={title}/><meta property="og:description" content={description}/><meta property="og:url" content={canonical}/><meta name="twitter:card" content="summary"/><meta name="theme-color" content="#101114" media="(prefers-color-scheme: dark)"/><meta name="theme-color" content="#fafbfe" media="(prefers-color-scheme: light)"/><script type="application/ld+json" set:html={JSON.stringify(ld).replaceAll('<','\\u003c')}/><script is:inline>try{document.documentElement.dataset.theme=localStorage.getItem('zilu-theme')||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light')}catch{}</script></head>
