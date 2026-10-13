@@ -3,7 +3,7 @@ import Base from '../layouts/Base.astro';
 import editions from '../../news/briefings.json';
 const edition = [...editions].sort((a,b) => b.date.localeCompare(a.date))[0];
 const stories = edition?.stories.slice(0,3) ?? [];
-const storyMarks = ['META','JS','NOW'];
+const storyMarks = stories.map(s => (s.headline.split(/\s+/)[0] || 'TECH').replace(/[^\w.-]/g,'').slice(0,9).toUpperCase());
 ---
 <Base
   title="Zilu Rane — Full-Stack Engineer | Software, Projects & Technology Writing"
