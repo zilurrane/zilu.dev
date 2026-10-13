@@ -275,6 +275,19 @@
 }
 
 
+
+/* When the native alpha portrait is available, use real transparency—not the fallback clip mask. */
+.ed-hero-portrait-frame.ed-hero-portrait-transparent img{
+  object-fit:contain;
+  object-position:center bottom;
+  clip-path:none;
+  -webkit-mask-image:linear-gradient(to bottom,#000 0%,#000 82%,rgba(0,0,0,.8) 91%,transparent 100%);
+  mask-image:linear-gradient(to bottom,#000 0%,#000 82%,rgba(0,0,0,.8) 91%,transparent 100%);
+  filter:none;
+}
+:root[data-theme=dark] .ed-hero-portrait-frame.ed-hero-portrait-transparent img{filter:none}
+:root[data-theme=light] .ed-hero-portrait-frame.ed-hero-portrait-transparent img{filter:none}
+
 /* Viewport-safe hero portrait placement with the same edge treatment on every device. */
 .ed-idea-card{right:clamp(0px,1.5vw,24px);top:auto;bottom:42px;z-index:3;border-color:color-mix(in srgb,var(--ed-accent) 20%,transparent);background:color-mix(in srgb,var(--ed-panel) 56%,transparent);box-shadow:0 12px 35px #00000018;backdrop-filter:blur(15px)}
 @media(max-width:1120px){
