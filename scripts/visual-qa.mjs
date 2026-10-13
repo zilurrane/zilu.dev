@@ -27,7 +27,7 @@ try {
       assert.match(await portrait.getAttribute('alt'),/Zilu Rane/i,'Portrait alt text must identify the engineer');
       await portrait.evaluate(async img=>{await img.decode();});
       assert(await portrait.evaluate(img=>img.naturalWidth>0 && img.naturalHeight>0),'Portrait asset is missing or cannot decode');
-      assert(['/images/zilu-cutout-hd.webp','/images/zilu-original-hd.webp'].includes(await portrait.getAttribute('src')),'Homepage must use the published transparent portrait, never the original photo');
+      assert(['/images/zilu-portrait-2026-hd.webp'].includes(await portrait.getAttribute('src')),'Homepage must use the published transparent portrait, never the original photo');
       const alpha=await portrait.evaluate(img=>{
         const canvas=document.createElement('canvas');
         canvas.width=img.naturalWidth;canvas.height=img.naturalHeight;
@@ -105,7 +105,7 @@ try {
    return {src:new URL(img.currentSrc).pathname,width:canvas.width,height:canvas.height,
       alphas:corners.map(([x,y])=>ctx.getImageData(x,y,1,1).data[3])};
  });
- assert(['/images/zilu-cutout-hd.webp','/images/zilu-original-hd.webp'].includes(portrait.src),'Homepage is still using the old photo with background');
+ assert(['/images/zilu-portrait-2026-hd.webp'].includes(portrait.src),'Homepage is still using the old photo with background');
  assert(portrait.width>=900,'Portrait is unexpectedly low resolution: '+portrait.width);
  assert(portrait.alphas.every(a=>a<32),'Portrait image has opaque background corners: '+JSON.stringify(portrait));
 

@@ -1,11 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
 import editions from '../../news/briefings.json';
-import {existsSync} from 'node:fs';
-const hasSourceHQ=existsSync('public/images/zilu-original-hd.webp');
-const hasHighResHero=existsSync('public/images/zilu-cutout-hd.webp');
-const hasTransparentHero=hasSourceHQ||hasHighResHero||existsSync('public/images/zilu-cutout.webp');
-const heroPhoto=hasSourceHQ?'/images/zilu-original-hd.webp':hasHighResHero?'/images/zilu-cutout-hd.webp':hasTransparentHero?'/images/zilu-cutout.webp':'/images/zilu.webp';
+const heroPhoto='/images/zilu-portrait-2026-hd.webp';
 const edition = [...editions].sort((a,b) => b.date.localeCompare(a.date))[0];
 const stories = edition?.stories.slice(0,3) ?? [];
 const storyMarks = stories.map(s => (s.headline.split(/\s+/)[0] || 'TECH').replace(/[^\w.-]/g,'').slice(0,9).toUpperCase());
@@ -32,8 +28,8 @@ const storyMarks = stories.map(s => (s.headline.split(/\s+/)[0] || 'TECH').repla
         </div>
       </div>
       <div class="ed-hero-visual">
-        <div class:list={["ed-hero-portrait-frame",{"ed-hero-portrait-transparent":hasTransparentHero}]}>
-          <img src={heroPhoto} alt="Portrait of Zilu Rane, full-stack software engineer" width={hasSourceHQ?1122:hasHighResHero?960:hasTransparentHero?400:192} height={hasSourceHQ?1402:hasHighResHero?1200:hasTransparentHero?500:192} loading="eager" fetchpriority="high" decoding="async"/>
+        <div class="ed-hero-portrait-frame ed-hero-portrait-transparent">
+          <img src={heroPhoto} alt="Portrait of Zilu Rane, full-stack software engineer" width="960" height="1200" loading="eager" fetchpriority="high" decoding="async"/>
         </div>
       </div>
     </div>
