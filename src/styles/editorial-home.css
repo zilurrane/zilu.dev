@@ -263,8 +263,9 @@
   .ed-hero-visual{inset:0;opacity:1}
   .ed-hero-portrait-frame{top:auto;bottom:28px;right:11%;width:min(62vw,280px);height:250px;border-radius:42% 42% 16px 16px}
   .ed-hero-orb{top:auto;bottom:10px;right:2%;width:300px}
-  .ed-hero-noise{background:linear-gradient(180deg,var(--ed-bg) 0%,transparent 56%,var(--ed-bg) 100%)}
-  :root[data-theme=dark] .ed-hero-noise{background:linear-gradient(180deg,#101114 0%,transparent 55%,#101114 100%)}
-  :root[data-theme=light] .ed-hero-noise{background:linear-gradient(180deg,#fafbfe 0%,transparent 55%,#fafbfe 100%)}
+  /* Maintain a clean text zone above while keeping the portrait's face fully visible. */
+  .ed-hero-noise{background:linear-gradient(180deg,var(--ed-bg) 0%,var(--ed-bg) 31%,transparent 50%,transparent 89%,var(--ed-bg) 100%)}
+  :root[data-theme=dark] .ed-hero-noise{background:linear-gradient(180deg,#101114 0%,#101114 31%,transparent 50%,transparent 89%,#101114 100%)}
+  :root[data-theme=light] .ed-hero-noise{background:linear-gradient(180deg,#fafbfe 0%,#fafbfe 31%,transparent 50%,transparent 89%,#fafbfe 100%)}
   .ed-idea-card{top:auto;right:auto;left:0;bottom:40px;z-index:3;font-size:.64rem;min-width:123px;opacity:1}
 }
