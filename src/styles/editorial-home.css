@@ -208,3 +208,14 @@
 .ed-case-note.ed-case-mini>strong{font-size:clamp(1.35rem,2vw,1.9rem)}
 .ed-case-note.ed-case-mini small{font-size:.48rem}
 .ed-case-note.ed-case-mini .ed-case-tech span{font-size:.65rem}
+
+.ed-bottom-note>a{white-space:nowrap;flex:0 0 auto}
+.ed-case-preview{margin-top:20px;height:210px;min-height:210px;border-radius:9px}
+.ed-case-preview .ed-sql-ui,.ed-case-preview .ed-light-app-content{height:calc(100% - 27px)}
+.mock-prose .ed-case-preview{height:320px;min-height:320px;max-width:780px;margin:32px 0}
+.mock-prose .ed-case-preview .ed-sql-ui,.mock-prose .ed-case-preview .ed-light-app-content{height:calc(100% - 30px)}
+.mock-prose .ed-case-preview .ed-sql-editor{font-size:.81rem;gap:13px;padding:24px}
+.mock-prose .ed-case-preview .ed-light-table{padding:24px}
+.mock-prose .ed-case-preview .ed-light-table>strong{font-size:1.2rem}
+.mock-prose .ed-case-preview .ed-light-row{font-size:.75rem;padding:11px 6px}
+@media(max-width:610px){.ed-bottom-note{align-items:flex-start;flex-direction:column;gap:9px}.ed-case-preview{height:185px;min-height:185px}.mock-prose .ed-case-preview{height:240px;min-height:240px}}
