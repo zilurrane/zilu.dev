@@ -48,7 +48,7 @@ def main() -> None:
             raise ValueError(f"Invalid super-resolution dimensions: {rgb.size}")
         # Mix 20% faithful Lanczos pixels to avoid aggressive hallucinated texture.
         enhanced = Image.blend(rgb, base, 0.20)
-        engine = "FSRCNN ×3 + faithful Lanczos blend"
+        engine = f"FSRCNN ×{FACTOR} + faithful Lanczos blend"
     except Exception as exc:
         print(f"Super-resolution model unavailable; using high-quality scaling: {exc}")
 
