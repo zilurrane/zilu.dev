@@ -53,6 +53,18 @@ try {
       assert(fit.visual.left>=fit.shell.left-2 && fit.visual.right<=fit.shell.right+2,'Portrait container escapes the content shell '+profile.name+' '+JSON.stringify(fit));
       assert(fit.photo.right<=fit.viewport-12 && fit.photo.left>=12,'Portrait clips against browser edge '+profile.name+' '+JSON.stringify(fit));
       if(profile.width>900)assert(fit.copy.right+14<=fit.visual.left,'Portrait overlaps headline column '+profile.name+' '+JSON.stringify(fit));
+      // Prevent a hard-edged glow at the portrait grid column in either theme.
+      const background=await page.evaluate(()=>{
+        const hero=getComputedStyle(document.querySelector('.ed-hero'));
+        const pageSurface=getComputedStyle(document.querySelector('.editorial-page'));
+        const visual=document.querySelector('.ed-hero-visual');
+        return {image:hero.backgroundImage,heroBase:hero.backgroundColor,pageBase:pageSurface.backgroundColor,visualBackground:getComputedStyle(visual).backgroundImage,hasLegacyOrb:!!document.querySelector('.ed-hero-orb')};
+      });
+      assert(background.image.includes('radial-gradient'),'Ambient gradient must be painted across the entire hero: '+JSON.stringify(background));
+      assert.equal(background.heroBase,background.pageBase,'Hero/page background colors differ in '+theme+' theme: '+JSON.stringify(background));
+      assert.equal(background.visualBackground,'none','Portrait column must not have a separate gradient');
+      assert.equal(background.hasLegacyOrb,false,'Legacy glow is still being clipped by the portrait container');
+
 
     }
     await page.waitForTimeout(200);
