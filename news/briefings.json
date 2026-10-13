@@ -1,5 +1,45 @@
 [
   {
+    "date": "2026-10-13",
+    "stories": [
+      {
+        "category": "AI Models & Agents",
+        "headline": "Meta launches Muse Wonder and Muse Wonder Full",
+        "summary": "Meta launched two AI models on October 12. The company plans to use them in its Muse assistant and coding tools.",
+        "why_it_matters": "The release adds competition for AI agents and developer assistants.",
+        "source_url": "https://www.reuters.com/"
+      },
+      {
+        "category": "Developer Tooling",
+        "headline": "Node.js releases version 26.11.1",
+        "summary": "Node.js published version 26.11.1 on October 7. Its notes describe three reversions involving build and documentation tooling.",
+        "why_it_matters": "Developers should test build pipelines when updating their runtime.",
+        "source_url": "https://nodejs.org/en/blog/release/"
+      },
+      {
+        "category": "SaaS",
+        "headline": "ServiceNow introduces AI Workflow Factory",
+        "summary": "ServiceNow announced AI Workflow Factory on October 6. It connects process discovery and AI-supported workflow delivery under enterprise governance.",
+        "why_it_matters": "SaaS products increasingly combine automation with centralized controls.",
+        "source_url": "https://www.servicenow.com/"
+      },
+      {
+        "category": "Cybersecurity",
+        "headline": "Rubrik unveils Code Guardian",
+        "summary": "Rubrik introduced Code Guardian on October 8. The private-preview tool examines code copies in isolated environments to identify security weaknesses.",
+        "why_it_matters": "Secure testing environments are increasingly relevant to AI-assisted software development.",
+        "source_url": "https://www.rubrik.com/"
+      },
+      {
+        "category": "Indian Tech & Business",
+        "headline": "HCLTech partners with Anthropic on enterprise AI",
+        "summary": "HCLTech announced a partnership with Anthropic on October 12 to accelerate enterprise adoption of agentic AI. The company plans a dedicated business unit focused on Claude-powered solutions and governance.",
+        "why_it_matters": "The partnership signals growing demand for enterprise AI implementation and security expertise in India's IT services sector.",
+        "source_url": "https://www.reuters.com/world/india/indias-hcltech-signs-pact-with-anthropic-set-up-business-unit-2026-10-12/"
+      }
+    ]
+  },
+  {
     "date": "2026-10-12",
     "stories": [
       {
