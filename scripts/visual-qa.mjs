@@ -37,6 +37,9 @@ try {
         return {topLeft:pixel(0,0),topRight:pixel(canvas.width-1,0),width:canvas.width,height:canvas.height};
       });
       assert(alpha.width>=900 && alpha.height>=1100,'Hero portrait must be at least 900×1100: '+JSON.stringify(alpha));
+      const rendered=await portrait.evaluate(img=>({width:img.getBoundingClientRect().width,height:img.getBoundingClientRect().height,naturalWidth:img.naturalWidth,naturalHeight:img.naturalHeight}));
+      assert(rendered.naturalWidth/rendered.width>=2,'Portrait is being stretched beyond 2x source density '+profile.name+' '+JSON.stringify(rendered));
+      assert(rendered.naturalHeight/rendered.height>=2,'Portrait height exceeds available 2x source density '+profile.name+' '+JSON.stringify(rendered));
       assert(alpha.topLeft===0 && alpha.topRight===0,'Top corners of portrait must be genuinely transparent: '+JSON.stringify(alpha));
       assert(await portrait.evaluate(img=>getComputedStyle(img).clipPath==='none'),'The published transparent image must not depend on a hard CSS clip mask');
       const fit=await page.evaluate(()=>{
