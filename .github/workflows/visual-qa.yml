@@ -1,0 +1,34 @@
+name: Editorial visual QA
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+jobs:
+  visual-qa:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm install
+      - run: npm run build
+      - name: Install headless browser for screenshots
+        run: |
+          npm install --no-save playwright@1.56.1
+          npx playwright install chromium
+      - name: Run Astro preview
+        run: |
+          (npm run preview -- --host 127.0.0.1 --port 4321 > /tmp/astro-preview.log 2>&1 &)
+          sleep 4
+      - name: Test visual layout and capture light/dark screenshots
+        run: node scripts/visual-qa.mjs
+      - name: Attach screenshot gallery and report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: portfolio-responsive-screenshots
+          path: visual-qa-results/
+          if-no-files-found: ignore
+          retention-days: 14
