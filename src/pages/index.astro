@@ -1,16 +1,120 @@
 ---
 import Base from '../layouts/Base.astro';
-import {projects} from '../data/projects';
-import ProjectVisual from '../components/ProjectVisual.astro';
 import editions from '../../news/briefings.json';
-const edition=[...editions].sort((a,b)=>b.date.localeCompare(a.date))[0];
-const featured=projects.slice(0,3);
+const edition = [...editions].sort((a,b) => b.date.localeCompare(a.date))[0];
+const stories = edition?.stories.slice(0,3) ?? [];
+const storyMarks = ['META','JS','NOW'];
 ---
-<Base title="Zilu Rane — Full-Stack Engineer | Projects, Writing & Daily Tech News" description="Explore Zilu Rane's full-stack engineering projects, technical writing and source-linked daily technology briefings." canonical="https://zilu.dev/" schema={{'@type':'ProfilePage',mainEntity:{'@id':'https://zilu.dev/#person'}}}>
-<div class="mock-home wrap">
-<section class="mock-hero" aria-labelledby="hero-title"><div class="mock-hero-copy"><p class="mock-kicker">SOFTWARE ENGINEER / INDIA</p><h1 id="hero-title">Building software <span class="mock-gradient-text">that makes sense.</span></h1><p>I design and build scalable applications, thoughtful interfaces, and practical AI-powered systems.</p><div class="mock-actions"><a class="mock-button" href="/projects/">Explore my work <span aria-hidden="true">→</span></a><a class="mock-button secondary" href="/writing/">Read my writing</a><a class="mock-icon-button" href="https://github.com/zilurrane" aria-label="GitHub profile">↗</a></div></div><figure class="editorial-landscape"><img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1400&q=85" alt="Snow-covered mountain peaks beneath an atmospheric sky" width="1400" height="1050" fetchpriority="high" decoding="async"/><figcaption><span>ENGINEERING IS A JOURNEY</span><span>01 — BUILD WITH PURPOSE</span></figcaption></figure></section>
-<section class="mock-stats" aria-label="Engineering focus"><div><strong>9+ years</strong><span>Engineering experience</span></div><div><strong>Full-stack</strong><span>JavaScript · Java · Cloud</span></div><div><strong>Open source</strong><span>Developer tooling</span></div><div><strong>Mentorship</strong><span>Engineering & community</span></div></section>
-<section class="mock-section" aria-labelledby="work-title"><div class="mock-section-heading"><div><p class="mock-kicker">SELECTED ENGINEERING</p><h2 id="work-title">Featured Work</h2><p>Projects I've built, maintained or contributed to.</p></div><a href="/projects/">View all projects →</a></div><div class="mock-project-grid">{featured.map((project,i)=><a class="mock-project" href={`/projects/${project.slug}/`}><div class="mock-project-top"><span class="mock-project-icon">{String(i+1).padStart(2,"0")} / 03</span><span aria-hidden="true">↗</span></div><h3>{project.title}</h3><p>{project.description}</p><div class="mock-chips">{project.stack.slice(0,3).map(s=><span>{s}</span>)}</div><ProjectVisual project={project}/></a>)}</div></section>
-{edition&&<section class="mock-section" aria-labelledby="brief-title"><div class="mock-section-heading"><div><p class="mock-kicker">DAILY TECHNOLOGY BRIEFING</p><h2 id="brief-title">Five important stories. <span class="mock-gradient-text">Every morning.</span></h2><p>AI, developer tools, SaaS, cybersecurity and Indian technology.</p></div><a href="/news/">All editions →</a></div><div class="mock-news-list">{edition.stories.map((s,i)=><a href={`/news/${edition.date}-daily-tech-news/`} class="mock-news-row"><span class="mock-story-index">{String(i+1).padStart(2,'0')}</span><span class="mock-story-content"><small>{s.category} · <time datetime={edition.date}>{edition.date}</time></small><strong>{s.headline}</strong><span>{s.summary}</span></span><span class="mock-row-arrow" aria-hidden="true">→</span></a>)}</div></section>}
-<section class="mock-section mock-cta"><p class="mock-kicker">LET'S BUILD SOMETHING USEFUL</p><h2>Thoughtful software. <span class="mock-gradient-text">Real impact.</span></h2><a class="mock-button" href="mailto:zilurrane@gmail.com">Get in touch →</a></section>
-</div></Base>
+<Base
+  title="Zilu Rane — Full-Stack Engineer | Software, Projects & Technology Writing"
+  description="Zilu Rane builds practical full-stack applications, developer tools and thoughtfully designed interfaces. Explore selected engineering work and daily technology writing."
+  canonical="https://zilu.dev/"
+  schema={{'@type':'ProfilePage',mainEntity:{'@id':'https://zilu.dev/#person'}}}
+>
+<div class="editorial-page">
+  <section class="ed-hero" aria-labelledby="home-title">
+    <div class="ed-hero-visual" aria-hidden="true">
+      <div class="ed-hero-mountains"></div>
+      <div class="ed-hero-orb"></div>
+      <div class="ed-hero-noise"></div>
+    </div>
+    <div class="ed-shell ed-hero-content">
+      <div class="ed-hero-copy">
+        <p class="ed-eyebrow">SOFTWARE ENGINEER <span>/</span> INDIA</p>
+        <h1 id="home-title">Building software<br/><span>that <em>makes sense.</em></span></h1>
+        <p class="ed-hero-lead">I design and build scalable applications, thoughtful interfaces, and practical AI-powered systems.</p>
+        <div class="ed-actions">
+          <a class="ed-action ed-action-primary" href="/projects/">Explore my work <span aria-hidden="true">→</span></a>
+          <a class="ed-action ed-action-secondary" href="/writing/">Read my writing</a>
+          <a class="ed-action ed-action-square" href="https://github.com/zilurrane" target="_blank" rel="noopener noreferrer" aria-label="Open GitHub profile">
+            <svg aria-hidden="true" viewBox="0 0 24 24" fill="currentColor" width="19" height="19"><path d="M12 .9a11.1 11.1 0 0 0-3.51 21.63c.56.1.76-.24.76-.54v-2.12c-3.1.67-3.76-1.31-3.76-1.31-.51-1.3-1.25-1.64-1.25-1.64-1.02-.7.08-.69.08-.69 1.13.08 1.72 1.16 1.72 1.16 1.01 1.72 2.65 1.22 3.3.93.1-.73.39-1.23.72-1.52-2.48-.28-5.08-1.24-5.08-5.49 0-1.21.43-2.2 1.15-2.97-.12-.28-.5-1.41.11-2.94 0 0 .94-.3 3.05 1.14a10.6 10.6 0 0 1 5.55 0c2.11-1.43 3.04-1.14 3.04-1.14.61 1.53.23 2.66.12 2.94.72.77 1.14 1.76 1.14 2.97 0 4.26-2.61 5.21-5.09 5.48.4.35.76 1.02.76 2.05v3.04c0 .3.2.65.77.54A11.1 11.1 0 0 0 12 .9Z"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="ed-idea-card" aria-hidden="true">
+        <span>// ideas</span><span>// code</span><span>// products</span><span>// impact</span>
+        <i></i>
+      </div>
+    </div>
+  </section>
+
+  <div class="ed-shell">
+    <section class="ed-stats" aria-label="Experience and interests">
+      <div class="ed-stat">
+        <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="7" r="3"/><path d="M5 20v-2a7 7 0 0 1 14 0v2M4 8l-2 2 2 2m16-4 2 2-2 2"/></svg>
+        <div><strong>9+ years</strong><span>Engineering experience</span></div>
+      </div>
+      <div class="ed-stat">
+        <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="m12 3 9 5-9 5-9-5 9-5Zm-9 9 9 5 9-5M3 16l9 5 9-5"/></svg>
+        <div><strong>Full-Stack</strong><span>JavaScript · Java · Cloud</span></div>
+      </div>
+      <div class="ed-stat">
+        <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="m12 2 8 4v12l-8 4-8-4V6l8-4Z"/><path d="m9 12 2 2 4-4"/></svg>
+        <div><strong>Open Source</strong><span>Contributor & builder</span></div>
+      </div>
+      <div class="ed-stat">
+        <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="4" y="3" width="16" height="7" rx="2"/><rect x="4" y="14" width="16" height="7" rx="2"/><path d="M8 10v4m8-4v4"/></svg>
+        <div><strong>Mentor</strong><span>Engineering & community</span></div>
+      </div>
+    </section>
+
+    <section class="ed-featured" aria-labelledby="featured-title">
+      <div class="ed-section-heading">
+        <div><p class="ed-eyebrow">SELECTED ENGINEERING</p><h2 id="featured-title">Featured Work</h2><p>A few projects I've built, maintained, or contributed to.</p></div>
+        <a class="ed-text-link" href="/projects/">View all projects <span aria-hidden="true">→</span></a>
+      </div>
+      <div class="ed-feature-grid">
+        <a class="ed-work-card" href="/projects/querydeck/">
+          <div class="ed-work-top"><div class="ed-work-icon ed-icon-q">Q</div><span class="ed-corner-arrow" aria-hidden="true">↗</span></div>
+          <h3>QueryDeck</h3>
+          <p>Desktop SQL development tool focused on productivity and clean workflows.</p>
+          <div class="ed-tags"><span>Electron</span><span>Angular</span><span>MSSQL</span></div>
+          <div class="ed-work-image ed-image-query" role="img" aria-label="Conceptual dark SQL editor interface for QueryDeck, not an application screenshot">
+            <div class="ed-app-header"><span class="ed-app-dots">● ● ●</span><span>QueryDeck / workspace</span><span>⌘ K</span></div>
+            <div class="ed-sql-ui"><div class="ed-sql-tree"><span>▾ DATABASE</span><span>▸ queries</span><span>▸ results</span><span>▸ history</span></div><div class="ed-sql-editor"><span><b>SELECT</b> name, status</span><span><b>FROM</b> projects</span><span><b>WHERE</b> active = <i>true</i>;</span><div class="ed-sql-grid"><span>ID</span><span>NAME</span><span>STATUS</span><span>01</span><span>QueryDeck</span><span>Active</span><span>02</span><span>Workspace</span><span>Active</span></div></div></div>
+            <div class="ed-concept-label">INTERFACE CONCEPT</div>
+          </div>
+        </a>
+        <a class="ed-work-card" href="/projects/enterprise-applications/">
+          <div class="ed-work-top"><div class="ed-work-icon ed-icon-layers"><svg aria-hidden="true" viewBox="0 0 24 24" width="29" height="29" fill="none" stroke="currentColor" stroke-width="1.6"><path d="m12 3 9 5-9 5-9-5 9-5Zm-9 9 9 5 9-5M3 16l9 5 9-5"/></svg></div><span class="ed-corner-arrow" aria-hidden="true">↗</span></div>
+          <h3>Enterprise Applications</h3>
+          <p>Scalable platforms and engineering solutions for complex business needs.</p>
+          <div class="ed-tags"><span>Java</span><span>Spring Boot</span><span>Cloud</span></div>
+          <div class="ed-work-image ed-image-enterprise" role="img" aria-label="Conceptual enterprise records interface, not an application screenshot">
+            <div class="ed-light-app-head"><span class="ed-light-mark"></span><span>Enterprise workspace</span><span class="ed-light-pill">Published</span></div>
+            <div class="ed-light-app-content"><div class="ed-light-sidebar"><i></i><i></i><i></i><i></i></div><div class="ed-light-table"><strong>Decision records</strong><div class="ed-light-row"><span>Name</span><span>Version</span><span>Status</span></div><div class="ed-light-row"><span>Policy A</span><span>v3</span><em>Active</em></div><div class="ed-light-row"><span>Policy B</span><span>v2</span><em>Active</em></div><div class="ed-light-row"><span>Policy C</span><span>v1</span><em>Review</em></div></div></div>
+            <div class="ed-concept-label">INTERFACE CONCEPT</div>
+          </div>
+        </a>
+        <a class="ed-work-card" href="/writing/">
+          <div class="ed-work-top"><div class="ed-work-icon ed-icon-book"><svg aria-hidden="true" viewBox="0 0 24 24" width="29" height="29" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 5a9 9 0 0 0-9-2v16a9 9 0 0 1 9 2m0-16a9 9 0 0 1 9-2v16a9 9 0 0 0-9 2m0-16v16"/></svg></div><span class="ed-corner-arrow" aria-hidden="true">↗</span></div>
+          <h3>Technical Writing</h3>
+          <p>Engineering guides, tutorials, and technology insights from hands-on work.</p>
+          <div class="ed-tags"><span>AI</span><span>Architecture</span><span>Productivity</span></div>
+          <div class="ed-work-image ed-image-writing" role="img" aria-label="Conceptual technical writing and documentation interface">
+            <div class="ed-writing-tabbar"><span>NOTES / ENGINEERING</span><span>↗</span></div>
+            <div class="ed-writing-preview"><span class="ed-writing-topic">THE ENGINEER'S NOTEBOOK</span><strong>Ideas worth<br/>building.</strong><div class="ed-writing-line"></div><div class="ed-writing-line short"></div><div class="ed-writing-row"><span>01 / Systems</span><span>02 / AI</span><span>03 / Code</span></div></div>
+            <div class="ed-concept-label">EDITORIAL CONCEPT</div>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    {edition && <section class="ed-news-preview" aria-labelledby="ed-news-title">
+      <div class="ed-section-heading">
+        <div><p class="ed-eyebrow">LATEST WRITING & TECHNOLOGY NEWS</p><h2 id="ed-news-title">Fresh ideas, <em>every day.</em></h2><p>A concise, source-linked daily briefing on technology and engineering.</p></div>
+        <a class="ed-text-link" href="/news/">View all news <span aria-hidden="true">→</span></a>
+      </div>
+      <div class="ed-news-items">
+        {stories.map((story,i) => <a class="ed-news-item" href={'/news/'+edition.date+'-daily-tech-news/'}>
+          <span class="ed-news-index">{String(i+1).padStart(2,'0')}</span>
+          <span class={'ed-news-thumb ed-thumb-'+i} aria-hidden="true">{storyMarks[i]}</span>
+          <span class="ed-news-detail"><small>{story.category} <span>·</span> <time datetime={edition.date}>{edition.date}</time></small><strong>{story.headline}</strong><span>{story.summary}</span></span>
+          <span class="ed-news-arrow" aria-hidden="true">→</span>
+        </a>)}
+      </div>
+    </section>}
+    <div class="ed-bottom-note"><p>Curious about a project, an idea, or working together?</p><a href="mailto:zilurrane@gmail.com">Let's talk <span aria-hidden="true">↗</span></a></div>
+  </div>
+</div>
+</Base>
