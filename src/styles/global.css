@@ -79,3 +79,29 @@ h1,h2,h3{font-family:var(--font-sans);font-weight:600;letter-spacing:-.055em;tex
 :root[data-theme=dark] .mock-news-row:hover{background:#1e2025}
 @media(max-width:850px){.mock-hero{grid-template-columns:1fr;min-height:0;padding:50px 0 30px}.mock-hero h1{font-size:clamp(3.3rem,8vw,5rem)}.mock-hero-art{height:290px}.mock-project-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.mock-content-grid{grid-template-columns:1fr}.mock-news-hero{padding:60px 0 40px}}
 @media(max-width:600px){.mock-hero h1{font-size:clamp(2.9rem,10vw,4rem)}.mock-hero-art{height:245px}.mock-code-card{top:12%;padding:12px 16px;font-size:.65rem}.mock-section{padding:48px 0 20px}.mock-project-grid{grid-template-columns:1fr}.mock-project-preview{height:155px}.mock-subhero{padding:48px 0 20px}.mock-news-hero h1{font-size:clamp(2.8rem,10vw,4rem)}.mock-cta{padding:55px 0 75px}}
+
+/* Photographic editorial hero: replace decorative terminal art */
+.mock-hero{grid-template-columns:minmax(0,1fr) minmax(0,.94fr);gap:clamp(32px,5vw,82px);align-items:center;min-height:610px;padding:90px 0 80px}
+.mock-hero-copy{position:relative;z-index:1;min-width:0}
+.mock-hero h1{font-size:clamp(3.5rem,5.25vw,6.1rem);max-width:740px;line-height:1.075;letter-spacing:-.07em}
+.mock-hero .mock-gradient-text{display:inline;color:var(--orange);-webkit-text-fill-color:var(--orange);background:none}
+.editorial-landscape{position:relative;margin:0;min-width:0;height:470px;border-radius:2px;overflow:hidden;background:linear-gradient(145deg,#4c5362,#b7bdcb);box-shadow:0 35px 85px #00000020}
+.editorial-landscape:after{content:'';position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,transparent 58%,#11131899)}
+.editorial-landscape img{display:block;width:100%;height:100%;object-fit:cover;object-position:50% 50%;filter:saturate(.74) contrast(1.07)}
+.editorial-landscape figcaption{position:absolute;z-index:1;bottom:20px;left:22px;right:22px;display:flex;justify-content:space-between;gap:10px;color:white;font:500 .61rem var(--font-mono);letter-spacing:.1em;text-shadow:0 2px 12px #000a}
+:root[data-theme=dark] .editorial-landscape img{filter:saturate(.57) brightness(.82) contrast(1.12)}
+.mock-stats{margin-top:0}
+.project-visual{margin-top:22px;min-height:196px;background:linear-gradient(145deg,#1a1c25,#121318);border:1px solid #333640;border-radius:9px;overflow:hidden;color:#f5f5f7;display:flex;flex-direction:column}
+.project-visual-top{display:flex;justify-content:space-between;gap:8px;padding:12px 14px;border-bottom:1px solid #30313a;font:500 .62rem var(--font-mono);color:#a6a8b9}
+.project-visual-dots{color:#a88cff;letter-spacing:2px}
+.project-visual-flow{display:flex;align-items:center;justify-content:center;gap:8px;flex:1;padding:18px 10px}
+.project-visual-node{min-width:0;flex:1;padding:14px 7px;background:#242631;border:1px solid #3d3c4c;border-radius:6px;text-align:center}
+.project-visual-node-index{display:block;margin-bottom:7px;font:500 .58rem var(--font-mono);color:#ad92ff}
+.project-visual-node strong{display:block;font-size:clamp(.63rem,.9vw,.79rem);font-weight:600;line-height:1.35;overflow-wrap:anywhere}
+.project-visual-arrow{color:#b4a1ff;font-size:1.15rem}
+.project-visual-bottom{display:flex;justify-content:space-between;gap:8px;padding:10px 14px;border-top:1px solid #30313a;font:500 .53rem var(--font-mono);letter-spacing:.03em;color:#9295aa}
+.mock-content-card .project-visual{margin-top:24px}
+.mock-prose .project-visual{max-width:720px;min-height:245px;margin:30px 0}
+.mock-prose .project-visual-node strong{font-size:.88rem}
+@media(max-width:1000px){.mock-hero{grid-template-columns:1fr;min-height:0;padding:65px 0 45px}.editorial-landscape{height:400px}.mock-hero h1{max-width:800px;font-size:clamp(3.4rem,7vw,5.5rem)}}
+@media(max-width:600px){.mock-hero{padding:40px 0 30px;gap:30px}.mock-hero h1{font-size:clamp(2.8rem,10vw,4.1rem)}.editorial-landscape{height:300px}.editorial-landscape figcaption{font-size:.48rem;left:12px;right:12px;bottom:12px}.project-visual-flow{gap:4px;padding:12px 7px}.project-visual-node{padding:11px 4px}.project-visual-node strong{font-size:.63rem}.project-visual-bottom{font-size:.46rem;flex-wrap:wrap}}
