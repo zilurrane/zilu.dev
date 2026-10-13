@@ -1,7 +1,8 @@
 ---
 import Base from '../../layouts/Base.astro';
 import {projects} from '../../data/projects';
+import ProjectVisual from '../../components/ProjectVisual.astro';
 ---
 <Base title="Engineering Projects | Zilu Rane" description="Explore real open-source software projects by Zilu Rane, including AI agents, Cloudflare Workers, WhatsApp automation and microservices." canonical="https://zilu.dev/projects/" schema={{'@type':'CollectionPage',name:'Engineering Projects by Zilu Rane',url:'https://zilu.dev/projects/'}}>
-<div class="wrap"><header class="mock-subhero"><p class="mock-kicker">PORTFOLIO / OPEN SOURCE</p><h1>Engineering work,<br/><span class="mock-gradient-text">built with intention.</span></h1><p>Real repositories and experiments. Each case study covers the problem, approach and implementation without invented results.</p></header><section class="mock-content-grid" aria-label="Engineering projects">{projects.map(p=><a href={'/projects/'+p.slug+'/'} class="mock-content-card"><p class="mock-kicker">{p.category}</p><h2>{p.title} ↗</h2><p>{p.description}</p><div class="mock-chips">{p.stack.map(t=><span>{t}</span>)}</div></a>)}</section></div>
+<div class="wrap"><header class="mock-subhero"><p class="mock-kicker">PORTFOLIO / OPEN SOURCE</p><h1>Engineering work,<br/><span class="mock-gradient-text">built with intention.</span></h1><p>Real repositories and experiments. Each case study covers the problem, approach and implementation without invented results.</p></header><section class="mock-content-grid" aria-label="Engineering projects">{projects.map(p=><a href={'/projects/'+p.slug+'/'} class="mock-content-card"><p class="mock-kicker">{p.category}</p><h2>{p.title} ↗</h2><p>{p.description}</p><div class="mock-chips">{p.stack.map(t=><span>{t}</span>)}</div><ProjectVisual project={p}/></a>)}</section></div>
 </Base>
