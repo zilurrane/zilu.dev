@@ -11,7 +11,7 @@ const diagram=diagrams[project.slug]||diagrams.learnings;
 <div class="project-visual" role="img" aria-label={diagram.label+' diagram for '+project.title}>
   <div class="project-visual-top"><span class="project-visual-dots" aria-hidden="true">● ● ●</span><span>{diagram.label}</span></div>
   <div class="project-visual-flow">
-    {diagram.nodes.map((node,i)=><Fragment><div class="project-visual-node"><span class="project-visual-node-index">{String(i+1).padStart(2,'0')}</span><strong>{node}</strong></div>{i<diagram.nodes.length-1&&<span class="project-visual-arrow" aria-hidden="true">→</span>}</Fragment>)}
+    {diagram.nodes.map((node,i)=><div class="project-visual-step"><div class="project-visual-node"><span class="project-visual-node-index">{String(i+1).padStart(2,'0')}</span><strong>{node}</strong></div>{i<diagram.nodes.length-1&&<span class="project-visual-arrow" aria-hidden="true">→</span>}</div>)}
   </div>
   <div class="project-visual-bottom"><span>{diagram.detail}</span><span>ARCHITECTURE DIAGRAM · NOT A SCREENSHOT</span></div>
 </div>
