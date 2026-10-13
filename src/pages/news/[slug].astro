@@ -2,9 +2,38 @@
 import Base from '../../layouts/Base.astro';
 import editions from '../../../news/briefings.json';
 export function getStaticPaths(){return editions.map(edition=>({params:{slug:edition.date+'-daily-tech-news'},props:{edition}}))}
-const {edition}=Astro.props;const url='https://zilu.dev/news/'+edition.date+'-daily-tech-news/';
-const displayDate=new Date(edition.date+'T12:00:00Z').toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric',timeZone:'UTC'});
+const {edition}=Astro.props;
+const url='https://zilu.dev/news/'+edition.date+'-daily-tech-news/';
+const displayDate=new Date(edition.date+'T12:00:00Z').toLocaleDateString('en-GB',{weekday:'long',day:'numeric',month:'long',year:'numeric',timeZone:'UTC'});
+const first=edition.stories[0];
 ---
-<Base title={`Daily Tech News — ${displayDate} | Zilu Rane`} description={edition.stories.map(s=>s.headline).slice(0,3).join('; ').slice(0,155)} canonical={url} type="article" schema={{'@type':'Article',headline:'Daily Tech News — '+displayDate,datePublished:edition.date,author:{'@id':'https://zilu.dev/#person'},publisher:{'@id':'https://zilu.dev/#person'},mainEntityOfPage:url,citation:edition.stories.map(s=>s.source_url),articleSection:edition.stories.map(s=>s.category)}}>
-<article class="wrap mock-article"><nav class="breadcrumb" aria-label="Breadcrumb"><a href="/">Home</a> / <a href="/news/">News</a> / <time datetime={edition.date}>{edition.date}</time></nav><header><p class="mock-kicker">DAILY TECHNOLOGY BRIEFING · FIVE STORIES</p><h1>Daily Tech News<br/><span class="mock-gradient-text">{displayDate}</span></h1><p>Five source-linked stories, with concise summaries and why each matters.</p></header><div class="mock-article-body">{edition.stories.map((s,i)=><section class="mock-article-story" aria-labelledby={`story-${i}`}><p class="mock-kicker">{String(i+1).padStart(2,'0')} / {s.category}</p><h2 id={`story-${i}`}>{s.headline}</h2><p>{s.summary}</p><div class="mock-why"><strong>Why it matters</strong><p>{s.why_it_matters}</p></div><a class="mock-button secondary" href={s.source_url} target="_blank" rel="noopener noreferrer">Read original source ↗</a></section>)}</div><section class="mock-article-sources"><h2>Sources & citations</h2><ol>{edition.stories.map(s=><li><a href={s.source_url} target="_blank" rel="noopener noreferrer">{s.headline} ↗</a></li>)}</ol></section></article>
+<Base title={'Daily Tech News — '+displayDate+' | Zilu Rane'} description={edition.stories.map(s=>s.headline).slice(0,3).join('; ').slice(0,155)} canonical={url} type="article" schema={{'@type':'Article',headline:'Daily Tech News — '+displayDate,datePublished:edition.date,author:{'@id':'https://zilu.dev/#person'},publisher:{'@id':'https://zilu.dev/#person'},mainEntityOfPage:url,citation:edition.stories.map(s=>s.source_url),articleSection:edition.stories.map(s=>s.category)}}>
+  <div class="ed-article-page"><article class="ed-shell">
+    <nav class="ed-article-breadcrumb" aria-label="Breadcrumb"><a href="/">Home</a><span>›</span><a href="/news/">News</a><span>›</span><time datetime={edition.date}>{edition.date}</time></nav>
+    <div class="ed-article-layout">
+      <div class="ed-article-primary">
+        <div class="ed-story-meta"><span>{first.category}</span><time datetime={edition.date}>{displayDate}</time></div>
+        <h1>{first.headline}</h1>
+        <p class="ed-article-lead">{first.summary}</p>
+        <div class="ed-article-feature-art" role="img" aria-label="Editorial illustration highlighting the first technology story"><strong>{first.headline.split(' ')[0]}</strong><span>DAILY TECHNOLOGY BRIEFING</span></div>
+        <h2>Why it matters</h2>
+        <p>{first.why_it_matters}</p>
+        <a class="ed-action ed-action-primary" href={first.source_url} target="_blank" rel="noopener noreferrer">Read original source <span aria-hidden="true">↗</span></a>
+      </div>
+      <aside class="ed-article-sidebar">
+        <h2>In this edition</h2>
+        <p>Five essential technology stories with context and sources.</p>
+        {edition.stories.map((s,i)=><a href={'#story-'+i} class="ed-article-toc"><span>{String(i+1).padStart(2,'0')}</span><strong>{s.headline}</strong><span aria-hidden="true">↗</span></a>)}
+        <a class="ed-article-back" href="/news/">← All editions</a>
+      </aside>
+    </div>
+    <section class="ed-article-more" aria-labelledby="more-stories">
+      <div class="ed-section-heading"><div><p class="ed-eyebrow">ALSO IN THIS EDITION</p><h2 id="more-stories">More stories</h2></div><span class="ed-article-count">02 — 05</span></div>
+      {edition.stories.slice(1).map((s,i)=><section class="ed-secondary-story" id={'story-'+(i+1)}>
+        <div class="ed-secondary-index">{String(i+2).padStart(2,'0')}</div>
+        <div><p class="ed-feed-meta"><span>{s.category}</span></p><h3>{s.headline}</h3><p>{s.summary}</p><div class="ed-secondary-why"><strong>Why it matters</strong><p>{s.why_it_matters}</p></div><a href={s.source_url} target="_blank" rel="noopener noreferrer">Read original source ↗</a></div>
+      </section>)}
+    </section>
+    <section class="ed-article-sources"><h2>Sources & citations</h2><ol>{edition.stories.map(s=><li><a href={s.source_url} target="_blank" rel="noopener noreferrer">{s.headline} ↗</a></li>)}</ol></section>
+  </article></div>
 </Base>
