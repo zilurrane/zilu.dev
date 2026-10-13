@@ -25,6 +25,17 @@ try {
       assert.match(await portrait.getAttribute('alt'),/Zilu Rane/i,'Portrait alt text must identify the engineer');
       await portrait.evaluate(async img=>{await img.decode();});
       assert(await portrait.evaluate(img=>img.naturalWidth>0 && img.naturalHeight>0),'Portrait asset is missing or cannot decode');
+      assert.equal(await portrait.getAttribute('src'),'/images/zilu-cutout.webp','Homepage must use the published transparent portrait, never the original photo');
+      const alpha=await portrait.evaluate(img=>{
+        const canvas=document.createElement('canvas');
+        canvas.width=img.naturalWidth;canvas.height=img.naturalHeight;
+        const ctx=canvas.getContext('2d',{willReadFrequently:true});
+        ctx.drawImage(img,0,0);
+        const pixel=(x,y)=>ctx.getImageData(x,y,1,1).data[3];
+        return {topLeft:pixel(0,0),topRight:pixel(canvas.width-1,0),width:canvas.width,height:canvas.height};
+      });
+      assert(alpha.topLeft===0 && alpha.topRight===0,'Top corners of portrait must be genuinely transparent: '+JSON.stringify(alpha));
+      assert(await portrait.evaluate(img=>getComputedStyle(img).clipPath==='none'),'The published transparent image must not depend on a hard CSS clip mask');
     }
     await page.waitForTimeout(200);
     const diagnostics=await page.evaluate(()=>{
