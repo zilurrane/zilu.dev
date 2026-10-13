@@ -1,0 +1,60 @@
+name: Publish transparent portfolio portrait
+on:
+  push:
+    paths:
+      - .github/workflows/publish-portrait.yml
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  portrait:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install portrait segmentation
+        run: python -m pip install --disable-pip-version-check "rembg[cpu]==2.0.67" "Pillow>=10,<12"
+      - name: Remove original photo background
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          from PIL import Image
+          from rembg import new_session, remove
+          src = Path('public/images/zilu.webp')
+          dest = Path('public/images/zilu-cutout.webp')
+          assert src.exists(), 'Source portrait is missing'
+          image = Image.open(src).convert('RGBA')
+          image = image.resize((640, 640), Image.Resampling.LANCZOS)
+          mask_removed = remove(image, session=new_session('u2netp'), post_process_mask=True)
+          if not isinstance(mask_removed, Image.Image):
+              from io import BytesIO
+              mask_removed = Image.open(BytesIO(mask_removed)).convert('RGBA')
+          mask_removed = mask_removed.convert('RGBA')
+          bounds = mask_removed.getchannel('A').getbbox()
+          assert bounds, 'Segmentation created an empty portrait'
+          foreground = mask_removed.crop(bounds)
+          max_width,max_height = 400,485
+          scale = min(max_width/foreground.width, max_height/foreground.height)
+          foreground=foreground.resize((round(foreground.width*scale),round(foreground.height*scale)), Image.Resampling.LANCZOS)
+          canvas=Image.new('RGBA',(400,500),(0,0,0,0))
+          canvas.alpha_composite(foreground,((400-foreground.width)//2,500-foreground.height))
+          alpha=canvas.getchannel('A')
+          transparent=sum(1 for pixel in alpha.getdata() if pixel==0)
+          assert transparent > 20000, 'Portrait background still present'
+          canvas.save(dest,'WEBP',quality=88,method=6)
+          print('Wrote',dest,'transparent pixels:',transparent,'of',400*500,'size:',dest.stat().st_size)
+          PY
+      - name: Commit transparent hero image to main
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add public/images/zilu-cutout.webp
+          if ! git diff --cached --quiet; then
+            git commit -m "assets: publish true alpha cutout of portfolio portrait"
+            git push origin HEAD:main
+          fi
