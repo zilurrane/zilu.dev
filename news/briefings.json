@@ -1,5 +1,45 @@
 [
   {
+    "date": "2026-10-14",
+    "stories": [
+      {
+        "category": "AI Models & Agents",
+        "headline": "Gemini 4 Argon becomes available in GitHub Copilot",
+        "summary": "On October 13, GitHub announced that Google's Gemini 4 Argon is available in Copilot for complex coding, reasoning and agentic tasks. Eligible subscribers can select it in supported IDEs, Copilot CLI and coding-agent workflows as access rolls out gradually.",
+        "why_it_matters": "Development teams gain another model to evaluate for coding quality, with usage-based billing and organization model policies to consider.",
+        "source_url": "https://github.blog/changelog/2026-10-13-gemini-4-argon-in-github-copilot/"
+      },
+      {
+        "category": "Developer Tooling",
+        "headline": "CodeQL 2.27.2 improves JavaScript and TypeScript analysis",
+        "summary": "GitHub's October 9 CodeQL release recognizes Workflow SDK directives and improves tracking of request inputs in Hapi route handlers. The release also enhances analysis for C++, Go and Rust, and GitHub automatically deploys it to its hosted code-scanning users.",
+        "why_it_matters": "Improved framework-aware analysis helps identify risky data flows in JavaScript backends.",
+        "source_url": "https://github.blog/changelog/2026-10-09-codeql-2-27-2-improves-c-go-rust-and-javascript-analysis/"
+      },
+      {
+        "category": "SaaS",
+        "headline": "Workday makes Sana its new Home experience",
+        "summary": "On October 13, Workday introduced Sana as the new Workday Home, bringing HR, finance and IT tasks together with AI-assisted actions. Sana Concierge is designed to resolve common employee requests; it is available to early adopters, with general availability expected in the first quarter of 2027.",
+        "why_it_matters": "Enterprise SaaS is moving toward agents that perform tasks under existing business rules rather than only answering questions.",
+        "source_url": "https://investor.workday.com/news-and-events/press-releases/news-details/2026/Sana-Is-the-New-Workday-Home-A-Dynamic-Agentic-Experience-Built-to-Finish-the-Work-Not-Just-Answer-Questions/default.aspx"
+      },
+      {
+        "category": "Cybersecurity",
+        "headline": "GitHub expands push protection for Anthropic credentials",
+        "summary": "On October 13, GitHub expanded secret scanning to recognize new Anthropic, Cloudsmith and Salesforce credential types. Repositories with secret scanning enabled now block pushes containing the covered Anthropic credentials by default, while Salesforce joined the partner notification program.",
+        "why_it_matters": "Preventing accidental credential commits helps protect AI-integrated applications, although previously exposed keys still require rotation.",
+        "source_url": "https://github.blog/changelog/2026-10-13-secret-scanning-blocks-anthropic-keys-by-default-adds-salesforce/"
+      },
+      {
+        "category": "Indian Tech & Business",
+        "headline": "HCLTech reports $3.3 billion in quarterly deal bookings",
+        "summary": "HCLTech reported on October 12 that quarterly new bookings reached $3.3 billion, up 27% year over year, while its EBIT margin rose to 18.2%. Advanced-AI revenue reached $219 million for the quarter, and the company updated its FY27 constant-currency revenue growth guidance to 2.5%-4%.",
+        "why_it_matters": "The results offer a measurable indicator of enterprise AI demand in India's IT services sector.",
+        "source_url": "https://www.hcltech.com/de-de/press-releases/hcltech-delivers-strong-q2-led-record-deal-bookings-33-billion"
+      }
+    ]
+  },
+  {
     "date": "2026-10-13",
     "stories": [
       {
