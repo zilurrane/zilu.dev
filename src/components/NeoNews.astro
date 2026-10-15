@@ -8,6 +8,10 @@ const month=date.toLocaleDateString('en-GB',{month:'long',timeZone:'UTC'}).toUpp
 const year=date.getUTCFullYear();
 const categoryKeys=['ai','tooling','saas','cloud','india'];
 const badgeClasses=['accent-yellow','accent-blue','accent-pink','accent-orange','accent-mint'];
+function teaser(summary){
+ const first=summary.match(/^.*?[.!?](?:\s|$)/s);
+ return (first?.[0]??summary.slice(0,190)).trim();
+}
 ---
 
  <div class="site-width site-announcement"><span><b>✳ THE DAILY DOWNLOAD</b> &nbsp; Five source-linked developments for software builders</span><span>02 / 02 ↗</span></div>
@@ -21,8 +25,17 @@ const badgeClasses=['accent-yellow','accent-blue','accent-pink','accent-orange',
    <span class="micro muted"><time datetime={edition.date}>{displayDate}</time> / SOURCE LINKED</span>
   </div>
   <h3>{story.headline}</h3>
-  <p class="story-summary">{story.summary}</p>
-  <div class="impact"><b>✳ WHY IT MATTERS</b><p>{story.why_it_matters}</p></div>
+  {detail ? (
+   <>
+    <p class="story-summary">{story.summary}</p>
+    <div class="impact"><b>✳ WHY IT MATTERS</b><p>{story.why_it_matters}</p></div>
+   </>
+  ) : (
+   <>
+    <p class="story-summary">{teaser(story.summary)}</p>
+    <a class="source-link" href={'/news/'+edition.date+'-daily-tech-news/#story-'+(i+1)}>Read full briefing and why it matters <span aria-hidden="true">↗</span></a>
+   </>
+  )}
   <div class="story-bottom">
    <span class="micro muted">ORIGINAL REPORT</span>
    <a class="source-link" href={story.source_url} target="_blank" rel="noopener noreferrer">
@@ -41,9 +54,9 @@ const badgeClasses=['accent-yellow','accent-blue','accent-pink','accent-orange',
 <span><time datetime={item.date}>{new Date(item.date+'T12:00:00Z').toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric',timeZone:'UTC'})}</time></span>
 <span>{item.date===edition.date?'NOW ↗':'↗'}</span></a>
 ))}
-<a class="archive-link" href="/news/"><span>All editions</span><span>↗</span></a>
+<a class="archive-link" href="/news/archive/"><span>All editions</span><span>↗</span></a>
 </div>
-<div class="sidebar-box"><h3 class="sidebar-title">A little about this brief</h3><div class="legend" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div><p class="sidebar-text">A compact, useful reading habit. Stories are grouped by topic, each with a plain-English summary and why it matters to engineers.</p><a href="/" class="source-link" style="margin-top:10px">Meet the author →</a></div></aside></div>
+<div class="sidebar-box"><h3 class="sidebar-title">A little about this brief</h3><div class="legend" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div><p class="sidebar-text">A curated secondary digest with attributed sources. Open an edition for complete summaries and practical context; consult each original source for primary reporting.</p><a href="/" class="source-link" style="margin-top:10px">Meet the author →</a></div></aside></div>
 
 <script is:inline>
 (() => {
