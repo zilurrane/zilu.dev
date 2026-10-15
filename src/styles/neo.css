@@ -34,3 +34,8 @@ html[data-theme='dark']{color-scheme:dark;--page:#1a1b1a;--paper:#252626;--ink:#
  .story h3{font-size:23px}
  .brand-sub{font-size:8px}
 }
+
+/* Visual review: the source mockup's quick-cards margin shorthand overrode .site-width centering. */
+.site-width.quick-cards{margin-left:auto;margin-right:auto}
+.site-announcement span:first-child{min-width:0}
+.site-announcement span:last-child{white-space:nowrap;flex:none}
