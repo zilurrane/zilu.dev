@@ -211,3 +211,6 @@ main#main{flex:1;min-width:0}
  .topbar .desktop-nav .nav-link{flex:none;white-space:nowrap;padding:8px 10px;font-size:11px}
  .topbar .desktop-nav .nav-link:first-child{padding-left:10px}
 }
+
+/* Timeline markers remain compact when the two-column resume collapses. */
+.neo-timeline-item .neo-number{width:34px;justify-self:start}
