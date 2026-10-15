@@ -1,93 +1,15 @@
 ---
-import Base from '../../layouts/Base.astro';
+import NeoLayout from '../../layouts/NeoLayout.astro';
+import NeoNews from '../../components/NeoNews.astro';
 import editions from '../../../news/briefings.json';
 const sorted=[...editions].sort((a,b)=>b.date.localeCompare(a.date));
 const latest=sorted[0];
-const displayDate=latest?new Date(latest.date+'T12:00:00Z').toLocaleDateString('en-GB',{weekday:'long',day:'numeric',month:'long',year:'numeric',timeZone:'UTC'}):'';
-const markers=latest?latest.stories.map(s=>(s.headline.split(/\s+/)[0]||'TECH').replace(/[^\w.-]/g,'').slice(0,9).toUpperCase()):[];
-const topics=latest?[...new Set(latest.stories.map(s=>s.category))]:[];
 ---
-<Base title="Daily Technology Briefing — AI, Developer Tools, SaaS & India | zilu.dev" description="Five curated technology stories each day with practical summaries, why they matter, and original sources." canonical="https://zilu.dev/news/" schema={{'@type':'CollectionPage',name:'Daily Technology Briefing',url:'https://zilu.dev/news/',hasPart:sorted.map(e=>({'@type':'Article',url:'https://zilu.dev/news/'+e.date+'-daily-tech-news/',datePublished:e.date}))}}>
-  <div class="ed-news-page">
-    <div class="ed-shell">
-      <div class="ed-news-columns">
-        <section class="ed-news-main">
-          <header class="ed-news-page-intro">
-            <p class="ed-eyebrow">DAILY TECHNOLOGY BRIEFING</p>
-            <h1>Five important<br/>technology stories.<br/><em>Every morning.</em></h1>
-            <p>Technology, without the noise. AI, developer tools, SaaS, cybersecurity and Indian tech—summarized with sources and context.</p>
-          </header>
-          <div class="ed-news-searchbox">
-            <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="10" cy="10" r="6"/><path d="m15 15 5 5"/></svg>
-            <label class="sr-only" for="news-search">Search technology stories</label>
-            <input type="search" id="news-search" placeholder="Search news by topic, company, or keyword…" autocomplete="off"/>
-          </div>
-          <div class="ed-news-topics" aria-label="Filter stories by topic">
-            <button type="button" class="ed-news-topic" data-topic="all" aria-pressed="true">All</button>
-            {topics.map(topic=><button type="button" class="ed-news-topic" data-topic={topic} aria-pressed="false">{topic}</button>)}
-          </div>
-          {latest&&<div class="ed-news-feed" id="filterable-news">
-            {latest.stories.map((story,i)=><article class="ed-feed-card" data-category={story.category}>
-              <span class="ed-feed-index">{String(i+1).padStart(2,'0')}</span>
-              <div class={'ed-news-tile ed-news-tile-'+i} aria-hidden="true">{markers[i]||'TECH'}</div>
-              <div class="ed-feed-copy">
-                <p class="ed-feed-meta"><span>{story.category}</span><time datetime={latest.date}>{latest.date}</time></p>
-                <h2><a href={'/news/'+latest.date+'-daily-tech-news/'}>{story.headline}</a></h2>
-                <p>{story.summary}</p>
-                <p class="ed-feed-why"><strong>Why it matters:</strong> {story.why_it_matters}</p>
-                <a href={story.source_url} class="ed-feed-source" target="_blank" rel="noopener noreferrer">Read original source ↗</a>
-              </div>
-              <a class="ed-feed-open" href={'/news/'+latest.date+'-daily-tech-news/'} aria-label={'Read full briefing featuring '+story.headline}>→</a>
-            </article>)}
-          </div>}
-          <p id="news-empty" class="ed-news-empty" hidden>No stories match that search. Try another keyword or category.</p>
-        </section>
-        <aside class="ed-news-aside">
-          {latest&&<section class="ed-aside-card ed-latest">
-            <div class="ed-aside-title"><h2>Latest edition</h2><a href={'/news/'+latest.date+'-daily-tech-news/'}>Read edition →</a></div>
-            <time datetime={latest.date}>{displayDate}</time>
-            <a href={'/news/'+latest.date+'-daily-tech-news/'} class="ed-latest-art" aria-label="Open latest technology briefing">
-              <span class="ed-latest-image-brand">{latest.stories[0].headline.split(/\s+/)[0]}</span>
-              <span>AI / SOFTWARE / BUSINESS</span>
-            </a>
-            <h3>{latest.stories[0].headline}</h3>
-            <p>{latest.stories[0].summary}</p>
-            <a href={'/news/'+latest.date+'-daily-tech-news/'}>Read the full briefing →</a>
-          </section>}
-          <section class="ed-aside-card">
-            <h2>Popular topics</h2>
-            <div class="ed-aside-chips">{topics.map(t=><span>{t}</span>)}</div>
-          </section>
-          <section class="ed-aside-card">
-            <h2>Previous editions</h2>
-            {sorted.slice(1,6).map(e=><p class="ed-archive-row"><a href={'/news/'+e.date+'-daily-tech-news/'}>{e.date} <span aria-hidden="true">→</span></a></p>)}
-            {sorted.length===1&&<p class="ed-archive-empty">More editions coming soon.</p>}
-          </section>
-        </aside>
-      </div>
-    </div>
-  </div>
-  <script>
-    const search=document.querySelector('#news-search');
-    const rows=Array.from(document.querySelectorAll('#filterable-news .ed-feed-card'));
-    const buttons=Array.from(document.querySelectorAll('.ed-news-topic'));
-    let topic='all';
-    function filterStories(){
-      const q=(search?.value||'').toLocaleLowerCase().trim();
-      let visible=0;
-      rows.forEach(row=>{
-        const show=(topic==='all'||row.dataset.category===topic)&&row.textContent.toLocaleLowerCase().includes(q);
-        row.hidden=!show;
-        if(show) visible++;
-      });
-      const empty=document.querySelector('#news-empty');
-      if(empty) empty.hidden=visible!==0;
-    }
-    search?.addEventListener('input',filterStories);
-    buttons.forEach(button=>button.addEventListener('click',()=>{
-      topic=button.dataset.topic||'all';
-      buttons.forEach(b=>b.setAttribute('aria-pressed',String(b===button)));
-      filterStories();
-    }));
-  </script>
-</Base>
+<NeoLayout
+ title="Daily Technology News — AI, Developer Tools, SaaS & Indian Tech | zilu.dev"
+ description="Five source-linked technology developments with practical summaries and why they matter. Daily news covering AI, JavaScript, SaaS, cloud security and Indian technology."
+ canonical="https://zilu.dev/news/"
+ schema={{'@type':'CollectionPage',name:'Daily Technology News',url:'https://zilu.dev/news/',hasPart:sorted.map(e=>({'@type':'NewsArticle',url:'https://zilu.dev/news/'+e.date+'-daily-tech-news/',datePublished:e.date}))}}
+>
+ {latest ? <NeoNews edition={latest} sorted={sorted}/> : <section class="site-width" aria-label="News status"><h1>Daily technology news</h1><p>Our first edition is coming soon.</p></section>}
+</NeoLayout>
