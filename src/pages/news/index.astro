@@ -9,7 +9,7 @@ const latest=sorted[0];
  title="Daily Tech News: AI, Developers & SaaS | Zilu Rane"
  description="Daily tech news: five source-linked AI, developer tooling, SaaS, security and Indian tech stories. Read the headlines or open the complete briefing."
  canonical="https://zilu.dev/news/"
- schema={{'@type':'CollectionPage',name:'Daily Technology News',url:'https://zilu.dev/news/',isPartOf:{'@id':'https://zilu.dev/#website'},hasPart:sorted.map(e=>({'@type':'NewsArticle',url:'https://zilu.dev/news/'+e.date+'-daily-tech-news/',datePublished:e.date}))}}
+ schema={{'@type':'CollectionPage',name:'Daily Technology News',url:'https://zilu.dev/news/',isPartOf:{'@id':'https://zilu.dev/#website'},hasPart:sorted.map(e=>({'@type':'BlogPosting',url:'https://zilu.dev/news/'+e.date+'-daily-tech-news/',datePublished:e.date}))}}
 >
  {latest ? <NeoNews edition={latest} sorted={sorted}/> : <section class="site-width" aria-label="News status"><h1>Daily technology news</h1><p>Our first edition is coming soon.</p></section>}
 </NeoLayout>
