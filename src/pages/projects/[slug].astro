@@ -8,6 +8,40 @@ export function getStaticPaths(){
 const {project}=Astro.props;
 const url='https://zilu.dev/projects/'+project.slug+'/';
 const related=projects.filter(p=>p.slug!==project.slug).slice(0,2);
+const engineeringNotes={
+ 'querydeck':[
+  'Electron provides the desktop shell while Angular renders the database workspace.',
+  'SQL Server integrated authentication keeps local Windows identity in the connection flow.',
+  'The design separates desktop database access from a remote HTTPS query API and read-only network-share assets.'
+ ],
+ 'enterprise-applications':[
+  'Configurable Angular screens handle changing business fields without redesigning each table.',
+  'Spring Boot APIs coordinate business rules, data validation and SQL Server persistence.',
+  'Versioned decision records distinguish drafts from published data and require careful query and index design.'
+ ],
+ 'linkedin-signal-agent':[
+  'A Cloudflare Worker cron schedule starts the daily pipeline at 08:00 Asia/Kolkata.',
+  'Signals come from GitHub trending and releases, Hacker News, RSS feeds and developer publication feeds.',
+  'Cloudflare KV suppresses previously surfaced items for 14 days; Workers AI scores candidates and drafts up to three suggested posts before a Resend email digest.'
+ ],
+ 'whatsapp-actions':[
+  'The repository exposes a reusable GitHub Action for triggering WhatsApp messages from CI workflows.',
+  'A Python integration calls Twilio to deliver the message to a configured WhatsApp recipient.',
+  'Workflow secrets are the appropriate place to supply credentials instead of checking API keys into source control.'
+ ],
+ 'ticketing':[
+  'React clients communicate with Node.js services rather than one monolithic application.',
+  'NATS carries events between service boundaries in this learning-oriented architecture.',
+  'Kubernetes deployment examples and secret configuration make local orchestration part of the exercise.'
+ ],
+ 'learnings':[
+  'Small, reproducible JavaScript experiments explore OpenAI and LangChain integration patterns.',
+  'Examples emphasize understanding the prompts, request flow and model responses instead of claiming production benchmarks.',
+  'Each experiment is a starting point for evaluating retrieval, tools and application-layer constraints.'
+ ]
+};
+const notes=engineeringNotes[project.slug]??[];
+
 ---
 <NeoLayout
  title={project.title+' — Engineering Case Study | Zilu Rane'}
@@ -38,6 +72,8 @@ const related=projects.filter(p=>p.slug!==project.slug).slice(0,2);
          <p>{project.problem}</p>
          <h2>Architecture & approach</h2>
          <p>{project.approach}</p>
+         <h2>Implementation details</h2>
+         <ul class="neo-list">{notes.map(note=><li>{note}</li>)}</ul>
          <h2>Technology and trade-offs</h2>
          <p>This case study explores a practical implementation approach using {project.stack.join(', ')}. The publicly available implementation details depend on the project's source availability.</p>
          {project.url ? (
