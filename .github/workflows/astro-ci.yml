@@ -13,6 +13,8 @@ jobs:
           node-version: 22
       - run: npm install
       - run: npm run build
+      - name: SEO integrity checks
+        run: npm run seo:check
       - name: Check generated routes
         run: |
           test -f dist/index.html
