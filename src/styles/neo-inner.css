@@ -204,3 +204,10 @@ main#main{flex:1;min-width:0}
  .neo-code-area{padding:12px}
  .neo-timeline-item h3{font-size:18px}
 }
+
+/* Keep every route visible without horizontal scrolling on very narrow devices. */
+@media(max-width:360px){
+ .topbar .desktop-nav{overflow:visible;flex-wrap:wrap;gap:2px 3px;row-gap:5px}
+ .topbar .desktop-nav .nav-link{flex:none;white-space:nowrap;padding:8px 10px;font-size:11px}
+ .topbar .desktop-nav .nav-link:first-child{padding-left:10px}
+}
