@@ -1,123 +1,104 @@
 import { chromium } from 'playwright';
 import assert from 'node:assert/strict';
 import { mkdirSync, writeFileSync } from 'node:fs';
+import { execFileSync } from 'node:child_process';
+console.log('Source tree SHA: '+execFileSync('git',['rev-parse','HEAD^{tree}'],{encoding:'utf8'}).trim());
 
-const origin = process.env.VISUAL_QA_ORIGIN || 'http://127.0.0.1:4321';
-const browser = await chromium.launch({headless:true});
-const profiles = [
-  {name:'wide',width:1700,height:960},
-  {name:'desktop',width:1440,height:900},
-  {name:'laptop',width:1024,height:900},
-  {name:'tablet',width:768,height:1024},
-  {name:'mobile',width:390,height:844}
+const origin=process.env.VISUAL_QA_ORIGIN||'http://127.0.0.1:4321';
+const browser=await chromium.launch({headless:true});
+const profiles=[
+ {name:'wide',width:1700,height:960},{name:'desktop',width:1440,height:900},
+ {name:'laptop',width:1024,height:900},{name:'tablet',width:768,height:1024},
+ {name:'mobile',width:390,height:844},{name:'small-mobile',width:320,height:740}
 ];
 const results=[];
 mkdirSync('visual-qa-results',{recursive:true});
 try {
- for(const profile of profiles) {
-  for(const theme of ['dark','light']) {
+ for(const profile of profiles){
+  for(const theme of ['light','dark']){
    const page=await browser.newPage({viewport:{width:profile.width,height:profile.height},deviceScaleFactor:1});
-   for(const path of ['/','/news/','/projects/']) {
+   for(const path of ['/','/news/','/projects/']){
     const response=await page.goto(origin+path,{waitUntil:'domcontentloaded'});
-    assert.equal(response?.status(),200,'Unexpected HTTP status at '+path);
-    await page.evaluate(t=>{document.documentElement.dataset.theme=t},theme);
-    if(path==='/'){
-      const portrait=page.locator('.ed-hero-portrait-frame img');
-      assert.equal(await portrait.count(),1,'Homepage must show exactly one portrait');
-      assert.match(await portrait.getAttribute('alt'),/Zilu Rane/i,'Portrait alt text must identify the engineer');
-      await portrait.evaluate(async img=>{await img.decode();});
-      assert(await portrait.evaluate(img=>img.naturalWidth>0 && img.naturalHeight>0),'Portrait asset is missing or cannot decode');
-      assert(['/images/zilu-portrait-2026-hd.webp'].includes(await portrait.getAttribute('src')),'Homepage must use the published transparent portrait, never the original photo');
-      const alpha=await portrait.evaluate(img=>{
-        const canvas=document.createElement('canvas');
-        canvas.width=img.naturalWidth;canvas.height=img.naturalHeight;
-        const ctx=canvas.getContext('2d',{willReadFrequently:true});
-        ctx.drawImage(img,0,0);
-        const pixel=(x,y)=>ctx.getImageData(x,y,1,1).data[3];
-        return {topLeft:pixel(0,0),topRight:pixel(canvas.width-1,0),width:canvas.width,height:canvas.height};
-      });
-      assert(alpha.width>=900 && alpha.height>=1100,'Hero portrait must be at least 900×1100: '+JSON.stringify(alpha));
-      const rendered=await portrait.evaluate(img=>({width:img.getBoundingClientRect().width,height:img.getBoundingClientRect().height,naturalWidth:img.naturalWidth,naturalHeight:img.naturalHeight}));
-      assert(rendered.naturalWidth/rendered.width>=2,'Portrait is being stretched beyond 2x source density '+profile.name+' '+JSON.stringify(rendered));
-      assert(rendered.naturalHeight/rendered.height>=2,'Portrait height exceeds available 2x source density '+profile.name+' '+JSON.stringify(rendered));
-      assert(alpha.topLeft===0 && alpha.topRight===0,'Top corners of portrait must be genuinely transparent: '+JSON.stringify(alpha));
-      assert(await portrait.evaluate(img=>getComputedStyle(img).clipPath==='none'),'The published transparent image must not depend on a hard CSS clip mask');
-      const fit=await page.evaluate(()=>{
-        const shell=document.querySelector('.ed-hero-content').getBoundingClientRect();
-        const visual=document.querySelector('.ed-hero-visual').getBoundingClientRect();
-        const photo=document.querySelector('.ed-hero-portrait-frame img').getBoundingClientRect();
-        const copy=document.querySelector('.ed-hero-copy').getBoundingClientRect();
-        return {shell:{left:shell.left,right:shell.right},visual:{left:visual.left,right:visual.right,top:visual.top},photo:{left:photo.left,right:photo.right},copy:{left:copy.left,right:copy.right,bottom:copy.bottom},viewport:innerWidth};
-      });
-      assert(fit.photo.left>=fit.shell.left-2 && fit.photo.right<=fit.shell.right+2,'Portrait escapes the content shell '+profile.name+' '+JSON.stringify(fit));
-      assert(fit.visual.left>=fit.shell.left-2 && fit.visual.right<=fit.shell.right+2,'Portrait container escapes the content shell '+profile.name+' '+JSON.stringify(fit));
-      assert(fit.photo.right<=fit.viewport-12 && fit.photo.left>=12,'Portrait clips against browser edge '+profile.name+' '+JSON.stringify(fit));
-      if(profile.width>900)assert(fit.copy.right+14<=fit.visual.left,'Portrait overlaps headline column '+profile.name+' '+JSON.stringify(fit));
-      // Prevent a hard-edged glow at the portrait grid column in either theme.
-      const background=await page.evaluate(()=>{
-        const hero=getComputedStyle(document.querySelector('.ed-hero'));
-        const pageSurface=getComputedStyle(document.querySelector('.editorial-page'));
-        const visual=document.querySelector('.ed-hero-visual');
-        return {image:hero.backgroundImage,heroBase:hero.backgroundColor,pageBase:pageSurface.backgroundColor,visualBackground:getComputedStyle(visual).backgroundImage,hasLegacyOrb:!!document.querySelector('.ed-hero-orb')};
-      });
-      assert(background.image.includes('radial-gradient'),'Ambient gradient must be painted across the entire hero: '+JSON.stringify(background));
-      assert.equal(background.heroBase,background.pageBase,'Hero/page background colors differ in '+theme+' theme: '+JSON.stringify(background));
-      assert.equal(background.visualBackground,'none','Portrait column must not have a separate gradient');
-      assert.equal(background.hasLegacyOrb,false,'Legacy glow is still being clipped by the portrait container');
-
-
-    }
-    await page.waitForTimeout(200);
+    assert.equal(response?.status(),200,'HTTP status on '+path);
+    await page.evaluate(theme=>document.documentElement.dataset.theme=theme,theme);
     const diagnostics=await page.evaluate(()=>{
       const h1=document.querySelector('h1');
-      const main=document.querySelector('main');
       return {
-        scrollWidth:document.documentElement.scrollWidth,
-        viewport:window.innerWidth,
-        heading:h1?.textContent?.trim()||'',
-        hasMain:!!main,
-        hiddenHeading:h1?!!(h1.getBoundingClientRect().width===0||h1.getBoundingClientRect().height===0):true
+       viewport:window.innerWidth,
+       scrollWidth:document.documentElement.scrollWidth,
+       heading:h1?.textContent?.trim()||'',
+       headings:document.querySelectorAll('h1').length,
+       hasMain:document.querySelectorAll('main').length===1,
+       hasHeader:!!document.querySelector('header'),
+       hasFooter:!!document.querySelector('footer'),
+       hiddenHeading:!h1||h1.getBoundingClientRect().width===0||h1.getBoundingClientRect().height===0
       };
     });
-    assert(diagnostics.hasMain,'Missing main landmark at '+path);
-    assert(!diagnostics.hiddenHeading,'Missing visible heading at '+path);
+    assert(diagnostics.hasMain && diagnostics.hasHeader && diagnostics.hasFooter,'Missing landmarks on '+path);
+    assert.equal(diagnostics.headings,1,'Page must have one visible H1 '+path);
+    assert(!diagnostics.hiddenHeading,'Hidden heading '+path);
     assert(diagnostics.scrollWidth<=diagnostics.viewport+3,
-      'Horizontal overflow at '+path+' '+profile.name+' '+theme+': '+JSON.stringify(diagnostics));
+      'Horizontal overflow '+path+' '+profile.name+' '+theme+' '+JSON.stringify(diagnostics));
+    if(path==='/'){
+      const photo=page.locator('.portrait-card .portrait');
+      assert.equal(await photo.count(),1,'Expected the mockup hero portrait');
+      assert.match(await photo.getAttribute('alt'),/Zilu Rane/i,'Portrait alt text');
+      await photo.evaluate(img=>img.decode());
+      const size=await photo.evaluate(img=>({w:img.naturalWidth,h:img.naturalHeight}));
+      assert(size.w>=900 && size.h>=1100,'Portrait source too small: '+JSON.stringify(size));
+      const card=await page.locator('.portrait-card').boundingBox();
+      assert(card && card.x>=8 && card.x+card.width<=profile.width+2,'Hero card outside viewport '+profile.name);
+      assert.equal(await page.locator('.projects-grid .project').count(),2,'Expected two wireframe project cards');
+      assert.equal(await page.locator('.news-preview .news-preview-item').count(),3,'Expected three latest news links');
+      const columns=await page.evaluate(()=>{
+        const hero=document.querySelector('.hero').getBoundingClientRect();
+        const stats=document.querySelector('.quick-cards').getBoundingClientRect();
+        const projects=document.querySelector('.projects').getBoundingClientRect();
+        return {heroLeft:hero.left,statsLeft:stats.left,projectsLeft:projects.left,heroRight:hero.right,statsRight:stats.right};
+      });
+      assert(Math.abs(columns.statsLeft-columns.heroLeft)<=2 && Math.abs(columns.statsRight-columns.heroRight)<=2,
+        'Statistic cards must align with the hero content shell: '+JSON.stringify(columns));
+      assert(Math.abs(columns.projectsLeft-columns.heroLeft)<=2,'Projects section should share the same content shell');
+    }
+    if(path==='/news/'){
+      assert.equal(await page.locator('.news-list .story').count(),5,'Expected five sourced news stories');
+      assert.equal(await page.locator('.story .impact').count(),5,'Missing why-it-matters blocks');
+      assert.equal(await page.locator('.story .source-link[href^="https://"]').count(),5,'Missing primary-source links');
+    }
     const slug=path==='/'?'home':path.replace(/\//g,'');
     await page.screenshot({path:'visual-qa-results/'+slug+'-'+profile.name+'-'+theme+'.png',fullPage:true});
-    results.push({page:path,viewport:profile.name,theme,...diagnostics,status:'PASS'});
+    results.push({page:path,profile:profile.name,theme,...diagnostics,status:'PASS'});
    }
    await page.close();
   }
  }
  const page=await browser.newPage();
- await page.goto(origin+'/',{waitUntil:'domcontentloaded'});
- assert.equal(await page.locator('.ed-feature-grid .ed-work-card').count(),3,'Homepage must show 3 mockup-aligned projects');
- assert.equal(await page.locator('.ed-news-items .ed-news-item').count(),3,'Homepage must show 3 compact news previews');
- assert.equal(await page.locator('.ed-hero h1').count(),1,'Homepage must have one hero title');
- const portrait = await page.locator('.ed-hero-portrait-frame img').evaluate(async img=>{
-   await img.decode();
-   const canvas=document.createElement('canvas');
-   canvas.width=img.naturalWidth;canvas.height=img.naturalHeight;
-   const ctx=canvas.getContext('2d',{willReadFrequently:true});
-   ctx.drawImage(img,0,0);
-   const corners=[[0,0],[canvas.width-1,0],[0,Math.round(canvas.height*.3)],[canvas.width-1,Math.round(canvas.height*.3)]];
-   return {src:new URL(img.currentSrc).pathname,width:canvas.width,height:canvas.height,
-      alphas:corners.map(([x,y])=>ctx.getImageData(x,y,1,1).data[3])};
- });
- assert(['/images/zilu-portrait-2026-hd.webp'].includes(portrait.src),'Homepage is still using the old photo with background');
- assert(portrait.width>=900,'Portrait is unexpectedly low resolution: '+portrait.width);
- assert(portrait.alphas.every(a=>a<32),'Portrait image has opaque background corners: '+JSON.stringify(portrait));
-
  await page.goto(origin+'/news/',{waitUntil:'domcontentloaded'});
- const inputs=page.locator('#news-search');
- await inputs.fill('__unfindable__');
- assert.equal(await page.locator('#filterable-news .ed-feed-card:visible').count(),0,'News filter did not hide unmatched rows');
- assert.equal(await page.locator('#news-empty:visible').count(),1,'News empty state missing');
+ await page.locator('#story-search').fill('__unlikely_matching_search_term__');
+ assert.equal(await page.locator('.news-list .story:visible').count(),0,'Search should hide unmatched articles');
+ assert.equal(await page.locator('#empty-results:visible').count(),1,'Empty state not shown');
+ await page.locator('#clear-filters').click();
+ assert.equal(await page.locator('.news-list .story:visible').count(),5,'Clear must restore stories');
+ await page.locator('[data-filter="ai"]').click();
+ assert.equal(await page.locator('.news-list .story:visible').count(),1,'Category filter should display one AI story');
+ await page.locator('[data-filter="all"]').click();
+ assert.equal(await page.locator('.news-list .story:visible').count(),5,'All categories should restore stories');
+ const editionPath=await page.locator('.archive-link[href*="-daily-tech-news/"]').first().getAttribute('href');
+ assert(editionPath,'Missing dated briefing link');
+ const dated=await page.goto(origin+editionPath,{waitUntil:'domcontentloaded'});
+ assert.equal(dated?.status(),200,'Dated news edition route is broken');
+ assert.equal(await page.locator('.news-list .story').count(),5,'Dated news must show all five stories');
+ assert.equal(await page.locator('link[rel="canonical"]').getAttribute('href'),origin.replace('http://127.0.0.1:4321','https://zilu.dev')+editionPath);
+ await page.goto(origin+'/',{waitUntil:'domcontentloaded'});
+ const button=page.locator('.theme-toggle');
+ const initial=await page.locator('html').getAttribute('data-theme');
+ await button.click();
+ assert.notEqual(await page.locator('html').getAttribute('data-theme'),initial,'Theme toggle failed');
+ assert.equal(await page.locator('a.skip-link').count(),1,'Skip-to-main link missing');
  await page.close();
  writeFileSync('visual-qa-results/report.json',JSON.stringify({status:'PASS',results},null,2));
- console.log('Visual QA passed: '+results.length+' responsive/theme/page screenshots, home card counts, and news search.');
-} catch(err) {
+ console.log('Neo-brutalist QA passed: '+results.length+' page/theme/viewport captures, accessibility landmarks, source cards, filters, and theme switching.');
+} catch(err){
  writeFileSync('visual-qa-results/report.json',JSON.stringify({status:'FAIL',error:String(err),results},null,2));
  console.error(err);
  process.exitCode=1;

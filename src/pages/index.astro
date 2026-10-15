@@ -1,117 +1,40 @@
 ---
-import Base from '../layouts/Base.astro';
+import NeoLayout from '../layouts/NeoLayout.astro';
 import editions from '../../news/briefings.json';
-const heroPhoto='/images/zilu-portrait-2026-hd.webp';
-const edition = [...editions].sort((a,b) => b.date.localeCompare(a.date))[0];
-const stories = edition?.stories.slice(0,3) ?? [];
-const storyMarks = stories.map(s => (s.headline.split(/\s+/)[0] || 'TECH').replace(/[^\w.-]/g,'').slice(0,9).toUpperCase());
+const edition=[...editions].sort((a,b)=>b.date.localeCompare(a.date))[0];
+const stories=edition?.stories.slice(0,3)??[];
+const displayDate=edition?new Date(edition.date+'T12:00:00Z').toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric',timeZone:'UTC'}).toUpperCase():'';
 ---
-<Base
-  title="Zilu Rane — Full-Stack Engineer | Software, Projects & Technology Writing"
-  description="Zilu Rane builds practical full-stack applications, developer tools and thoughtfully designed interfaces. Explore selected engineering work and daily technology writing."
+<NeoLayout
+  title="Zilu Rane — Full-Stack Engineer | Developer Tools, Projects & Tech News"
+  description="Zilu Rane builds full-stack applications, developer tools and useful AI systems. Explore engineering projects and a source-linked daily technology briefing."
   canonical="https://zilu.dev/"
   schema={{'@type':'ProfilePage',mainEntity:{'@id':'https://zilu.dev/#person'}}}
 >
-<div class="editorial-page">
-  <section class="ed-hero" aria-labelledby="home-title">
-    <div class="ed-shell ed-hero-content">
-      <div class="ed-hero-copy">
-        <p class="ed-eyebrow">SOFTWARE ENGINEER <span>/</span> INDIA</p>
-        <h1 id="home-title">Building software<br/><span>that <em>makes sense.</em></span></h1>
-        <p class="ed-hero-lead">I design and build scalable applications, thoughtful interfaces, and practical AI-powered systems.</p>
-        <div class="ed-actions">
-          <a class="ed-action ed-action-primary" href="/projects/">Explore my work <span aria-hidden="true">→</span></a>
-          <a class="ed-action ed-action-secondary" href="/writing/">Read my writing</a>
-          <a class="ed-action ed-action-square" href="https://github.com/zilurrane" target="_blank" rel="noopener noreferrer" aria-label="Open GitHub profile">
-            <svg aria-hidden="true" viewBox="0 0 24 24" fill="currentColor" width="19" height="19"><path d="M12 .9a11.1 11.1 0 0 0-3.51 21.63c.56.1.76-.24.76-.54v-2.12c-3.1.67-3.76-1.31-3.76-1.31-.51-1.3-1.25-1.64-1.25-1.64-1.02-.7.08-.69.08-.69 1.13.08 1.72 1.16 1.72 1.16 1.01 1.72 2.65 1.22 3.3.93.1-.73.39-1.23.72-1.52-2.48-.28-5.08-1.24-5.08-5.49 0-1.21.43-2.2 1.15-2.97-.12-.28-.5-1.41.11-2.94 0 0 .94-.3 3.05 1.14a10.6 10.6 0 0 1 5.55 0c2.11-1.43 3.04-1.14 3.04-1.14.61 1.53.23 2.66.12 2.94.72.77 1.14 1.76 1.14 2.97 0 4.26-2.61 5.21-5.09 5.48.4.35.76 1.02.76 2.05v3.04c0 .3.2.65.77.54A11.1 11.1 0 0 0 12 .9Z"/></svg>
-          </a>
-        </div>
-      </div>
-      <div class="ed-hero-visual">
-        <div class="ed-hero-portrait-frame ed-hero-portrait-transparent">
-          <img src={heroPhoto} alt="Portrait of Zilu Rane, full-stack software engineer" width="960" height="1200" loading="eager" fetchpriority="high" decoding="async"/>
-        </div>
-      </div>
-    </div>
-  </section>
 
-  <div class="ed-shell">
-    <section class="ed-stats" aria-label="Experience and interests">
-      <div class="ed-stat">
-        <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="7" r="3"/><path d="M5 20v-2a7 7 0 0 1 14 0v2M4 8l-2 2 2 2m16-4 2 2-2 2"/></svg>
-        <div><strong>9+ years</strong><span>Engineering experience</span></div>
-      </div>
-      <div class="ed-stat">
-        <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="m12 3 9 5-9 5-9-5 9-5Zm-9 9 9 5 9-5M3 16l9 5 9-5"/></svg>
-        <div><strong>Full-Stack</strong><span>JavaScript · Java · Cloud</span></div>
-      </div>
-      <div class="ed-stat">
-        <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="m12 2 8 4v12l-8 4-8-4V6l8-4Z"/><path d="m9 12 2 2 4-4"/></svg>
-        <div><strong>Open Source</strong><span>Contributor & builder</span></div>
-      </div>
-      <div class="ed-stat">
-        <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="4" y="3" width="16" height="7" rx="2"/><rect x="4" y="14" width="16" height="7" rx="2"/><path d="M8 10v4m8-4v4"/></svg>
-        <div><strong>Mentor</strong><span>Engineering & community</span></div>
-      </div>
-    </section>
+  <div class="site-width site-announcement"><span><b>✳ SOFTWARE · SYSTEMS · IDEAS</b> &nbsp; Engineering notes, selected work and daily tech news</span><span aria-hidden="true">01 / 02 ↗</span></div>
+  <section class="site-width hero" aria-labelledby="hero-title"><div class="hero-copy">
+    <div class="hero-ribbon"><span>HELLO WORLD!</span> I'M ZILU RANE ✳</div>
+    <h1 id="hero-title">I build<br>software that<br><span class="highlight">makes sense.</span></h1>
+    <p class="hero-lead">Full-stack engineer crafting developer tools, scalable platforms and useful AI-powered experiences. Thoughtful code, human-friendly interfaces.</p>
+    <div class="hero-cta"><a class="btn primary" href="#selected-work">Explore my work <span aria-hidden="true">↗</span></a><a class="btn" href="/news/">Read my daily tech news <span aria-hidden="true">→</span></a></div>
+    <div class="hero-after"><span class="mini-dash"></span> JAVASCRIPT / JAVA / AI / SYSTEM DESIGN</div>
+  </div><div class="portrait-card" ><div class="portrait-orbit"></div><img class="portrait" src="/images/zilu-portrait-2026-hd.webp" alt="Portrait of Zilu Rane wearing glasses and a navy blue shirt" width="1254" height="1254" fetchpriority="high"><div class="portrait-top"><span class="portrait-dot"></span> PEOPLE FIRST. CODE SECOND.</div><div class="portrait-sticker">BUILD ✳ SHIP ✳ LEARN</div><div class="portrait-bottom"><span class="pill">☕ Turning ideas into products</span><span class="micro">EST. IN CODE</span></div></div></section>
+  <section class="site-width quick-cards" aria-label="At a glance"><div class="quick-card"><span>01 / Experience</span><b>9+ years</b><span class="small-cap">Engineering & building</span></div><div class="quick-card"><span>02 / Specialty</span><b>Full stack</b><span class="small-cap">From pixels to platforms</span></div><div class="quick-card"><span>03 / Mindset</span><b>Keep shipping.</b><span class="small-cap">Practical beats complicated</span></div></section>
+  <section id="selected-work" class="site-width projects" aria-labelledby="projects-title"><div class="section-top"><div><div class="section-overline">GOOD IDEAS, BUILT WELL</div><h2 class="section-title" id="projects-title">Selected work<span class="rotated-star"> ✳</span></h2><p class="section-note">Some things I've built, improved or helped bring to life.</p></div><span class="tiny-pill accent-blue">PROJECTS / 02</span></div>
+  <div class="projects-grid">
+    <a class="card project punch-lift" href="/projects/querydeck/"><div class="project-top"><div><span class="project-num">01 / DEVELOPER TOOLING</span><h3>QueryDeck</h3><p class="project-desc">A lightweight SQL workspace designed to make everyday database work feel a little less heavy.</p></div><span class="project-arrow">↗</span></div><div class="project-canvas canvas-sql" role="img" aria-label="Conceptual preview of SQL development interface"><div class="fake-window-top"><i></i><i></i><i></i><span>querydeck / editor.sql</span></div><div class="sql-layout"><div class="sql-sidebar"><div>⌄ DATABASE</div><div>▸ workspace</div><div>▸ saved queries</div><div>▸ history</div></div><div class="sql-editor"><div><span class="blue">SELECT</span> project, status</div><div><span class="blue">FROM</span> <span class="pink">my_work</span></div><div><span class="blue">WHERE</span> fun = <span class="pink">true</span>;</div><div class="sql-table"><span>project</span><span>type</span><span>status</span><span>QueryDeck</span><span>Desktop</span><span>active</span><span>Systems</span><span>Cloud</span><span>shipping</span></div></div></div></div><div class="project-bottom"><span class="tiny-pill">Electron</span><span class="tiny-pill">Angular</span><span class="tiny-pill">SQL Server</span></div></a>
+    <a class="card project punch-lift" href="/projects/enterprise-applications/"><div class="project-top"><div><span class="project-num">02 / SYSTEMS ENGINEERING</span><h3>Enterprise platforms</h3><p class="project-desc">Large applications with complex workflows, clean APIs and maintainable architecture.</p></div><span class="project-arrow">↗</span></div><div class="project-canvas canvas-systems" role="img" aria-label="Conceptual diagram of browser, API and database"><div class="sys-app">✳ FRONTEND UI</div><div class="sys-flow"><span>↓</span><div class="sys-app center">API / BUSINESS LOGIC</div><span>↓</span></div><div class="sys-app">▥ DATA / CLOUD</div><span class="sys-tiny">CONCEPT VISUAL · NOT AN ACTUAL PRODUCT SCREENSHOT</span></div><div class="project-bottom"><span class="tiny-pill">Java</span><span class="tiny-pill">Spring Boot</span><span class="tiny-pill">Cloud</span></div></a>
+  </div></section>
+  <section class="site-width notes-area" aria-labelledby="news-preview-title"><div class="notes-copy"><div class="section-overline">FIVE LINKS. LESS NOISE.</div><h2 id="news-preview-title">One small dose<br>of <span class="highlight">tech news.</span></h2><p>A curated digest of AI, developer tooling, SaaS, security and what's happening in Indian tech. Written for people who actually build things.</p><a class="btn primary" href="/news/">Open the news page ↗</a><p class="micro" style="margin-top:16px">LATEST EDITION · <time datetime={edition?.date}>{displayDate}</time></p></div><div class="news-preview">
+{edition && stories.map((story,i) => (
+  <a class="news-preview-item" href={'/news/'+edition.date+'-daily-tech-news/#story-'+(i+1)}>
+    <span class="news-index">{String(i+1).padStart(2,'0')}</span>
+    <span><small><time datetime={edition.date}>{displayDate}</time> / {story.category.toUpperCase()}</small><strong>{story.headline}</strong></span>
+    <span class="arrow" aria-hidden="true">↗</span>
+  </a>
+))}
+</div></section>
+  <aside class="site-width cta-panel" aria-label="Contact"><div><div class="micro" style="margin-bottom:7px">HAVE SOMETHING INTERESTING?</div><h2>Let's make something useful.</h2><p>Complex engineering problem, a product idea, or just a good conversation about code?</p></div><a class="btn" href="mailto:zilurrane@gmail.com?subject=Hello%20from%20your%20portfolio">Say hello ↗</a></aside>
 
-    <section class="ed-featured" aria-labelledby="featured-title">
-      <div class="ed-section-heading">
-        <div><p class="ed-eyebrow">SELECTED ENGINEERING</p><h2 id="featured-title">Featured Work</h2><p>A few projects I've built, maintained, or contributed to.</p></div>
-        <a class="ed-text-link" href="/projects/">View all projects <span aria-hidden="true">→</span></a>
-      </div>
-      <div class="ed-feature-grid">
-        <a class="ed-work-card" href="/projects/querydeck/">
-          <div class="ed-work-top"><div class="ed-work-icon ed-icon-q">Q</div><span class="ed-corner-arrow" aria-hidden="true">↗</span></div>
-          <h3>QueryDeck</h3>
-          <p>Desktop SQL development tool focused on productivity and clean workflows.</p>
-          <div class="ed-tags"><span>Electron</span><span>Angular</span><span>MSSQL</span></div>
-          <div class="ed-work-image ed-image-query" role="img" aria-label="Conceptual dark SQL editor interface for QueryDeck, not an application screenshot">
-            <div class="ed-app-header"><span class="ed-app-dots">● ● ●</span><span>QueryDeck / workspace</span><span>⌘ K</span></div>
-            <div class="ed-sql-ui"><div class="ed-sql-tree"><span>▾ DATABASE</span><span>▸ queries</span><span>▸ results</span><span>▸ history</span></div><div class="ed-sql-editor"><span><b>SELECT</b> name, status</span><span><b>FROM</b> projects</span><span><b>WHERE</b> active = <i>true</i>;</span><div class="ed-sql-grid"><span>ID</span><span>NAME</span><span>STATUS</span><span>01</span><span>QueryDeck</span><span>Active</span><span>02</span><span>Workspace</span><span>Active</span></div></div></div>
-            <div class="ed-concept-label">INTERFACE CONCEPT</div>
-          </div>
-        </a>
-        <a class="ed-work-card" href="/projects/enterprise-applications/">
-          <div class="ed-work-top"><div class="ed-work-icon ed-icon-layers"><svg aria-hidden="true" viewBox="0 0 24 24" width="29" height="29" fill="none" stroke="currentColor" stroke-width="1.6"><path d="m12 3 9 5-9 5-9-5 9-5Zm-9 9 9 5 9-5M3 16l9 5 9-5"/></svg></div><span class="ed-corner-arrow" aria-hidden="true">↗</span></div>
-          <h3>Enterprise Applications</h3>
-          <p>Scalable platforms and engineering solutions for complex business needs.</p>
-          <div class="ed-tags"><span>Java</span><span>Spring Boot</span><span>Cloud</span></div>
-          <div class="ed-work-image ed-image-enterprise" role="img" aria-label="Conceptual enterprise records interface, not an application screenshot">
-            <div class="ed-light-app-head"><span class="ed-light-mark"></span><span>Enterprise workspace</span><span class="ed-light-pill">Published</span></div>
-            <div class="ed-light-app-content"><div class="ed-light-sidebar"><i></i><i></i><i></i><i></i></div><div class="ed-light-table"><strong>Decision records</strong><div class="ed-light-row"><span>Name</span><span>Version</span><span>Status</span></div><div class="ed-light-row"><span>Policy A</span><span>v3</span><em>Active</em></div><div class="ed-light-row"><span>Policy B</span><span>v2</span><em>Active</em></div><div class="ed-light-row"><span>Policy C</span><span>v1</span><em>Review</em></div></div></div>
-            <div class="ed-concept-label">INTERFACE CONCEPT</div>
-          </div>
-        </a>
-        <a class="ed-work-card" href="/writing/">
-          <div class="ed-work-top"><div class="ed-work-icon ed-icon-book"><svg aria-hidden="true" viewBox="0 0 24 24" width="29" height="29" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 5a9 9 0 0 0-9-2v16a9 9 0 0 1 9 2m0-16a9 9 0 0 1 9-2v16a9 9 0 0 0-9 2m0-16v16"/></svg></div><span class="ed-corner-arrow" aria-hidden="true">↗</span></div>
-          <h3>Technical Writing</h3>
-          <p>Engineering guides, tutorials, and technology insights from hands-on work.</p>
-          <div class="ed-tags"><span>AI</span><span>Architecture</span><span>Productivity</span></div>
-          <div class="ed-work-image ed-image-writing" role="img" aria-label="Conceptual technical writing and documentation interface">
-            <div class="ed-writing-tabbar"><span>NOTES / ENGINEERING</span><span>↗</span></div>
-            <div class="ed-writing-preview"><span class="ed-writing-topic">THE ENGINEER'S NOTEBOOK</span><strong>Ideas worth<br/>building.</strong><div class="ed-writing-line"></div><div class="ed-writing-line short"></div><div class="ed-writing-row"><span>01 / Systems</span><span>02 / AI</span><span>03 / Code</span></div></div>
-            <div class="ed-concept-label">EDITORIAL CONCEPT</div>
-          </div>
-        </a>
-      </div>
-    </section>
-
-    {edition && <section class="ed-news-preview" aria-labelledby="ed-news-title">
-      <div class="ed-section-heading">
-        <div><p class="ed-eyebrow">LATEST WRITING & TECHNOLOGY NEWS</p><h2 id="ed-news-title">Fresh ideas, <em>every day.</em></h2><p>A concise, source-linked daily briefing on technology and engineering.</p></div>
-        <a class="ed-text-link" href="/news/">View all news <span aria-hidden="true">→</span></a>
-      </div>
-      <div class="ed-news-items">
-        {stories.map((story,i) => <a class="ed-news-item" href={'/news/'+edition.date+'-daily-tech-news/'}>
-          <span class="ed-news-index">{String(i+1).padStart(2,'0')}</span>
-          <span class={'ed-news-thumb ed-thumb-'+i} aria-hidden="true">{storyMarks[i]}</span>
-          <span class="ed-news-detail"><small>{story.category} <span>·</span> <time datetime={edition.date}>{edition.date}</time></small><strong>{story.headline}</strong><span>{story.summary}</span></span>
-          <span class="ed-news-arrow" aria-hidden="true">→</span>
-        </a>)}
-      </div>
-    </section>}
-    <div class="ed-bottom-note"><p>Curious about a project, an idea, or working together?</p><a href="mailto:zilurrane@gmail.com">Let's talk <span aria-hidden="true">↗</span></a></div>
-  </div>
-</div>
-</Base>
+</NeoLayout>

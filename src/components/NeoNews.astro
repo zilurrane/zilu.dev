@@ -1,0 +1,78 @@
+---
+const {edition,sorted,detail=false}=Astro.props;
+const date=new Date(edition.date+'T12:00:00Z');
+const displayDate=date.toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric',timeZone:'UTC'});
+const weekday=date.toLocaleDateString('en-GB',{weekday:'long',timeZone:'UTC'}).toUpperCase();
+const day=String(date.getUTCDate()).padStart(2,'0');
+const month=date.toLocaleDateString('en-GB',{month:'long',timeZone:'UTC'}).toUpperCase();
+const year=date.getUTCFullYear();
+const categoryKeys=['ai','tooling','saas','cloud','india'];
+const badgeClasses=['accent-yellow','accent-blue','accent-pink','accent-orange','accent-mint'];
+---
+
+ <div class="site-width site-announcement"><span><b>✳ THE DAILY DOWNLOAD</b> &nbsp; Five source-linked developments for software builders</span><span>02 / 02 ↗</span></div>
+ <section class="site-width news-top" aria-labelledby="news-title"><div><div class="section-overline">THE DAILY DOWNLOAD / TECH & IDEAS</div><h1 id="news-title">{detail ? <>Daily tech news,<br/><em>{displayDate}.</em></> : <>Tech news,<br/>minus <em>the noise.</em></>}</h1><p class="news-intro">Five useful developments in AI, dev tooling, SaaS, security and Indian technology. Concise, source-linked, and written for curious builders.</p><div class="tag-row"><span class="pill accent-yellow">✳ Daily brief</span><span class="pill">5 categories</span><span class="pill">Original sources ↗</span></div></div><div class="edition-tile" aria-label={'Issue for '+displayDate}><span class="issue">DAILY EDITION / {year}</span><span class="day">{day}</span><span class="month">{month}</span><span class="year">{weekday} · IST</span></div></section>
+ <section class="site-width news-metrics" aria-label="Edition details"><div class="news-metric"><span>01 / HEADLINES</span><strong>05 stories</strong><span>Curated, not infinite</span></div><div class="news-metric"><span>02 / COVERAGE</span><strong>05 beats</strong><span>From AI to Indian tech</span></div><div class="news-metric"><span>03 / READING TIME</span><strong>~4 min</strong><span>Quick, practical context</span></div></section>
+ <div class="site-width news-layout"><section aria-labelledby="stories-heading"><div class="section-top"><div><div class="section-overline">TODAY'S READING LIST</div><h2 id="stories-heading" class="section-title">The briefing <span class="rotated-star">✳</span></h2></div><span class="tiny-pill accent-yellow">ISSUE / {edition.date.replaceAll('-','')}</span></div><div class="result-label"><span id="result-count" aria-live="polite">5 of 5 stories</span><button id="clear-filters" type="button">Clear filters</button></div><div class="news-list">
+{edition.stories.map((story,i) => (
+ <article class="story" id={'story-'+(i+1)} data-category={categoryKeys[i]||'all'}>
+  <div class="story-top">
+   <div class="story-meta"><span class="story-number">{String(i+1).padStart(2,'0')}</span><span class={'tiny-pill '+badgeClasses[i]}>{story.category}</span></div>
+   <span class="micro muted"><time datetime={edition.date}>{displayDate}</time> / SOURCE LINKED</span>
+  </div>
+  <h3>{story.headline}</h3>
+  <p class="story-summary">{story.summary}</p>
+  <div class="impact"><b>✳ WHY IT MATTERS</b><p>{story.why_it_matters}</p></div>
+  <div class="story-bottom">
+   <span class="micro muted">ORIGINAL REPORT</span>
+   <a class="source-link" href={story.source_url} target="_blank" rel="noopener noreferrer">
+    {new URL(story.source_url).hostname.replace(/^www\./,'')} <span aria-hidden="true">↗</span>
+   </a>
+  </div>
+ </article>
+))}
+<div class="empty-state" id="empty-results" hidden>No matching stories. Try another category or search.</div>
+</div></section>
+ <aside class="news-sidebar" aria-label="News tools"><div class="sidebar-box sidebar-filter"><h3 class="sidebar-title">Find something interesting ↗</h3><label class="micro muted" for="story-search">SEARCH HEADLINES</label><div class="search-wrap"><svg width="16" height="16" viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-width="2"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/></svg><input id="story-search" type="search" placeholder="Try AI, cloud, TCS…" autocomplete="off"></div><p class="micro muted" style="margin:10px 0">FILTER BY TOPIC</p><div class="filter-options"><button class="filter-btn active" type="button" data-filter="all" aria-pressed="true"><span class="filter-dot" style="background:var(--paper)"></span>All stories</button><button class="filter-btn " type="button" data-filter="ai" aria-pressed="false"><span class="filter-dot" style="background:var(--yellow)"></span>AI &amp; Agents</button><button class="filter-btn " type="button" data-filter="tooling" aria-pressed="false"><span class="filter-dot" style="background:var(--blue)"></span>Developer tooling</button><button class="filter-btn " type="button" data-filter="saas" aria-pressed="false"><span class="filter-dot" style="background:var(--pink)"></span>SaaS</button><button class="filter-btn " type="button" data-filter="cloud" aria-pressed="false"><span class="filter-dot" style="background:var(--orange)"></span>Security &amp; cloud</button><button class="filter-btn " type="button" data-filter="india" aria-pressed="false"><span class="filter-dot" style="background:var(--mint)"></span>Indian tech</button></div></div>
+ <div class="sidebar-box">
+<h3 class="sidebar-title">Previous editions</h3>
+{sorted.slice(0,6).map(item => (
+<a class="archive-link" href={'/news/'+item.date+'-daily-tech-news/'} aria-current={item.date===edition.date?'page':undefined}>
+<span><time datetime={item.date}>{new Date(item.date+'T12:00:00Z').toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric',timeZone:'UTC'})}</time></span>
+<span>{item.date===edition.date?'NOW ↗':'↗'}</span></a>
+))}
+<a class="archive-link" href="/news/"><span>All editions</span><span>↗</span></a>
+</div>
+<div class="sidebar-box"><h3 class="sidebar-title">A little about this brief</h3><div class="legend" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div><p class="sidebar-text">A compact, useful reading habit. Stories are grouped by topic, each with a plain-English summary and why it matters to engineers.</p><a href="/" class="source-link" style="margin-top:10px">Meet the author →</a></div></aside></div>
+
+<script is:inline>
+(() => {
+ const filters=[...document.querySelectorAll('[data-filter]')];
+ const stories=[...document.querySelectorAll('.story[data-category]')];
+ const search=document.getElementById('story-search');
+ const counter=document.getElementById('result-count');
+ const clear=document.getElementById('clear-filters');
+ const empty=document.getElementById('empty-results');
+ let category='all';
+ function update(){
+  const q=(search?.value||'').trim().toLowerCase();
+  let shown=0;
+  stories.forEach(story=>{
+   const matches=(category==='all'||story.dataset.category===category)&&(!q||story.textContent.toLowerCase().includes(q));
+   story.hidden=!matches;
+   if(matches)shown++;
+  });
+  if(counter)counter.textContent=shown+' of '+stories.length+' stories';
+  if(empty)empty.hidden=shown!==0;
+  filters.forEach(button=>{
+   const on=button.dataset.filter===category;
+   button.classList.toggle('active',on);
+   button.setAttribute('aria-pressed',String(on));
+  });
+ }
+ filters.forEach(button=>button.addEventListener('click',()=>{category=button.dataset.filter;update()}));
+ search?.addEventListener('input',update);
+ clear?.addEventListener('click',()=>{category='all';if(search){search.value='';search.focus()}update()});
+ update();
+})();
+</script>
