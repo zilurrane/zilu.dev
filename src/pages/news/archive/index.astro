@@ -1,0 +1,18 @@
+---
+import NeoLayout from '../../../layouts/NeoLayout.astro';
+import NeoArchive from '../../../components/NeoArchive.astro';
+import editions from '../../../../news/briefings.json';
+const sorted=[...editions].sort((a,b)=>b.date.localeCompare(a.date));
+const PAGE_SIZE=12;
+const totalPages=Math.max(1,Math.ceil(sorted.length/PAGE_SIZE));
+const current=sorted.slice(0,PAGE_SIZE);
+---
+<NeoLayout
+ title="Daily Technology News Archive | Zilu Rane"
+ description="Browse all daily technology news editions: five source-linked AI, JavaScript, SaaS, cloud security and Indian tech stories per issue."
+ canonical="https://zilu.dev/news/archive/"
+ breadcrumbName="News Archive"
+ schema={{'@type':'CollectionPage',name:'Daily Tech News Archive',url:'https://zilu.dev/news/archive/',isPartOf:{'@id':'https://zilu.dev/#website'},hasPart:sorted.map(e=>({'@type':'CollectionPage',name:'Daily Tech News '+e.date,url:'https://zilu.dev/news/'+e.date+'-daily-tech-news/'}))}}
+>
+ <NeoArchive editions={current} page={1} totalPages={totalPages}/>
+</NeoLayout>
