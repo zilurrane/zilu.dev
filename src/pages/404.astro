@@ -1,4 +1,23 @@
 ---
-import Base from '../layouts/Base.astro';
+import NeoLayout from '../layouts/NeoLayout.astro';
 ---
-<Base title="Page not found | zilu.dev" description="The requested page could not be found." robots="noindex,follow"><div class="wrap longform"><p class="eyebrow">HTTP 404</p><h1>That page isn't here<span class="accent">_</span></h1><p><a class="btn primary" href="/">Back home ↗</a></p></div></Base>
+<NeoLayout
+ title="Page Not Found (404) | Zilu Rane"
+ description="That page isn't available. Browse Zilu Rane's engineering projects, technical writing and daily technology news."
+ canonical="https://zilu.dev/404/"
+ robots="noindex,follow"
+>
+ <section class="site-width neo-page neo-404" aria-labelledby="missing-title">
+   <div>
+     <p class="neo-overline">ERROR / NO ROUTE FOUND</p>
+     <p class="neo-404-code" aria-hidden="true">4<span>0</span>4</p>
+     <h1 id="missing-title" class="neo-h1">This page <span class="neo-highlight pink">escaped.</span></h1>
+     <p>The URL might have moved, or it may never have existed. Here's a way back to the useful stuff.</p>
+     <div class="hero-cta" style="justify-content:center">
+       <a class="btn primary" href="/">Back to home <span aria-hidden="true">↗</span></a>
+       <a class="btn" href="/projects/">Explore projects</a>
+       <a class="btn" href="/news/">Daily news</a>
+     </div>
+   </div>
+ </section>
+</NeoLayout>
