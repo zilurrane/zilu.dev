@@ -73,3 +73,10 @@
 @media(max-width:850px){.mock-hero{grid-template-columns:1fr;padding-top:55px}.mock-hero h1{max-width:700px}.editorial-landscape{height:420px}.mock-project-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.mock-project>p{min-height:0}.mock-stats{grid-template-columns:repeat(2,minmax(0,1fr))}.mock-section-heading{align-items:start}}
 @media(max-width:620px){.wrap{width:min(100% - 32px,1160px)}.mock-hero{gap:28px;padding-top:38px}.mock-hero h1{font-size:clamp(2.75rem,10.5vw,4rem);overflow-wrap:normal}.mock-hero-copy>p:not(.mock-kicker){font-size:1.03rem}.editorial-landscape{height:310px}.mock-stats{gap:0;padding:15px 0}.mock-stats>div{padding:15px 10px}.mock-section{padding-top:58px}.mock-section-heading{display:flex;flex-direction:column;gap:14px}.mock-section-heading h2{font-size:clamp(2.3rem,9vw,3.25rem)}.mock-project-grid{grid-template-columns:1fr}.mock-project{padding:22px}.mock-project h3{font-size:1.55rem}.mock-project>p{font-size:.98rem}.project-showcase{min-height:250px}.mock-news-row{gap:12px;padding:22px 0}.mock-story-content strong{font-size:1.1rem}.mock-story-content>span{font-size:.88rem}.mock-cta h2{font-size:clamp(2.5rem,9vw,3.7rem)}.footer-row{align-items:start}}
 @media(prefers-reduced-motion:reduce){.mock-project{transition:none}.mock-project:hover{transform:none}}
+
+/* 320px accessibility fix: prevent the legacy Projects heading from widening the viewport. */
+@media (max-width: 380px) {
+  .mock-subhero h1 {font-size:clamp(2.25rem,10vw,2.65rem);overflow-wrap:anywhere;letter-spacing:-.055em}
+  .mock-content-grid {grid-template-columns:minmax(0,1fr)}
+  .mock-content-card {min-width:0;padding:18px}
+}
