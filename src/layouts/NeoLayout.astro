@@ -8,6 +8,7 @@ const {
   type='website',
   schema=null,
   robots='index,follow,max-image-preview:large',
+  breadcrumbName=null,
 }=Astro.props;
 const isNews=Astro.url.pathname.startsWith('/news/');
 const portrait='https://zilu.dev/images/zilu-portrait-2026-hd.webp';
@@ -19,7 +20,16 @@ const person={
   sameAs:['https://github.com/zilurrane','https://www.linkedin.com/in/zilurane','https://dev.to/zilurrane'],
   knowsAbout:['JavaScript','TypeScript','React','Node.js','Java','Spring Boot','AI agents','Cloud architecture']
 };
-const ld={'@context':'https://schema.org','@graph':[person,...(schema?[schema]:[])]};
+const site={'@type':'WebSite','@id':'https://zilu.dev/#website',url:'https://zilu.dev/',name:'Zilu Rane',description:'Full-stack engineering, developer tools and technology writing by Zilu Rane.',inLanguage:'en',publisher:{'@id':'https://zilu.dev/#person'}};
+const sections=Astro.url.pathname.split('/').filter(Boolean);
+const labels={projects:'Projects',writing:'Writing',news:'Daily Tech News',archive:'News Archive',about:'About',resume:'Resume'};
+const crumbs=sections.map((part,i)=>({
+  '@type':'ListItem',position:i+2,
+  name:i===sections.length-1 && breadcrumbName?breadcrumbName:(labels[part]??(/^\d+$/.test(part)?'Page '+part:part.replace(/-/g,' ').replace(/\b\w/g,c=>c.toUpperCase()))),
+  item:'https://zilu.dev/'+sections.slice(0,i+1).join('/')+'/'
+}));
+const breadcrumb=sections.length && !Astro.url.pathname.startsWith('/404')?{'@type':'BreadcrumbList','@id':new URL(Astro.url.pathname,'https://zilu.dev').href+'#breadcrumbs',itemListElement:[{'@type':'ListItem',position:1,name:'Home',item:'https://zilu.dev/'},...crumbs]}:null;
+const ld={'@context':'https://schema.org','@graph':[site,person,...(breadcrumb?[breadcrumb]:[]),...(schema?[schema]:[])]};
 ---
 <!doctype html>
 <html lang="en" data-theme="light">
@@ -30,13 +40,22 @@ const ld={'@context':'https://schema.org','@graph':[person,...(schema?[schema]:[
   <title>{title}</title>
   <meta name="description" content={description}/>
   <meta name="robots" content={robots}/>
-  <link rel="canonical" href={canonical}/>
+  {canonical && !robots.includes("noindex") && <link rel="canonical" href={canonical}/>}
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg"/>
+  <meta property="og:site_name" content="Zilu Rane"/>
+  <meta property="og:locale" content="en_IN"/>
   <meta property="og:type" content={type}/>
   <meta property="og:title" content={title}/>
   <meta property="og:description" content={description}/>
   <meta property="og:url" content={canonical}/>
   <meta property="og:image" content={portrait}/>
+  <meta property="og:image:alt" content="Zilu Rane, full-stack engineer"/>
+  <meta property="og:image:width" content="1254"/>
+  <meta property="og:image:height" content="1254"/>
   <meta name="twitter:card" content="summary_large_image"/>
+  <meta name="twitter:title" content={title}/>
+  <meta name="twitter:description" content={description}/>
+  <meta name="twitter:image" content={portrait}/>
   <meta name="theme-color" content="#fff2dc" media="(prefers-color-scheme: light)"/>
   <meta name="theme-color" content="#1a1b1a" media="(prefers-color-scheme: dark)"/>
   <script type="application/ld+json" set:html={JSON.stringify(ld).replaceAll('<','\\u003c')}/>
