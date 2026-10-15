@@ -1,6 +1,8 @@
 import { chromium } from 'playwright';
 import assert from 'node:assert/strict';
 import { mkdirSync, writeFileSync } from 'node:fs';
+import { execFileSync } from 'node:child_process';
+console.log('Source tree SHA: '+execFileSync('git',['rev-parse','HEAD^{tree}'],{encoding:'utf8'}).trim());
 
 const origin=process.env.VISUAL_QA_ORIGIN||'http://127.0.0.1:4321';
 const browser=await chromium.launch({headless:true});
