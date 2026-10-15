@@ -1,11 +1,82 @@
 ---
-import Base from '../../layouts/Base.astro';
-import ProjectVisual from '../../components/ProjectVisual.astro';
-import PrivateProjectPreview from '../../components/PrivateProjectPreview.astro';import {projects} from '../../data/projects';
-export function getStaticPaths(){return projects.map(project=>({params:{slug:project.slug},props:{project}}))}
+import NeoLayout from '../../layouts/NeoLayout.astro';
+import NeoProjectArt from '../../components/NeoProjectArt.astro';
+import {projects} from '../../data/projects';
+export function getStaticPaths(){
+ return projects.map(project=>({params:{slug:project.slug},props:{project}}));
+}
 const {project}=Astro.props;
 const url='https://zilu.dev/projects/'+project.slug+'/';
+const related=projects.filter(p=>p.slug!==project.slug).slice(0,2);
 ---
-<Base title={project.title+' — Project Case Study | Zilu Rane'} description={project.description} canonical={url} schema={{'@type':project.url?'SoftwareSourceCode':'CreativeWork',name:project.title,url,description:project.description,author:{'@id':'https://zilu.dev/#person'},...(project.url?{codeRepository:project.url}:{})}}>
-<article class="wrap mock-prose"><nav class="breadcrumb"><a href="/">Home</a> / <a href="/projects/">Projects</a> / {project.title}</nav><p class="mock-kicker">{project.category}</p><h1>{project.title}</h1><p class="muted" style="font-size:1.22rem">{project.description}</p><div class="skill-row">{project.stack.map(s=><span>{s}</span>)}</div>{project.url ? <ProjectVisual project={project}/> : <PrivateProjectPreview slug={project.slug}/>}{project.url&&<p style="margin:28px 0"><a href={project.url} target="_blank" rel="noopener noreferrer" class="btn primary">View actual repository ↗</a></p>}<section><h2>The problem</h2><p>{project.problem}</p><h2>Architecture & approach</h2><p>{project.approach}</p><h2>Technology and trade-offs</h2><p>This case study highlights a practical approach using {project.stack.join(', ')}. Availability of implementation details depends on whether the source repository is public.</p>{project.url?<><h2>Explore the source</h2><p>For setup steps and implementation details, see the <a href={project.url} style="color:var(--orange);text-decoration:underline">GitHub repository</a>.</p></>:<><h2>Project availability</h2><p>This work is presented as an engineering case study. Its source code and original product screenshots are not publicly available here.</p></>}</section></article>
-</Base>
+<NeoLayout
+ title={project.title+' — Engineering Case Study | Zilu Rane'}
+ description={project.description}
+ canonical={url}
+ schema={{'@type':project.url?'SoftwareSourceCode':'CreativeWork',name:project.title,url,description:project.description,author:{'@id':'https://zilu.dev/#person'},...(project.url?{codeRepository:project.url}:{})}}
+>
+ <article class="site-width neo-page">
+   <nav class="neo-breadcrumb" aria-label="Breadcrumb">
+     <a href="/">Home</a><span class="slash" aria-hidden="true">/</span>
+     <a href="/projects/">Projects</a><span class="slash" aria-hidden="true">/</span>
+     <span aria-current="page">{project.title}</span>
+   </nav>
+   <header class="neo-intro">
+     <div class="neo-intro-copy">
+       <p class="neo-overline">ENGINEERING / CASE STUDY</p>
+       <div class="neo-tagline"><span>{project.category}</span><span>{project.url?'OPEN SOURCE':'CASE STUDY'}</span></div>
+       <h1 class="neo-article-title">{project.title}<span style="color:var(--orange)">.</span></h1>
+       <p class="neo-lede">{project.description}</p>
+     </div>
+   </header>
+   <div class="neo-article-layout">
+     <div>
+       <div class="neo-card neo-panel neo-article-visual"><NeoProjectArt project={project}/></div>
+       <div class="neo-card neo-panel neo-reading neo-section-block">
+         <h2 class="neo-section-heading">The problem<span style="color:var(--orange)">.</span></h2>
+         <p>{project.problem}</p>
+         <h2>Architecture & approach</h2>
+         <p>{project.approach}</p>
+         <h2>Technology and trade-offs</h2>
+         <p>This case study explores a practical implementation approach using {project.stack.join(', ')}. The publicly available implementation details depend on the project's source availability.</p>
+         {project.url ? (
+           <>
+             <h2>Explore the source</h2>
+             <p>For runnable code, implementation details and setup steps, see the <a href={project.url} target="_blank" rel="noopener noreferrer">GitHub repository ↗</a>.</p>
+           </>
+         ):(
+           <>
+             <h2>Project availability</h2>
+             <p>This case study describes engineering decisions and intended workflows. Original product screenshots and proprietary source code are not published here.</p>
+           </>
+         )}
+       </div>
+     </div>
+     <aside class="neo-sidebar" aria-label="Project information">
+       <section class="neo-card">
+         <h2>Project details</h2>
+         <div class="neo-meta-line" style="margin-bottom:12px"><span class="neo-pill">{project.category}</span></div>
+         <p>{project.description}</p>
+         {project.url ? <a class="btn primary" target="_blank" rel="noopener noreferrer" href={project.url}>Explore source <span aria-hidden="true">↗</span></a> : <p class="neo-note">Private engineering case study · conceptual illustrations only.</p>}
+       </section>
+       <section class="neo-card">
+         <h2>Technology stack</h2>
+         <div class="neo-tags">{project.stack.map(s=><span>{s}</span>)}</div>
+       </section>
+       <section class="neo-card">
+         <h2>Navigate</h2>
+         <p>More full-stack engineering work and developer experiments.</p>
+         <a class="btn" href="/projects/">← All projects</a>
+       </section>
+     </aside>
+   </div>
+   <section class="neo-section-block" aria-labelledby="related-title">
+     <div class="neo-toolbar"><h2 id="related-title" class="neo-section-heading" style="margin:0">Explore more work</h2><a href="/projects/">All projects ↗</a></div>
+     <div class="neo-grid">
+       {related.map((p,i)=><a href={'/projects/'+p.slug+'/'} class="neo-card neo-card-link">
+         <div class="neo-card-body"><div class="neo-card-top"><span class="neo-number">{String(i+1).padStart(2,'0')}</span><span class="neo-card-arrow" aria-hidden="true">↗</span></div><h3>{p.title}</h3><p>{p.description}</p><div class="neo-tags">{p.stack.slice(0,3).map(t=><span>{t}</span>)}</div></div>
+       </a>)}
+     </div>
+   </section>
+ </article>
+</NeoLayout>
