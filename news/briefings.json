@@ -28,7 +28,7 @@
         "headline": "Google Cloud discloses critical Application Integration authorization flaw",
         "summary": "In an October 14 security bulletin, Google Cloud disclosed CVE-2026-85298, an incorrect-authorization vulnerability affecting Application Integration before August 27, 2026. Google says an authenticated user could have escalated privileges to impersonate a project service account; the flaw was patched on August 27 and requires no customer action.",
         "why_it_matters": "The disclosure underscores the security risks of cloud service-account impersonation and the importance of least-privilege access reviews, even for managed integrations.",
-        "source_url": "https://docs.cloud.google.com/support/bulletins"
+        "source_url": "https://docs.cloud.google.com/support/bulletins#gcp-2026-068"
       },
       {
         "category": "Indian Tech & Business",
@@ -87,28 +87,28 @@
         "headline": "Meta launches Muse Wonder and Muse Wonder Full",
         "summary": "Meta launched two AI models on October 12. The company plans to use them in its Muse assistant and coding tools.",
         "why_it_matters": "The release adds competition for AI agents and developer assistants.",
-        "source_url": "https://www.reuters.com/"
+        "source_url": "https://about.fb.com/news/2026/10/introducing-muse-wonder-models/"
       },
       {
         "category": "Developer Tooling",
         "headline": "Node.js releases version 26.11.1",
         "summary": "Node.js published version 26.11.1 on October 7. Its notes describe three reversions involving build and documentation tooling.",
         "why_it_matters": "Developers should test build pipelines when updating their runtime.",
-        "source_url": "https://nodejs.org/en/blog/release/"
+        "source_url": "https://nodejs.org/en/blog/release/v26.11.1"
       },
       {
         "category": "SaaS",
         "headline": "ServiceNow introduces AI Workflow Factory",
         "summary": "ServiceNow announced AI Workflow Factory on October 6. It connects process discovery and AI-supported workflow delivery under enterprise governance.",
         "why_it_matters": "SaaS products increasingly combine automation with centralized controls.",
-        "source_url": "https://www.servicenow.com/"
+        "source_url": "https://newsroom.servicenow.com/press-releases/details/2026/ServiceNow-launches-AI-Workflow-Factory-to-turn-workflow-improvement-into-a-continuous-agentic-AI-powered-loop/default.aspx"
       },
       {
         "category": "Cybersecurity",
         "headline": "Rubrik unveils Code Guardian",
-        "summary": "Rubrik introduced Code Guardian on October 8. The private-preview tool examines code copies in isolated environments to identify security weaknesses.",
+        "summary": "Rubrik introduced Code Guardian on October 9. The private-preview tool examines code copies in isolated environments to identify security weaknesses.",
         "why_it_matters": "Secure testing environments are increasingly relevant to AI-assisted software development.",
-        "source_url": "https://www.rubrik.com/"
+        "source_url": "https://www.rubrik.com/company/newsroom/press-releases/26/rubrik-expands-project-hourglass-with-rubrik-code-guardian-powered-by-claude"
       },
       {
         "category": "Indian Tech & Business",
