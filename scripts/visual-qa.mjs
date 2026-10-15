@@ -38,6 +38,14 @@ try {
     assert(diagnostics.hasMain && diagnostics.hasHeader && diagnostics.hasFooter,'Missing landmarks on '+path);
     assert.equal(diagnostics.headings,1,'Page must have one visible H1 '+path);
     assert(!diagnostics.hiddenHeading,'Hidden heading '+path);
+
+    if(profile.width<=360){
+      const navPositions=await page.locator('.desktop-nav .nav-link').evaluateAll(links=>
+        links.map(a=>({text:a.textContent.trim(),left:a.getBoundingClientRect().left,right:a.getBoundingClientRect().right,visible:getComputedStyle(a).visibility!=='hidden'})));
+      assert.equal(navPositions.length,6,'Every route should appear in global navigation');
+      assert(navPositions.every(a=>a.visible&&a.left>=-1&&a.right<=profile.width+1),
+        'Narrow navigation must show all six links: '+JSON.stringify(navPositions));
+    }
     assert(diagnostics.scrollWidth<=diagnostics.viewport+3,
       'Horizontal overflow '+path+' '+profile.name+' '+theme+' '+JSON.stringify(diagnostics));
     if(path==='/'){
