@@ -12,14 +12,15 @@ const profiles=[
  {name:'mobile',width:390,height:844},{name:'small-mobile',width:320,height:740}
 ];
 const results=[];
+const routes=['/','/news/','/projects/','/projects/querydeck/','/writing/','/about/','/resume/','/404.html'];
 mkdirSync('visual-qa-results',{recursive:true});
 try {
  for(const profile of profiles){
   for(const theme of ['light','dark']){
    const page=await browser.newPage({viewport:{width:profile.width,height:profile.height},deviceScaleFactor:1});
-   for(const path of ['/','/news/','/projects/']){
+   for(const path of routes){
     const response=await page.goto(origin+path,{waitUntil:'domcontentloaded'});
-    assert.equal(response?.status(),200,'HTTP status on '+path);
+    assert(path==='/404.html'?[200,404].includes(response?.status()):response?.status()===200,'HTTP status on '+path+': '+response?.status());
     await page.evaluate(theme=>document.documentElement.dataset.theme=theme,theme);
     const diagnostics=await page.evaluate(()=>{
       const h1=document.querySelector('h1');
@@ -65,6 +66,36 @@ try {
       assert.equal(await page.locator('.story .impact').count(),5,'Missing why-it-matters blocks');
       assert.equal(await page.locator('.story .source-link[href^="https://"]').count(),5,'Missing primary-source links');
     }
+    if(path==='/projects/'){
+      assert.equal(await page.locator('.neo-grid .neo-card-link').count(),6,'Project listing should render all six repository case studies');
+      assert.equal(await page.locator('.neo-grid .neo-art[role="img"]').count(),6,'Each project needs its honest conceptual art');
+      assert.equal(await page.locator('.neo-page h1.neo-h1').count(),1,'Projects must use neo page hierarchy');
+    }
+    if(path==='/projects/querydeck/'){
+      assert.equal(await page.locator('article .neo-article-layout').count(),1,'Missing project detail layout');
+      assert.equal(await page.locator('.neo-article-visual .neo-art').count(),1,'Missing project visual');
+      assert.equal(await page.locator('.neo-reading h2').count()>=4,true,'Missing semantic case-study sections');
+    }
+    if(path==='/writing/'){
+      assert.equal(await page.locator('.neo-writing-card').count(),3,'Writing page must show three real articles');
+      assert.equal(await page.locator('.neo-writing-card a[href^="https://dev.to/"]').count(),3,'Original writing sources missing');
+      assert.equal(await page.locator('.neo-writing-card time[datetime]').count(),3,'Article dates must be semantic time tags');
+    }
+    if(path==='/about/'){
+      assert.equal(await page.locator('.neo-portrait-wrap img[alt]').count(),1,'About portrait missing');
+      assert.equal(await page.locator('.neo-article-layout .neo-reading').count(),1,'About narrative missing');
+    }
+    if(path==='/resume/'){
+      assert.equal(await page.locator('.neo-timeline-item').count(),6,'Resume must preserve six career entries');
+      assert.equal(await page.locator('.neo-sidebar .neo-tags span').count(),14,'Resume expertise tags missing');
+    }
+    if(path==='/404.html'){
+      assert.match((await page.locator('meta[name="robots"]').getAttribute('content'))||'',/noindex/,'404 should not be indexed');
+      assert.equal(await page.locator('.neo-404 h1').count(),1,'Custom 404 headline missing');
+    }
+    if(path.startsWith('/projects/') && path!=='/projects/'){
+      assert.equal(await page.locator('.neo-breadcrumb[aria-label="Breadcrumb"]').count(),1,'Project breadcrumbs missing');
+    }
     const slug=path==='/'?'home':path.replace(/\//g,'');
     await page.screenshot({path:'visual-qa-results/'+slug+'-'+profile.name+'-'+theme+'.png',fullPage:true});
     results.push({page:path,profile:profile.name,theme,...diagnostics,status:'PASS'});
@@ -83,6 +114,14 @@ try {
  assert.equal(await page.locator('.news-list .story:visible').count(),1,'Category filter should display one AI story');
  await page.locator('[data-filter="all"]').click();
  assert.equal(await page.locator('.news-list .story:visible').count(),5,'All categories should restore stories');
+ for(const slug of ['enterprise-applications','linkedin-signal-agent','whatsapp-actions','ticketing','learnings']){
+   const response=await page.goto(origin+'/projects/'+slug+'/',{waitUntil:'domcontentloaded'});
+   assert.equal(response?.status(),200,'Project case study route failed: '+slug);
+   assert.equal(await page.locator('h1').count(),1,'Case study must have one H1: '+slug);
+   assert.equal(await page.locator('.neo-article-layout .neo-art[role="img"]').count(),1,'Concept art missing for '+slug);
+   assert.equal(await page.locator('.neo-reading h2').count()>=4,true,'Case study sections missing for '+slug);
+ }
+ await page.goto(origin+'/news/',{waitUntil:'domcontentloaded'});
  const editionPath=await page.locator('.archive-link[href*="-daily-tech-news/"]').first().getAttribute('href');
  assert(editionPath,'Missing dated briefing link');
  const dated=await page.goto(origin+editionPath,{waitUntil:'domcontentloaded'});
@@ -97,7 +136,7 @@ try {
  assert.equal(await page.locator('a.skip-link').count(),1,'Skip-to-main link missing');
  await page.close();
  writeFileSync('visual-qa-results/report.json',JSON.stringify({status:'PASS',results},null,2));
- console.log('Neo-brutalist QA passed: '+results.length+' page/theme/viewport captures, accessibility landmarks, source cards, filters, and theme switching.');
+ console.log('Neo-brutalist QA passed: '+results.length+' captures across all routes/themes, semantics, source links, filters and theme switching.');
 } catch(err){
  writeFileSync('visual-qa-results/report.json',JSON.stringify({status:'FAIL',error:String(err),results},null,2));
  console.error(err);
