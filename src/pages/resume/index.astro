@@ -1,5 +1,5 @@
 ---
-import Base from '../../layouts/Base.astro';
+import NeoLayout from '../../layouts/NeoLayout.astro';
 const roles=[
  ['Jan 2025 – present','Technical Lead','Accion Labs','Continued in the same technical-lead role following the acquisition of e-Zest by Accion Labs.'],
  ['Mar 2023 – Jan 2025','Technical Lead','e-Zest — an Accion Labs company','Technical leadership and full-stack engineering.'],
@@ -8,7 +8,87 @@ const roles=[
  ['Aug 2015 – Aug 2016','Web Developer','LifeCOMPILERS','Web development.'],
  ['Jul 2015','Internship Trainee','ASHIDA Electronics','Technical internship.']
 ];
-
+const skills=['JavaScript','TypeScript','React','Angular','Node.js','Java','AI agents','LangChain','RAG','MSSQL','PostgreSQL','Cloudflare','Docker','GitHub Actions'];
 ---
-<Base title="Resume | Zilu Rane — Full-Stack Engineer" description="Resume of Zilu Rane, Technical Lead at Accion Labs (formerly e-Zest): 9+ years in full-stack software engineering, React, Node.js and AI." canonical="https://zilu.dev/resume/" schema={{'@type':'ProfilePage',mainEntity:{'@id':'https://zilu.dev/#person'}}}>
-<div class="wrap mock-prose"><p class="mock-kicker">CAREER / EXPERIENCE</p><h1>Resume<span class="mock-gradient-text">.</span></h1><p class="muted">Technical Lead · Accion Labs · Pune, India · <a href="mailto:zilurrane@gmail.com" style="color:var(--orange)">Email ↗</a></p><section><h2>Experience</h2>{roles.map(([years,role,company,desc])=><div class="item"><p class="eyebrow">{years}</p><h3>{role} · {company}</h3><p>{desc}</p></div>)}</section><section><h2>Technical expertise</h2><div class="skill-row">{['JavaScript','TypeScript','React','Angular','Node.js','Java','AI agents','LangChain','RAG','MSSQL','PostgreSQL','Cloudflare','Docker','GitHub Actions'].map(x=><span>{x}</span>)}</div></section><section><h2>Education</h2><p>Bachelor of Engineering (Computer Engineering), RMCET, Mumbai University · 2012–2016.</p></section><section><h2>Certifications</h2><p>Generative AI for JavaScript Developers (LangChain, RAG); Microservices with NodeJS and React; MongoDB M220JS; Cloud Native Twelve-Factor Applications; .NET Framework.</p></section><section><h2>Publications</h2><p>Use of Hadoop Framework for Web Based Sentiment Analysis; Machine Learning Algorithm For Sentimental Analysis of Twitter Feeds.</p></section><section><h2>Profiles</h2><p><a href="https://github.com/zilurrane" style="color:var(--orange)">GitHub</a> · <a href="https://www.linkedin.com/in/zilurane" style="color:var(--orange)">LinkedIn</a> · <a href="/projects/" style="color:var(--orange)">Selected projects</a></p></section></div></Base>
+<NeoLayout
+ title="Resume & Engineering Experience | Zilu Rane"
+ description="Professional experience and technical expertise of Zilu Rane, full-stack engineer and Technical Lead, including JavaScript, React, Node.js, cloud and AI workflows."
+ canonical="https://zilu.dev/resume/"
+ schema={{'@type':'ProfilePage',name:'Zilu Rane Resume',url:'https://zilu.dev/resume/',mainEntity:{'@id':'https://zilu.dev/#person'}}}
+>
+ <div class="site-width neo-page">
+   <nav class="neo-breadcrumb" aria-label="Breadcrumb"><a href="/">Home</a><span class="slash" aria-hidden="true">/</span><span aria-current="page">Resume</span></nav>
+   <header class="neo-intro">
+     <div class="neo-intro-copy">
+       <p class="neo-overline">CAREER / EXPERIENCE / 04</p>
+       <h1 class="neo-h1">The work <span class="neo-highlight">so far.</span></h1>
+       <p class="neo-lede">Zilu Rane · Technical Lead at Accion Labs · Pune, India. Full-stack development, technical leadership and practical AI experimentation.</p>
+       <div class="neo-meta-line" style="margin-top:19px">
+         <a class="btn primary" href="mailto:zilurrane@gmail.com">Contact me ↗</a>
+         <a class="btn" href="https://www.linkedin.com/in/zilurane" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a>
+       </div>
+     </div>
+     <div class="neo-issue pink" aria-hidden="true"><b>9+</b><span>YEARS IN ENGINEERING</span></div>
+   </header>
+   <div class="neo-feature-strip" aria-label="Career overview">
+     <div class="neo-feature"><span>DISCIPLINE</span><b>Full-stack</b></div>
+     <div class="neo-feature"><span>SPECIALTY</span><b>Engineering systems</b></div>
+     <div class="neo-feature"><span>CURRENT ROLE</span><b>Technical Lead</b></div>
+   </div>
+   <div class="neo-article-layout">
+     <section aria-labelledby="experience-heading">
+       <div class="neo-toolbar"><h2 id="experience-heading" class="neo-section-heading" style="margin:0">Experience</h2><span class="neo-pill">{roles.length} ROLES</span></div>
+       <div class="neo-timeline">
+         {roles.map(([years,role,company,desc],i)=>(
+           <article class="neo-card neo-timeline-item">
+             <div class="period"><span class="neo-number" style="margin-bottom:11px">{String(i+1).padStart(2,'0')}</span>{years}</div>
+             <div><h3>{role}</h3><span class="org">{company}</span><p>{desc}</p></div>
+           </article>
+         ))}
+       </div>
+     </section>
+     <aside class="neo-sidebar" aria-label="Technical expertise and career details">
+       <section class="neo-card">
+         <h2>Technical expertise</h2>
+         <div class="neo-tags">{skills.map(s=><span>{s}</span>)}</div>
+       </section>
+       <section class="neo-card">
+         <h2>Education</h2>
+         <p>Bachelor of Engineering (Computer Engineering), RMCET, Mumbai University · 2012–2016.</p>
+       </section>
+       <section class="neo-card">
+         <h2>Profiles</h2>
+         <div class="neo-contact-links">
+           <a href="https://github.com/zilurrane" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+           <a href="https://www.linkedin.com/in/zilurane" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a>
+           <a href="/projects/">Selected projects ↗</a>
+         </div>
+       </section>
+     </aside>
+   </div>
+   <section class="neo-section-block" aria-label="Credentials and publications">
+     <div class="neo-grid">
+       <section class="neo-card neo-panel neo-reading">
+         <p class="neo-overline">CONTINUING EDUCATION</p>
+         <h2 class="neo-section-heading">Certifications</h2>
+         <ul class="neo-list">
+           <li>Generative AI for JavaScript Developers (LangChain, RAG)</li>
+           <li>Microservices with NodeJS and React</li>
+           <li>MongoDB M220JS</li>
+           <li>Cloud Native Twelve-Factor Applications</li>
+           <li>.NET Framework</li>
+         </ul>
+       </section>
+       <section class="neo-card neo-panel neo-reading">
+         <p class="neo-overline">RESEARCH & WRITING</p>
+         <h2 class="neo-section-heading">Publications</h2>
+         <ul class="neo-list">
+           <li>Use of Hadoop Framework for Web Based Sentiment Analysis</li>
+           <li>Machine Learning Algorithm For Sentimental Analysis of Twitter Feeds</li>
+         </ul>
+         <a href="/writing/" class="neo-text-link">Explore technical writing ↗</a>
+       </section>
+     </div>
+   </section>
+ </div>
+</NeoLayout>

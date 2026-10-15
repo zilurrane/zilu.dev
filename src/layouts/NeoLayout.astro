@@ -1,5 +1,6 @@
 ---
 import '../styles/neo.css';
+import '../styles/neo-inner.css';
 const {
   title='Zilu Rane — Full-Stack Engineer',
   description='Full-stack engineering, developer tools and practical technology writing by Zilu Rane.',
@@ -57,10 +58,12 @@ const ld={'@context':'https://schema.org','@graph':[person,...(schema?[schema]:[
       <span><span class="brand-name">Zilu Rane <span aria-hidden="true">✳</span></span><span class="brand-sub">FULL-STACK ENGINEER / INDIA</span></span>
     </a>
     <nav class="desktop-nav" aria-label="Main navigation">
-      <a class:list={['nav-link',{'active':!isNews && Astro.url.pathname==='/'}]} href="/" aria-current={Astro.url.pathname==='/'?'page':undefined}>Home</a>
-      <a class:list={['nav-link',{'active':Astro.url.pathname.startsWith('/projects/')}]} href="/projects/" aria-current={Astro.url.pathname.startsWith('/projects/')?'page':undefined}>Projects</a>
-      <a class:list={['nav-link',{'active':isNews}]} href="/news/" aria-current={isNews?'page':undefined}>Daily news</a>
-      <a class:list={['nav-link',{'active':Astro.url.pathname.startsWith('/about/')}]} href="/about/" aria-current={Astro.url.pathname.startsWith('/about/')?'page':undefined}>About</a>
+      <a class:list={['nav-link',{active:Astro.url.pathname==='/'}]} href="/" aria-current={Astro.url.pathname==='/'?'page':undefined}>Home</a>
+      <a class:list={['nav-link',{active:Astro.url.pathname.startsWith('/projects/')}]} href="/projects/" aria-current={Astro.url.pathname.startsWith('/projects/')?'page':undefined}>Projects</a>
+      <a class:list={['nav-link',{active:Astro.url.pathname.startsWith('/writing/')}]} href="/writing/" aria-current={Astro.url.pathname.startsWith('/writing/')?'page':undefined}>Writing</a>
+      <a class:list={['nav-link',{active:isNews}]} href="/news/" aria-current={isNews?'page':undefined}>Daily news</a>
+      <a class:list={['nav-link',{active:Astro.url.pathname.startsWith('/about/')}]} href="/about/" aria-current={Astro.url.pathname.startsWith('/about/')?'page':undefined}>About</a>
+      <a class:list={['nav-link',{active:Astro.url.pathname.startsWith('/resume/')}]} href="/resume/" aria-current={Astro.url.pathname.startsWith('/resume/')?'page':undefined}>Resume</a>
     </nav>
     <div class="nav-side">
       <span class="status-tag"><span class="live-dot"></span> OPEN TO INTERESTING IDEAS</span>
@@ -77,9 +80,11 @@ const ld={'@context':'https://schema.org','@graph':[person,...(schema?[schema]:[
       <p class="foot-note">INDEPENDENT ENGINEERING · SOFTWARE · DAILY TECH BRIEFING</p>
     </div>
     <nav class="footer-links" aria-label="Footer navigation">
-      <a href="/">Home</a><a href="/news/">News</a>
+      <a href="/">Home</a><a href="/projects/">Projects</a><a href="/writing/">Writing</a><a href="/news/">News</a>
+      <a href="/about/">About</a><a href="/resume/">Resume</a>
       <a href="https://github.com/zilurrane" rel="noopener noreferrer" target="_blank">GitHub ↗</a>
       <a href="mailto:zilurrane@gmail.com">Email ↗</a>
+      <a href="/sitemap-index.xml">Sitemap</a>
     </nav>
   </footer>
   <script is:inline>

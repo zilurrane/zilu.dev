@@ -1,9 +1,44 @@
 ---
-import Base from '../../layouts/Base.astro';
+import NeoLayout from '../../layouts/NeoLayout.astro';
+import NeoProjectArt from '../../components/NeoProjectArt.astro';
 import {projects} from '../../data/projects';
-import ProjectVisual from '../../components/ProjectVisual.astro';
-import PrivateProjectPreview from '../../components/PrivateProjectPreview.astro';
 ---
-<Base title="Engineering Projects | Zilu Rane" description="Explore engineering case studies, developer tooling, open-source projects and full-stack applications by Zilu Rane." canonical="https://zilu.dev/projects/" schema={{'@type':'CollectionPage',name:'Engineering Projects by Zilu Rane',url:'https://zilu.dev/projects/'}}>
-<div class="wrap"><header class="mock-subhero"><p class="mock-kicker">PORTFOLIO / CASE STUDIES</p><h1>Engineering work,<br/><span class="mock-gradient-text">built with intention.</span></h1><p>Engineering case studies and open-source repositories. Each overview covers the problem, approach and technology without invented outcomes.</p></header><section class="mock-content-grid" aria-label="Engineering projects">{projects.map(p=><a href={'/projects/'+p.slug+'/'} class="mock-content-card"><p class="mock-kicker">{p.category}</p><h2>{p.title} ↗</h2><p>{p.description}</p><div class="mock-chips">{p.stack.map(t=><span>{t}</span>)}</div>{p.url?<ProjectVisual project={p}/>:<PrivateProjectPreview slug={p.slug}/>}</a>)}</section></div>
-</Base>
+<NeoLayout
+ title="Engineering Projects & Open Source | Zilu Rane"
+ description="Explore full-stack engineering case studies, QueryDeck, enterprise architecture, JavaScript tools, Cloudflare automation and open-source software by Zilu Rane."
+ canonical="https://zilu.dev/projects/"
+ schema={{'@type':'CollectionPage',name:'Engineering Projects by Zilu Rane',url:'https://zilu.dev/projects/',hasPart:projects.map(p=>({'@type':'CreativeWork',name:p.title,url:'https://zilu.dev/projects/'+p.slug+'/'}))}}
+>
+ <div class="site-width neo-page">
+   <nav class="neo-breadcrumb" aria-label="Breadcrumb"><a href="/">Home</a><span class="slash" aria-hidden="true">/</span><span aria-current="page">Projects</span></nav>
+   <header class="neo-intro">
+     <div class="neo-intro-copy">
+       <p class="neo-overline">SELECTED ENGINEERING / 01</p>
+       <h1 class="neo-h1">Built with <span class="neo-highlight">intention.</span></h1>
+       <p class="neo-lede">Software tools, real-world systems and open-source experiments. A closer look at the problems, technical decisions and trade-offs behind the work.</p>
+     </div>
+     <div class="neo-issue blue" aria-hidden="true"><b>{String(projects.length).padStart(2,'0')}</b><span>PROJECT NOTES</span></div>
+   </header>
+   <div class="neo-toolbar"><p>INDEX / PROJECTS / {String(projects.length).padStart(2,'0')} ENTRIES</p><a href="/about/">How I work ↗</a></div>
+   <section aria-label="Engineering project collection" class="neo-grid">
+     {projects.map((p,i)=>(
+       <a class="neo-card neo-card-link" href={'/projects/'+p.slug+'/'} aria-label={'Explore '+p.title+' project case study'}>
+         <div class="neo-card-body">
+           <div class="neo-card-top">
+             <div class="neo-meta-line"><span class="neo-number">{String(i+1).padStart(2,'0')}</span><span class="neo-pill">{p.category}</span></div>
+             <span class="neo-card-arrow" aria-hidden="true">↗</span>
+           </div>
+           <h2>{p.title}</h2>
+           <p>{p.description}</p>
+           <div class="neo-tags" aria-label="Technology stack">{p.stack.map(s=><span>{s}</span>)}</div>
+         </div>
+         <NeoProjectArt project={p}/>
+       </a>
+     ))}
+   </section>
+   <section class="neo-card neo-cta" aria-labelledby="project-cta">
+     <div><h2 id="project-cta">Something worth building?</h2><p>Have an engineering challenge or an idea you want to explore?</p></div>
+     <a class="btn" href="mailto:zilurrane@gmail.com">Let's talk <span aria-hidden="true">↗</span></a>
+   </section>
+ </div>
+</NeoLayout>

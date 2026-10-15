@@ -1,5 +1,61 @@
 ---
-import Base from '../../layouts/Base.astro';
+import NeoLayout from '../../layouts/NeoLayout.astro';
 ---
-<Base title="About Zilu Rane | Engineering & Open Source" description="Learn about Zilu Rane's full-stack engineering background, open-source work, AI interests and development approach." canonical="https://zilu.dev/about/" schema={{'@type':'ProfilePage',mainEntity:{'@id':'https://zilu.dev/#person'}}}>
-<div class="wrap mock-prose"><p class="mock-kicker">About / The person behind the code</p><h1>Hi, I'm <span class="mock-gradient-text">Zilu.</span></h1><p>I’m a Pune-based Technical Lead at Accion Labs, with 9+ years of development and automation-testing experience. I work across React, Node.js, Angular, React Native, cloud platforms and AI workflows such as LangChain and retrieval-augmented generation.</p><p>I previously worked at e-Zest (which was acquired by Accion Labs), Larsen & Toubro Infotech and LifeCOMPILERS. My public projects include Cloudflare Workers automation, event-driven microservices and open-source integrations.</p><h2>How I approach software</h2><p>I prefer practical architecture, readable code, sensible performance trade-offs, and tools that solve real problems. I also enjoy experimenting with AI workflows and sharing what I learn.</p><h2>Outside the code</h2><p>I enjoy mentoring, writing technical notes and contributing to developer communities.</p><h2>Get in touch</h2><p><a href="mailto:zilurrane@gmail.com" class="btn primary">Email me ↗</a> <a href="https://github.com/zilurrane" class="btn">GitHub ↗</a></p></div></Base>
+<NeoLayout
+ title="About Zilu Rane — Full-Stack Engineer & Technical Lead"
+ description="Learn about Zilu Rane, a Pune-based full-stack engineer and Technical Lead working with JavaScript, React, Node.js, Java, cloud systems and AI workflows."
+ canonical="https://zilu.dev/about/"
+ schema={{'@type':'ProfilePage',name:'About Zilu Rane',url:'https://zilu.dev/about/',mainEntity:{'@id':'https://zilu.dev/#person'}}}
+>
+ <div class="site-width neo-page">
+   <nav class="neo-breadcrumb" aria-label="Breadcrumb"><a href="/">Home</a><span class="slash" aria-hidden="true">/</span><span aria-current="page">About</span></nav>
+   <header class="neo-intro">
+     <div class="neo-intro-copy">
+       <p class="neo-overline">THE PERSON BEHIND THE CODE / 03</p>
+       <h1 class="neo-h1">Hi, I'm <span class="neo-highlight blue">Zilu.</span></h1>
+       <p class="neo-lede">I care about thoughtful engineering: building systems that are useful, maintainable and pleasant to work with.</p>
+     </div>
+     <div class="neo-issue blue" aria-hidden="true"><b>9+</b><span>YEARS BUILDING</span></div>
+   </header>
+   <div class="neo-feature-strip" aria-label="Engineering interests">
+     <div class="neo-feature"><span>01 / MY WORK</span><b>Full-stack engineering</b></div>
+     <div class="neo-feature"><span>02 / MY FOCUS</span><b>Architecture & AI</b></div>
+     <div class="neo-feature"><span>03 / MY INTEREST</span><b>Mentoring & open source</b></div>
+   </div>
+   <div class="neo-article-layout">
+     <div class="neo-card neo-panel neo-reading">
+       <p class="neo-overline">ABOUT ME</p>
+       <h2 class="neo-section-heading">Software should make sense.</h2>
+       <p>I'm a Pune-based Technical Lead at Accion Labs, with 9+ years of development and automation-testing experience. I work across React, Node.js, Angular, React Native, cloud platforms and AI workflows such as LangChain and retrieval-augmented generation.</p>
+       <p>I previously worked at e-Zest (which was acquired by Accion Labs), Larsen & Toubro Infotech and LifeCOMPILERS. My public projects include Cloudflare Workers automation, event-driven microservices and open-source integrations.</p>
+       <h2>How I approach engineering</h2>
+       <p>I prefer practical architecture, readable code, sensible performance trade-offs, and tools that solve real problems. I enjoy experimenting with AI workflows and sharing what I learn along the way.</p>
+       <h2>Outside the code</h2>
+       <p>I enjoy mentoring, writing technical notes and contributing to developer communities.</p>
+       <div class="neo-meta-line">
+         <a href="/projects/" class="btn primary">See my work <span aria-hidden="true">↗</span></a>
+         <a href="/resume/" class="btn">View resume ↗</a>
+       </div>
+     </div>
+     <aside class="neo-sidebar" aria-label="About and contact links">
+       <section class="neo-card neo-person-card">
+         <div class="neo-portrait-wrap"><img src="/images/zilu-portrait-2026-hd.webp" width="960" height="1200" loading="lazy" decoding="async" alt="Portrait of Zilu Rane"/></div>
+         <div class="neo-person-caption"><strong>Zilu Rane</strong><span>ENGINEER · BUILDER · MENTOR</span></div>
+       </section>
+       <section class="neo-card">
+         <h2>Find me online</h2>
+         <p>Conversations about full-stack engineering, developer tooling and AI.</p>
+         <div class="neo-contact-links">
+           <a href="https://github.com/zilurrane" target="_blank" rel="noopener noreferrer">GitHub <span aria-hidden="true">↗</span></a>
+           <a href="https://www.linkedin.com/in/zilurane" target="_blank" rel="noopener noreferrer">LinkedIn <span aria-hidden="true">↗</span></a>
+           <a href="https://dev.to/zilurrane" target="_blank" rel="noopener noreferrer">DEV Community <span aria-hidden="true">↗</span></a>
+         </div>
+       </section>
+     </aside>
+   </div>
+   <section class="neo-card neo-cta" aria-labelledby="contact-title">
+     <div><h2 id="contact-title">Want to build something together?</h2><p>For engineering conversations, collaboration or an interesting idea.</p></div>
+     <a href="mailto:zilurrane@gmail.com" class="btn">Get in touch <span aria-hidden="true">↗</span></a>
+   </section>
+ </div>
+</NeoLayout>

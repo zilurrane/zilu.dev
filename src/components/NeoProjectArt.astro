@@ -1,0 +1,49 @@
+---
+const {project}=Astro.props;
+const slug=project.slug;
+const kind={
+ 'querydeck':'sql',
+ 'enterprise-applications':'enterprise',
+ 'linkedin-signal-agent':'signal',
+ 'whatsapp-actions':'automate',
+ 'ticketing':'events',
+ 'learnings':'ai'
+}[slug]||'ai';
+const label='Conceptual illustration for '+project.title+' — not an actual product screenshot';
+---
+<div class:list={['neo-art',kind]} role="img" aria-label={label}>
+ {kind==='sql'&&<>
+   <div class="neo-code-bar"><i></i><i></i><i></i><strong>QueryDeck / workspace</strong></div>
+   <div class="neo-code-area">
+     <span><b class="sql">SELECT</b> name, status</span>
+     <span><b class="sql">FROM</b> projects</span>
+     <span><b class="sql">WHERE</b> active = <b class="token">true</b>;</span>
+     <div class="neo-table"><span>ID</span><span>NAME</span><span>STATUS</span><span>01</span><span>QueryDeck</span><span>Active</span><span>02</span><span>Workspace</span><span>Active</span></div>
+   </div>
+ </>}
+ {kind==='enterprise'&&<>
+   <div class="neo-app-box">Angular UI</div>
+   <div class="neo-app-arrows" aria-hidden="true">↕</div>
+   <div class="neo-app-box">Spring Boot API</div>
+   <div class="neo-app-arrows" aria-hidden="true">↕</div>
+   <div class="neo-app-box">SQL Server · Versions</div>
+ </>}
+ {kind==='signal'&&<>
+   <div class="neo-code-bar"><i></i><i></i><i></i><strong>TECH SIGNALS / DAILY</strong></div>
+   <div class="neo-art-heading">Signal over noise.</div>
+   <div class="neo-signal-bars">{[76,45,92,58,83,37,68,94,55,79,62].map(value=><span style={'--bar:'+value+'%'}></span>)}</div>
+ </>}
+ {kind==='automate'&&<>
+   <div class="neo-code-bar"><i></i><i></i><i></i><strong>CI / AUTOMATION</strong></div>
+   <div class="neo-chat"><strong>WhatsApp workflow notification</strong><span>Deployment workflow completed.</span><small>GitHub Actions → Twilio</small></div>
+ </>}
+ {kind==='events'&&<>
+   <div class="neo-event">React</div><span class="neo-event-arrow" aria-hidden="true">→</span>
+   <div class="neo-event">Node API</div><span class="neo-event-arrow" aria-hidden="true">→</span>
+   <div class="neo-event">NATS</div>
+ </>}
+ {kind==='ai'&&<>
+   <div><div class="neo-ai-symbol">prompt() ↗</div><div class="neo-ai-sub">explore / iterate / learn</div></div>
+ </>}
+ <span class="disclosure">INTERFACE CONCEPT · NOT A SCREENSHOT</span>
+</div>
