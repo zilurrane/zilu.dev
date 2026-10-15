@@ -50,6 +50,15 @@ try {
       assert(card && card.x>=8 && card.x+card.width<=profile.width+2,'Hero card outside viewport '+profile.name);
       assert.equal(await page.locator('.projects-grid .project').count(),2,'Expected two wireframe project cards');
       assert.equal(await page.locator('.news-preview .news-preview-item').count(),3,'Expected three latest news links');
+      const columns=await page.evaluate(()=>{
+        const hero=document.querySelector('.hero').getBoundingClientRect();
+        const stats=document.querySelector('.quick-cards').getBoundingClientRect();
+        const projects=document.querySelector('.projects').getBoundingClientRect();
+        return {heroLeft:hero.left,statsLeft:stats.left,projectsLeft:projects.left,heroRight:hero.right,statsRight:stats.right};
+      });
+      assert(Math.abs(columns.statsLeft-columns.heroLeft)<=2 && Math.abs(columns.statsRight-columns.heroRight)<=2,
+        'Statistic cards must align with the hero content shell: '+JSON.stringify(columns));
+      assert(Math.abs(columns.projectsLeft-columns.heroLeft)<=2,'Projects section should share the same content shell');
     }
     if(path==='/news/'){
       assert.equal(await page.locator('.news-list .story').count(),5,'Expected five sourced news stories');
