@@ -8,10 +8,14 @@ const month=date.toLocaleDateString('en-GB',{month:'long',timeZone:'UTC'}).toUpp
 const year=date.getUTCFullYear();
 const categoryKeys=['ai','tooling','saas','cloud','india'];
 const badgeClasses=['accent-yellow','accent-blue','accent-pink','accent-orange','accent-mint'];
+function teaser(summary){
+ const first=summary.match(/^.*?[.!?](?:\s|$)/s);
+ return (first?.[0]??summary.slice(0,190)).trim();
+}
 ---
 
  <div class="site-width site-announcement"><span><b>✳ THE DAILY DOWNLOAD</b> &nbsp; Five source-linked developments for software builders</span><span>02 / 02 ↗</span></div>
- <section class="site-width news-top" aria-labelledby="news-title"><div><div class="section-overline">THE DAILY DOWNLOAD / TECH & IDEAS</div><h1 id="news-title">{detail ? <>Daily tech news,<br/><em>{displayDate}.</em></> : <>Tech news,<br/>minus <em>the noise.</em></>}</h1><p class="news-intro">Five useful developments in AI, dev tooling, SaaS, security and Indian technology. Concise, source-linked, and written for curious builders.</p><div class="tag-row"><span class="pill accent-yellow">✳ Daily brief</span><span class="pill">5 categories</span><span class="pill">Original sources ↗</span></div></div><div class="edition-tile" aria-label={'Issue for '+displayDate}><span class="issue">DAILY EDITION / {year}</span><span class="day">{day}</span><span class="month">{month}</span><span class="year">{weekday} · IST</span></div></section>
+ <section class="site-width news-top" aria-labelledby="news-title"><div><div class="section-overline">THE DAILY DOWNLOAD / TECH & IDEAS</div><h1 id="news-title">{detail ? <>Daily tech news,<br/><em>{displayDate}.</em></> : <>Tech news,<br/>minus <em>the noise.</em></>}</h1><p class="news-intro">Five useful developments in AI, dev tooling, SaaS, security and Indian technology. Concise, source-linked, and written for curious builders.</p><p class="micro muted">CURATED BY <a class="source-link" href="/about/">Zilu Rane</a> · ORIGINAL SOURCES CREDITED BELOW</p><div class="tag-row"><span class="pill accent-yellow">✳ Daily brief</span><span class="pill">5 categories</span><span class="pill">Original sources ↗</span></div></div><div class="edition-tile" aria-label={'Issue for '+displayDate}><span class="issue">DAILY EDITION / {year}</span><span class="day">{day}</span><span class="month">{month}</span><span class="year">{weekday} · IST</span></div></section>
  <section class="site-width news-metrics" aria-label="Edition details"><div class="news-metric"><span>01 / HEADLINES</span><strong>05 stories</strong><span>Curated, not infinite</span></div><div class="news-metric"><span>02 / COVERAGE</span><strong>05 beats</strong><span>From AI to Indian tech</span></div><div class="news-metric"><span>03 / READING TIME</span><strong>~4 min</strong><span>Quick, practical context</span></div></section>
  <div class="site-width news-layout"><section aria-labelledby="stories-heading"><div class="section-top"><div><div class="section-overline">TODAY'S READING LIST</div><h2 id="stories-heading" class="section-title">The briefing <span class="rotated-star">✳</span></h2></div><span class="tiny-pill accent-yellow">ISSUE / {edition.date.replaceAll('-','')}</span></div><div class="result-label"><span id="result-count" aria-live="polite">5 of 5 stories</span><button id="clear-filters" type="button">Clear filters</button></div><div class="news-list">
 {edition.stories.map((story,i) => (
@@ -21,8 +25,17 @@ const badgeClasses=['accent-yellow','accent-blue','accent-pink','accent-orange',
    <span class="micro muted"><time datetime={edition.date}>{displayDate}</time> / SOURCE LINKED</span>
   </div>
   <h3>{story.headline}</h3>
-  <p class="story-summary">{story.summary}</p>
-  <div class="impact"><b>✳ WHY IT MATTERS</b><p>{story.why_it_matters}</p></div>
+  {detail ? (
+   <>
+    <p class="story-summary">{story.summary}</p>
+    <div class="impact"><b>✳ WHY IT MATTERS</b><p>{story.why_it_matters}</p></div>
+   </>
+  ) : (
+   <>
+    <p class="story-summary">{teaser(story.summary)}</p>
+    <a class="source-link" href={'/news/'+edition.date+'-daily-tech-news/#story-'+(i+1)}>Read full briefing and why it matters <span aria-hidden="true">↗</span></a>
+   </>
+  )}
   <div class="story-bottom">
    <span class="micro muted">ORIGINAL REPORT</span>
    <a class="source-link" href={story.source_url} target="_blank" rel="noopener noreferrer">
@@ -41,9 +54,9 @@ const badgeClasses=['accent-yellow','accent-blue','accent-pink','accent-orange',
 <span><time datetime={item.date}>{new Date(item.date+'T12:00:00Z').toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric',timeZone:'UTC'})}</time></span>
 <span>{item.date===edition.date?'NOW ↗':'↗'}</span></a>
 ))}
-<a class="archive-link" href="/news/"><span>All editions</span><span>↗</span></a>
+<a class="archive-link" href="/news/archive/"><span>All editions</span><span>↗</span></a>
 </div>
-<div class="sidebar-box"><h3 class="sidebar-title">A little about this brief</h3><div class="legend" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div><p class="sidebar-text">A compact, useful reading habit. Stories are grouped by topic, each with a plain-English summary and why it matters to engineers.</p><a href="/" class="source-link" style="margin-top:10px">Meet the author →</a></div></aside></div>
+<div class="sidebar-box"><h3 class="sidebar-title">A little about this brief</h3><div class="legend" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div><p class="sidebar-text">A curated secondary digest with attributed sources. Open an edition for complete summaries and practical context; consult each original source for primary reporting.</p><a href="/" class="source-link" style="margin-top:10px">Meet the author →</a></div></aside></div>
 
 <script is:inline>
 (() => {

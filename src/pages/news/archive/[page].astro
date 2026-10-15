@@ -1,0 +1,24 @@
+---
+import NeoLayout from '../../../layouts/NeoLayout.astro';
+import NeoArchive from '../../../components/NeoArchive.astro';
+import editions from '../../../../news/briefings.json';
+const PAGE_SIZE=12;
+const sorted=[...editions].sort((a,b)=>b.date.localeCompare(a.date));
+export function getStaticPaths(){
+ const count=Math.ceil(editions.length/12);
+ return Array.from({length:Math.max(0,count-1)},(_,i)=>({params:{page:String(i+2)}}));
+}
+const page=Number(Astro.params.page);
+const totalPages=Math.max(1,Math.ceil(sorted.length/PAGE_SIZE));
+const current=sorted.slice((page-1)*PAGE_SIZE,page*PAGE_SIZE);
+const canonical='https://zilu.dev/news/archive/'+page+'/';
+---
+<NeoLayout
+ title={'Daily Tech News Archive — Page '+page+' | Zilu Rane'}
+ description={'Older source-linked technology briefings, page '+page+'. Read curated AI, developer tooling, SaaS, cloud and Indian technology stories.'}
+ canonical={canonical}
+ breadcrumbName={'Archive Page '+page}
+ schema={{'@type':'CollectionPage',name:'Daily Tech News Archive Page '+page,url:canonical,isPartOf:{'@id':'https://zilu.dev/#website'}}}
+>
+ <NeoArchive editions={current} page={page} totalPages={totalPages}/>
+</NeoLayout>

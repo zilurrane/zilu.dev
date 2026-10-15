@@ -2,6 +2,7 @@
 import NeoLayout from '../../layouts/NeoLayout.astro';
 import NeoNews from '../../components/NeoNews.astro';
 import editions from '../../../news/briefings.json';
+
 export function getStaticPaths(){
  return editions.map(edition=>({params:{slug:edition.date+'-daily-tech-news'},props:{edition}}));
 }
@@ -9,22 +10,40 @@ const {edition}=Astro.props;
 const sorted=[...editions].sort((a,b)=>b.date.localeCompare(a.date));
 const displayDate=new Date(edition.date+'T12:00:00Z').toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric',timeZone:'UTC'});
 const url='https://zilu.dev/news/'+edition.date+'-daily-tech-news/';
+const title='Daily Tech Briefing — '+displayDate+' | Zilu Rane';
+const sourceUrls=edition.stories.map(s=>s.source_url);
 ---
 <NeoLayout
- title={'Daily Tech News — '+displayDate+' | Zilu Rane'}
- description={edition.stories.map(s=>s.headline).slice(0,3).join('; ').slice(0,155)}
+ title={title}
+ description={'Five curated, source-linked technology stories for '+displayDate+'. AI agents, developer tooling, SaaS, cybersecurity and Indian technology.'}
  canonical={url}
+ breadcrumbName={'Daily Tech News '+edition.date}
  type="article"
  schema={{
-  '@type':'NewsArticle',
-  headline:'Daily Tech News — '+displayDate,
+  '@type':'BlogPosting',
+  '@id':url+'#briefing',
+  headline:'Daily Technology Briefing — '+displayDate,
+  name:'Daily Technology Briefing — '+displayDate,
+  description:'A curated secondary digest of five technology developments with links to their original sources.',
   datePublished:edition.date,
+  inLanguage:'en',
   author:{'@id':'https://zilu.dev/#person'},
   publisher:{'@id':'https://zilu.dev/#person'},
-  mainEntityOfPage:url,
+  isPartOf:{'@id':'https://zilu.dev/#website'},
+  mainEntityOfPage:{'@type':'WebPage','@id':url},
   articleSection:edition.stories.map(s=>s.category),
-  citation:edition.stories.map(s=>s.source_url),
-  hasPart:edition.stories.map((s,i)=>({'@type':'Article',headline:s.headline,articleSection:s.category,position:i+1,citation:s.source_url}))
+  keywords:edition.stories.map(s=>s.category).join(', '),
+  citation:sourceUrls,
+  isBasedOn:sourceUrls,
+  hasPart:edition.stories.map((s,i)=>({
+   '@type':'Article',
+   '@id':url+'#story-'+(i+1),
+   headline:s.headline,
+   description:s.summary,
+   articleSection:s.category,
+   citation:s.source_url,
+   url:url+'#story-'+(i+1)
+  }))
  }}
 >
  <NeoNews edition={edition} sorted={sorted} detail={true}/>

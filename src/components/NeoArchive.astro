@@ -1,0 +1,45 @@
+---
+const {editions,page=1,totalPages=1}=Astro.props;
+const formatted=(date)=>new Date(date+'T12:00:00Z').toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric',timeZone:'UTC'});
+const base='/news/archive/';
+const prev=page>1?(page===2?base:base+(page-1)+'/'):null;
+const next=page<totalPages?base+(page+1)+'/':null;
+---
+<div class="site-width neo-page">
+ <nav class="neo-breadcrumb" aria-label="Breadcrumb">
+  <a href="/">Home</a><span class="slash" aria-hidden="true">/</span>
+  <a href="/news/">Daily news</a><span class="slash" aria-hidden="true">/</span>
+  <span aria-current="page">Archive{page>1?' · Page '+page:''}</span>
+ </nav>
+ <header class="neo-intro">
+  <div class="neo-intro-copy">
+   <p class="neo-overline">EVERY EDITION / ORIGINAL SOURCES</p>
+   <h1 class="neo-h1">The news <span class="neo-highlight pink">archive.</span></h1>
+   <p class="neo-lede">Browse previous daily briefings. Every issue contains five curated technology developments with links to primary sources, a factual summary, and practical engineering context.</p>
+  </div>
+ </header>
+ <div class="neo-toolbar"><p>ARCHIVE / PAGE {page} OF {totalPages} / {editions.length} ISSUES ON THIS PAGE</p><a href="/news/">Latest edition ↗</a></div>
+ <section class="neo-grid" aria-label="Daily briefing editions">
+ {editions.map((edition,i)=>(
+   <article class="neo-card neo-writing-card">
+    <div class="neo-card-top">
+      <span class="neo-number">{String((page-1)*12+i+1).padStart(2,'0')}</span>
+      <span class="neo-pill"><time datetime={edition.date}>{formatted(edition.date)}</time></span>
+    </div>
+    <h2><a href={'/news/'+edition.date+'-daily-tech-news/'}>Daily Tech News — {formatted(edition.date)} ↗</a></h2>
+    <p>Five source-linked developments across AI agents, developer tooling, SaaS, cybersecurity and Indian technology.</p>
+    <ul class="neo-archive-headlines">
+      {edition.stories.map((story,index)=>(
+       <li><a href={'/news/'+edition.date+'-daily-tech-news/#story-'+(index+1)}>{story.headline}</a></li>
+      ))}
+    </ul>
+    <a class="source" href={'/news/'+edition.date+'-daily-tech-news/'}>Read the full briefing <span aria-hidden="true">↗</span></a>
+   </article>
+ ))}
+ </section>
+ <nav class="neo-archive-pagination" aria-label="News archive pages">
+   {prev?<a class="btn" href={prev} rel="prev">← Newer editions</a>:<span></span>}
+   <span class="micro" aria-current="page">Page {page} of {totalPages}</span>
+   {next?<a class="btn primary" href={next} rel="next">Older editions →</a>:<span></span>}
+ </nav>
+</div>

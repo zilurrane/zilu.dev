@@ -214,3 +214,12 @@ main#main{flex:1;min-width:0}
 
 /* Timeline markers remain compact when the two-column resume collapses. */
 .neo-timeline-item .neo-number{width:34px;justify-self:start}
+
+/* Crawlable news archive, styled to match editorial cards and print cleanly. */
+.neo-archive-headlines{margin:2px 0 13px;padding-left:19px;color:var(--muted);display:grid;gap:8px}
+.neo-archive-headlines li{font-size:12px;line-height:1.55;overflow-wrap:anywhere}
+.neo-archive-headlines a{color:var(--ink);text-decoration:underline;text-underline-offset:3px;text-decoration-color:var(--dots)}
+.neo-archive-headlines a:hover{color:var(--orange);text-decoration-color:var(--orange)}
+.neo-archive-pagination{display:flex;align-items:center;justify-content:space-between;gap:14px;margin:27px 0}
+.neo-archive-pagination>*{min-width:0}
+@media(max-width:570px){.neo-archive-pagination{flex-wrap:wrap}.neo-archive-pagination .micro{order:3;width:100%;text-align:center}.neo-archive-headlines{gap:7px}}

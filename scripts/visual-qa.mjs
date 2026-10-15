@@ -12,7 +12,7 @@ const profiles=[
  {name:'mobile',width:390,height:844},{name:'small-mobile',width:320,height:740}
 ];
 const results=[];
-const routes=['/','/news/','/projects/','/projects/querydeck/','/writing/','/about/','/resume/','/404.html'];
+const routes=['/','/news/','/news/archive/','/projects/','/projects/querydeck/','/writing/','/about/','/resume/','/404.html'];
 mkdirSync('visual-qa-results',{recursive:true});
 try {
  for(const profile of profiles){
@@ -71,7 +71,8 @@ try {
     }
     if(path==='/news/'){
       assert.equal(await page.locator('.news-list .story').count(),5,'Expected five sourced news stories');
-      assert.equal(await page.locator('.story .impact').count(),5,'Missing why-it-matters blocks');
+      assert.equal(await page.locator('.story .impact').count(),0,'News index must not duplicate the full article');
+      assert.equal(await page.locator('.news-list a[href*="-daily-tech-news/#story-"]').count(),5,'Teasers must link to the full edition');
       assert.equal(await page.locator('.story .source-link[href^="https://"]').count(),5,'Missing primary-source links');
     }
     if(path==='/projects/'){
@@ -104,6 +105,10 @@ try {
     if(path.startsWith('/projects/') && path!=='/projects/'){
       assert.equal(await page.locator('.neo-breadcrumb[aria-label="Breadcrumb"]').count(),1,'Project breadcrumbs missing');
     }
+    if(path==='/news/archive/'){
+      assert((await page.locator('.neo-archive-headlines li').count())>=5,'Archive must link to full edition stories');
+      assert.equal(await page.locator('.neo-archive-pagination').count(),1,'Archive pagination missing');
+    }
     const slug=path==='/'?'home':path.replace(/\//g,'');
     await page.screenshot({path:'visual-qa-results/'+slug+'-'+profile.name+'-'+theme+'.png',fullPage:true});
     results.push({page:path,profile:profile.name,theme,...diagnostics,status:'PASS'});
@@ -135,6 +140,7 @@ try {
  const dated=await page.goto(origin+editionPath,{waitUntil:'domcontentloaded'});
  assert.equal(dated?.status(),200,'Dated news edition route is broken');
  assert.equal(await page.locator('.news-list .story').count(),5,'Dated news must show all five stories');
+ assert.equal(await page.locator('.story .impact').count(),5,'Dated edition must include all five why-it-matters sections');
  assert.equal(await page.locator('link[rel="canonical"]').getAttribute('href'),origin.replace('http://127.0.0.1:4321','https://zilu.dev')+editionPath);
  await page.goto(origin+'/',{waitUntil:'domcontentloaded'});
  const button=page.locator('.theme-toggle');

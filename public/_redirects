@@ -1,0 +1,7 @@
+# Legacy URLs from the pre-Astro portfolio. Astro emits the canonical slash routes.
+/resume.html /resume/ 301
+/news/index.html /news/ 301
+/writing/index.html /writing/ 301
+/projects/index.html /projects/ 301
+/index.html / 301
+/sitemap.xml /sitemap-index.xml 301
