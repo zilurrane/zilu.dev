@@ -1,5 +1,45 @@
 [
   {
+    "date": "2026-10-15",
+    "stories": [
+      {
+        "category": "AI Models & Agents",
+        "headline": "GitHub introduces HydraFusion Max for multi-model coding agents",
+        "summary": "On October 14, GitHub announced HydraFusion Max, a research-preview orchestration option for demanding coding and agentic tasks. HydraFusion's updated model pool includes Claude Opus 5.5 and several GPT-6 models, with reasoning effort tailored to drafting, review and repair steps.",
+        "why_it_matters": "Developers can evaluate workflows that combine multiple models without manually coordinating every stage, although both HydraFusion options remain in research preview.",
+        "source_url": "https://github.blog/changelog/2026-10-14-hydrafusion-updates-and-new-max-option/"
+      },
+      {
+        "category": "Developer Tooling",
+        "headline": "GitHub Actions introduces workflow dependency lockfiles",
+        "summary": "On October 14, GitHub launched public preview support for GitHub Actions workflow dependency lockfiles on several plans. The gh actions-lock extension records exact commits for actions and reusable workflows, and Dependabot can update matching lockfile entries.",
+        "why_it_matters": "Pinned workflow dependencies make CI/CD execution more reproducible and reduce the risk of silently changing code behind moving tags or branches.",
+        "source_url": "https://github.blog/changelog/2026-10-14-github-actions-workflow-lockfiles-in-public-preview/"
+      },
+      {
+        "category": "SaaS",
+        "headline": "Atlassian explains how context graphs improve enterprise AI",
+        "summary": "On October 14, Atlassian published an explanation of how its Teamwork Graph connects organizational knowledge across people, projects, documentation, code and decisions for AI retrieval. The article argues that relationship-aware retrieval provides better context than searching disconnected content alone.",
+        "why_it_matters": "SaaS teams building enterprise agents can use graph-connected context to make answers more relevant and potentially reduce inference costs.",
+        "source_url": "https://www.atlassian.com/blog/ai-at-work/ai-strategy-context-graph"
+      },
+      {
+        "category": "Cybersecurity & Cloud",
+        "headline": "Google Cloud discloses critical Application Integration authorization flaw",
+        "summary": "In an October 14 security bulletin, Google Cloud disclosed CVE-2026-85298, an incorrect-authorization vulnerability affecting Application Integration before August 27, 2026. Google says an authenticated user could have escalated privileges to impersonate a project service account; the flaw was patched on August 27 and requires no customer action.",
+        "why_it_matters": "The disclosure underscores the security risks of cloud service-account impersonation and the importance of least-privilege access reviews, even for managed integrations.",
+        "source_url": "https://docs.cloud.google.com/support/bulletins"
+      },
+      {
+        "category": "Indian Tech & Business",
+        "headline": "TCS selected for MyState core banking modernization",
+        "summary": "On October 14, Tata Consultancy Services announced that Australia's MyState Limited selected its TCS BaNCS Global Banking Platform for core banking transformation. The project aims to consolidate banking systems and customer servicing following MyState Bank's merger with Auswide Bank.",
+        "why_it_matters": "The agreement illustrates international demand for Indian IT firms' enterprise banking platforms and modernization expertise.",
+        "source_url": "https://www.tcs.com/who-we-are/newsroom/press-release/mystate-limited-selects-tcs-bancs-transform-core-banking-operations"
+      }
+    ]
+  },
+  {
     "date": "2026-10-14",
     "stories": [
       {
