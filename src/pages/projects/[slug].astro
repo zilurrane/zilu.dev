@@ -13,6 +13,7 @@ const related=projects.filter(p=>p.slug!==project.slug).slice(0,2);
  title={project.title+' — Engineering Case Study | Zilu Rane'}
  description={project.description}
  canonical={url}
+ breadcrumbName={project.title}
  schema={{'@type':project.url?'SoftwareSourceCode':'CreativeWork',name:project.title,url,description:project.description,author:{'@id':'https://zilu.dev/#person'},...(project.url?{codeRepository:project.url}:{})}}
 >
  <article class="site-width neo-page">
