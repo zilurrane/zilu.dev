@@ -16,7 +16,7 @@ for (const width of widths) {
     regenerate = existing.mtimeMs < originalStat.mtimeMs;
   } catch {}
   if (!regenerate) continue;
-  const { info } = await sharp(original)
+  const info = await sharp(original)
     .resize({ width, height: width, fit: 'inside', withoutEnlargement: true })
     .webp({ quality: width <= 80 ? 75 : 78, effort: 5 })
     .toFile(destination);
