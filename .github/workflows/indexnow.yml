@@ -1,0 +1,25 @@
+name: Notify IndexNow about published news
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'news/briefings.json'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  indexnow:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Submit changed news pages after live verification
+        env:
+          BEFORE_SHA: ${{ github.event.before }}
+          INDEXNOW_KEY: a79324475344492a88032981a11668f8
+        run: node scripts/submit-indexnow.mjs
