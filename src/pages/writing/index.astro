@@ -1,6 +1,7 @@
 ---
 import NeoLayout from '../../layouts/NeoLayout.astro';
 const articles=[
+ {date:'2026-10-16',title:'Grok Bot vs Meta Muse vs OpenAI Dots: Which One Is Better?',desc:'A short, practical look at three new AI agents and who they are useful for.',url:'/writing/grok-bot-vs-muse-vs-dots/',tag:'AI Agents',label:'COMPARISON'},
  {date:'2021-06-29',title:'Express CORS middleware unable to store cookies in the browser',desc:'Debugging credential handling and cross-origin cookies in Express applications.',url:'https://dev.to/zilurrane/express-js-cors-middleware-unable-to-store-cookies-on-browser-55g6',tag:'Node.js',label:'BACKEND'},
  {date:'2018-11-22',title:'Playing and learning Docker together',desc:'Notes for developers exploring Docker and container workflows.',url:'https://dev.to/zilurrane/playing-and-learning-docker-together-45p5',tag:'Docker',label:'DEVOPS'},
  {date:'2018-06-04',title:'Generate release-mode APK for a React Native project',desc:'Preparing an Android release build for publishing.',url:'https://dev.to/zilurrane/generate-release-mode-apk-for-react-native-project-to-publish-on-playstore-5f78',tag:'React Native',label:'MOBILE'}
@@ -9,7 +10,7 @@ const displayDate=(date)=>new Date(date+'T12:00:00Z').toLocaleDateString('en-GB'
 ---
 <NeoLayout
  title="Technical Writing & Engineering Notes | Zilu Rane"
- description="Read practical engineering notes by Zilu Rane on Express CORS, Docker and React Native, plus daily sourced technology news."
+ description="Read practical engineering notes on AI agents, Express CORS, Docker, React Native and daily technology news."
  canonical="https://zilu.dev/writing/"
  schema={{'@type':'CollectionPage',name:'Technical Writing',url:'https://zilu.dev/writing/',author:{'@id':'https://zilu.dev/#person'},hasPart:articles.map(a=>({'@type':'BlogPosting',headline:a.title,url:a.url,datePublished:a.date}))}}
 >
@@ -19,7 +20,7 @@ const displayDate=(date)=>new Date(date+'T12:00:00Z').toLocaleDateString('en-GB'
      <div class="neo-intro-copy">
        <p class="neo-overline">NOTES FROM THE WORKBENCH / 02</p>
        <h1 class="neo-h1">Ideas worth<br/><span class="neo-highlight pink">sharing.</span></h1>
-       <p class="neo-lede">Practical engineering notes from projects, experiments and things that didn't work the first time. Original articles are hosted on DEV Community.</p>
+       <p class="neo-lede">Practical engineering notes from projects, experiments and things that didn't work the first time. New articles are published here; earlier writing is also available on DEV Community.</p>
      </div>
      <div class="neo-issue pink" aria-hidden="true"><b>{String(articles.length).padStart(2,'0')}</b><span>PUBLISHED NOTES</span></div>
    </header>
@@ -30,7 +31,7 @@ const displayDate=(date)=>new Date(date+'T12:00:00Z').toLocaleDateString('en-GB'
        <p class="article-date"><time datetime={a.date}>{displayDate(a.date)}</time> / {a.label}</p>
        <h2>{a.title}</h2>
        <p>{a.desc}</p>
-       <a href={a.url} class="source" target="_blank" rel="noopener noreferrer" aria-label={'Read '+a.title+' on DEV Community'}>Read original article <span aria-hidden="true">↗</span></a>
+       <a href={a.url} class="source" target="_blank" rel="noopener noreferrer" aria-label={'Read '+a.title+' on DEV Community'}>{a.url.startsWith('/')?'Read article':'Read original article'} <span aria-hidden="true">↗</span></a>
      </article>)}
    </section>
    <section class="neo-section-block" aria-labelledby="briefing-title">
