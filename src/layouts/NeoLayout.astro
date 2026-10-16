@@ -59,25 +59,47 @@ const ld={'@context':'https://schema.org','@graph':[site,person,...(breadcrumb?[
   <meta name="theme-color" content="#fff2dc" media="(prefers-color-scheme: light)"/>
   <meta name="theme-color" content="#1a1b1a" media="(prefers-color-scheme: dark)"/>
   <script type="application/ld+json" set:html={JSON.stringify(ld).replaceAll('<','\\u003c')}/>
-  <!-- GA4: one config call handles page views; Enhanced Measurement handles outbound clicks. -->
-  <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-PKJDMTWK4Q"></script>
+  <!-- Queue analytics immediately, but load the third-party library after the page is usable. -->
   <script is:inline>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){ window.dataLayer.push(arguments); }
-    gtag('js', new Date());
-    gtag('config', 'G-PKJDMTWK4Q');
+    (() => {
+      const measurementId = 'G-PKJDMTWK4Q';
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){ window.dataLayer.push(arguments); }
+      window.gtag = gtag;
+      gtag('js', new Date());
+      gtag('config', measurementId);
 
-    // Measure explicit contact intent; do not send personal email addresses.
-    document.addEventListener('click', (event) => {
-      const target = event.target;
-      const element = target instanceof Element ? target : target?.parentElement;
-      const link = element?.closest('a[href]');
-      if (!link) return;
-      const href = link.getAttribute('href') || '';
-      if (href.toLowerCase().startsWith('mailto:')) {
-        gtag('event', 'contact_click', { contact_method: 'email' });
+      let started = false;
+      let timer;
+      const events = ['pointerdown', 'keydown', 'touchstart'];
+      function startAnalytics() {
+        if (started) return;
+        started = true;
+        clearTimeout(timer);
+        for (const type of events) window.removeEventListener(type, startAnalytics);
+        const script = document.createElement('script');
+        script.async = true;
+        script.src = 'https://www.googletagmanager.com/gtag/js?id=' + encodeURIComponent(measurementId);
+        document.head.appendChild(script);
       }
-    });
+      for (const type of events) window.addEventListener(type, startAnalytics, { once: true, passive: true });
+      // Keep passive visitors counted; only postpone expensive parsing during initial rendering.
+      if (document.readyState === 'complete') {
+        timer = setTimeout(startAnalytics, 2500);
+      } else {
+        window.addEventListener('load', () => { timer = setTimeout(startAnalytics, 2500); }, { once: true });
+      }
+
+      // Queue contact intent even if GA4 hasn't downloaded yet.
+      document.addEventListener('click', (event) => {
+        const target = event.target;
+        const element = target instanceof Element ? target : target?.parentElement;
+        const link = element?.closest('a[href]');
+        if (link?.getAttribute('href')?.toLowerCase().startsWith('mailto:')) {
+          gtag('event', 'contact_click', { contact_method: 'email' });
+        }
+      });
+    })();
   </script>
   <script is:inline>
     try {
