@@ -59,26 +59,26 @@ const ld={'@context':'https://schema.org','@graph':[site,person,...(breadcrumb?[
   <meta name="theme-color" content="#fff2dc" media="(prefers-color-scheme: light)"/>
   <meta name="theme-color" content="#1a1b1a" media="(prefers-color-scheme: dark)"/>
   <script type="application/ld+json" set:html={JSON.stringify(ld).replaceAll('<','\\u003c')}/>
-  <!-- Google Analytics 4: single page_view per full page load -->
+  <!-- GA4: one config call handles page views; Enhanced Measurement handles outbound clicks. -->
   <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-PKJDMTWK4Q"></script>
   <script is:inline>
     window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
+    function gtag(){ window.dataLayer.push(arguments); }
     gtag('js', new Date());
     gtag('config', 'G-PKJDMTWK4Q');
+
+    // Measure explicit contact intent; do not send personal email addresses.
     document.addEventListener('click', (event) => {
-      const link = event.target.closest?.('a[href]');
+      const target = event.target;
+      const element = target instanceof Element ? target : target?.parentElement;
+      const link = element?.closest('a[href]');
       if (!link) return;
-      const href = link.getAttribute('href');
-      if (!href) return;
-      if (href.startsWith('mailto:')) {
+      const href = link.getAttribute('href') || '';
+      if (href.toLowerCase().startsWith('mailto:')) {
         gtag('event', 'contact_click', { contact_method: 'email' });
-      } else if (/^https?:\/\//i.test(href) && new URL(href, location.href).origin !== location.origin) {
-        gtag('event', 'outbound_link_click', { link_url: href, link_text: (link.textContent || '').trim().slice(0, 100) });
       }
     });
   </script>
-
   <script is:inline>
     try {
       const value=localStorage.getItem('zilu-theme');
