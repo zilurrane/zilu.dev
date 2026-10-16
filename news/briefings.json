@@ -1,5 +1,45 @@
 [
   {
+    "date": "2026-10-16",
+    "stories": [
+      {
+        "category": "AI Models & Agents",
+        "headline": "Jais 3 launches six Arabic AI models and speech recognition",
+        "summary": "On October 15 at 18:30 IST, the Institute of Foundation Models and Inception42 launched Jais 3, a suite of six Arabic-language models ranging from 900 million to 375 billion parameters. The release also includes Jais Speech for recognizing Arabic dialects, and the models support agentic tool use and are available on Hugging Face.",
+        "why_it_matters": "Open models tailored to regional languages and dialects give developers and enterprises more options for building useful agents without relying entirely on general-purpose English-centric systems.",
+        "source_url": "https://www.prnewswire.com/news-releases/institute-of-foundation-models-and-inception42-launch-jais-3-the-worlds-leading-arabic-native-ai-for-speech-writing-and-agents-302909754.html"
+      },
+      {
+        "category": "Developer Tooling",
+        "headline": "BAND launches a desktop control center for multiple coding agents",
+        "summary": "On October 15 at 17:30 IST, BAND launched BAND for Developers, including a desktop application for coordinating multiple coding agents across tools, machines and environments. The platform lets agents share context, delegate tasks and hand off work while giving developers a visual view of progress and blockers.",
+        "why_it_matters": "Teams using several coding agents can reduce manual coordination and retain oversight of parallel software-development tasks without standardizing on one agent stack.",
+        "source_url": "https://www.prnewswire.com/news-releases/band-launches-band-for-developers-to-support-the-transformation-of-sdlc-collaboration-and-control-of-multiple-coding-agents-302909844.html"
+      },
+      {
+        "category": "SaaS",
+        "headline": "Benchling introduces two-way scientific data sharing with Snowflake",
+        "summary": "On October 15 at 18:30 IST, Benchling announced Direct Data Share, a public-beta integration that connects scientific data with Snowflake. It refreshes Benchling records into queryable Snowflake tables and brings external data back into Benchling, reducing the need for custom export pipelines.",
+        "why_it_matters": "Biotech SaaS users can keep research data accessible to analytics and AI workflows with less integration maintenance and fresher experimental context.",
+        "source_url": "https://www.prnewswire.com/news-releases/benchling-launches-direct-data-share-closing-the-loop-between-the-lab-and-the-ai-data-cloud-on-snowflake-302909992.html"
+      },
+      {
+        "category": "Cybersecurity & Cloud",
+        "headline": "Commvault adds threat hunting and clean recovery for Microsoft 365 backups",
+        "summary": "On October 15 at 18:00 IST, Commvault announced new Microsoft 365 data-security and threat-hunting capabilities covering protected Exchange, OneDrive, SharePoint and Teams data. Its tools can identify sensitive information and threats in backups, apply current threat intelligence to historical copies, and help select clean recovery points.",
+        "why_it_matters": "Organizations recovering from ransomware need to know which backups are safe to restore, not just whether backups exist; scanning protected SaaS data can reduce reinfection risk.",
+        "source_url": "https://www.prnewswire.com/news-releases/commvault-brings-discover-to-recover-resilience-to-microsoft-365-302908824.html"
+      },
+      {
+        "category": "Indian Tech & Business",
+        "headline": "Persistent reports 20% revenue growth and advances Nagarro acquisition",
+        "summary": "On October 15 at 18:09 IST, Pune-based Persistent Systems reported Q2 FY27 revenue of $487.6 million, up 20.0% year over year and 7.8% quarter over quarter. The company reported a 15.0% EBIT margin and said it had secured approximately 94.04% of Nagarro's share capital and voting rights, excluding treasury shares.",
+        "why_it_matters": "The results show momentum in India's digital-engineering services sector, while progress toward the Nagarro combination could expand Persistent's engineering capabilities and global reach.",
+        "source_url": "https://www.prnewswire.com/news-releases/persistent-announces-487-6m-revenue-in-q2-fy27-with-20-0-y-o-y-growth-302910072.html"
+      }
+    ]
+  },
+  {
     "date": "2026-10-15",
     "stories": [
       {
