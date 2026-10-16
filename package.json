@@ -4,7 +4,7 @@
   "type": "module",
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build",
+    "build": "node scripts/prepare-portraits.mjs && astro build",
     "preview": "astro preview",
     "deploy": "npm run build && wrangler deploy",
     "check": "astro check",
@@ -12,7 +12,8 @@
   },
   "dependencies": {
     "astro": "^5.15.0",
-    "@astrojs/sitemap": "^3.5.0"
+    "@astrojs/sitemap": "^3.5.0",
+    "sharp": "^0.34.4"
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.4",
