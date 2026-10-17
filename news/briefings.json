@@ -1,5 +1,45 @@
 [
   {
+    "date": "2026-10-17",
+    "stories": [
+      {
+        "category": "AI Models & Agents",
+        "headline": "Aignostics launches HETA Clinical AI tools for digital pathology",
+        "summary": "On October 16 at 15:30 IST, Aignostics announced HETA Clinical, a family of AI tools for examining digitized pathology slides. Its first four products assess slide quality, identify tumor regions, count mitoses and estimate tumor cellularity across cancer types. The company labels the products for research use only, not diagnostic procedures.",
+        "why_it_matters": "Specialized AI is moving into the steps surrounding clinical testing, where earlier quality checks and consistent slide analysis may help laboratories avoid wasted work. Its research-only status is an important limit on immediate clinical use.",
+        "source_url": "https://www.prnewswire.com/news-releases/aignostics-launches-heta-clinical-a-new-family-of-ai-products-that-speed-up-pathology-workflows-and-reduce-failed-molecular-tests-302910682.html"
+      },
+      {
+        "category": "SaaS",
+        "headline": "askROI owner outlines plans for a public listing of its AI software subsidiary",
+        "summary": "On October 17 at 02:00 IST, Hyperscale Data announced that its subsidiary askROI is preparing for a potential public listing in the second or third quarter of 2027. The company described possible routes including a reverse takeover, an IPO or a SPAC transaction, subject to financing, regulatory and market conditions. askROI offers a software platform with generative AI, business automation and productivity tools.",
+        "why_it_matters": "The proposal highlights efforts to finance and separately value AI software businesses, but it is a plan rather than a completed transaction. Investors and customers should distinguish the proposed timetable from a firm listing commitment.",
+        "source_url": "https://www.prnewswire.com/news-releases/hyperscale-data-announces-plan-for-its-askroi-subsidiary-to-go-public-in-the-second-or-third-quarter-of-2027-302911628.html"
+      },
+      {
+        "category": "Cybersecurity & Cloud",
+        "headline": "Advantech and DEKRA agree to collaborate on industrial cybersecurity compliance",
+        "summary": "On October 16 at 11:30 IST, Advantech announced a memorandum of understanding with testing and certification company DEKRA. The companies plan to combine industrial computing expertise and cybersecurity testing to help equipment makers address the EU Cyber Resilience Act and standards including IEC 62443. The announcement describes a planned collaboration rather than a completed certification program.",
+        "why_it_matters": "Manufacturers shipping connected industrial and edge-AI products into Europe face growing pressure to build security assurance into product design. Earlier testing could reduce compliance surprises and rework.",
+        "source_url": "https://www.prnewswire.com/news-releases/advantech-partners-with-dekra-signing-mou-to-strengthen-global-industrial-cybersecurity-compliance-in-response-to-eu-cra-302910960.html"
+      },
+      {
+        "category": "Cybersecurity & Cloud",
+        "headline": "Eventide completes SOC 2 Type 1 examination for cloud recording services",
+        "summary": "On October 16 at 18:09 IST, Eventide Communications announced completion of an independent SOC 2 Type 1 examination covering security and availability controls for its cloud solutions. The scope includes cloud-hosted recording services and Critical Insights AI, which supports transcription, search and operational analytics. A Type 1 examination assesses controls at a point in time rather than their effectiveness over an extended period.",
+        "why_it_matters": "Cloud tools used for mission-critical communications need demonstrable security controls. The examination gives prospective customers additional assurance, while leaving ongoing operating effectiveness to be evaluated separately.",
+        "source_url": "https://www.prnewswire.com/news-releases/eventide-communications-achieves-soc-2-compliance-for-cloud-based-mission-critical-solutions-302910742.html"
+      },
+      {
+        "category": "Indian Tech & Business",
+        "headline": "Chennai-based Zifo announces Nasscom recognition for AI-assisted lab data work",
+        "summary": "On October 16 at 19:30 IST, Chennai-based Zifo announced recognition in the enterprise Healthcare & Pharma category of the Nasscom AI Gamechangers Awards 2026. Its highlighted application uses AI to accelerate creation of master data for laboratory information management systems. The company presented the recognition as evidence of practical AI use in scientific informatics.",
+        "why_it_matters": "Laboratory systems often require extensive structured setup before teams can use them. Automating parts of that work could make Indian enterprise-AI expertise useful in specialized scientific software implementations.",
+        "source_url": "https://www.prnewswire.com/news-releases/zifo-recognized-by-nasscom-for-advancing-ai-driven-lab-transformation-302911239.html"
+      }
+    ]
+  },
+  {
     "date": "2026-10-16",
     "stories": [
       {
