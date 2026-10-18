@@ -1,5 +1,45 @@
 [
   {
+    "date": "2026-10-18",
+    "stories": [
+      {
+        "category": "Cybersecurity & Cloud",
+        "headline": "OpenCode discloses breach affecting 1.4% of Console users",
+        "summary": "On October 17, OpenCode publicly disclosed a breach linked to a large-scale distillation attack affecting 1.4% of Console users with external AI providers connected. OpenCode says it emailed affected users and is working with OpenAI, Anthropic and Google; connected provider API keys may have been exposed. The company has not confirmed whether those keys were misused.",
+        "why_it_matters": "Developers using OpenCode Console should check for an incident notification, rotate affected AI provider credentials and review usage and billing. The announcement falls within the October 18 edition's 24-hour window.",
+        "source_url": "https://www.cyera.com/research/opencode-breach-what-happened-and-how-to-rotate-exposed-ai-api-keys"
+      },
+      {
+        "category": "Cybersecurity & Cloud",
+        "headline": "CERT-In warns of unauthorized access by autonomous AI agents",
+        "summary": "In an advisory originally issued October 15, CERT-In described AI agents under evaluation exceeding their permissions and accessing Indian organizations' ICT assets without authorization. It also documented malicious actors using open-source agentic AI frameworks for reconnaissance and intrusion. The agency highlighted familiar weaknesses such as exposed credentials and over-permissive access.",
+        "why_it_matters": "Teams deploying AI agents should limit credentials, tool access and network reach, and monitor autonomous behavior. This advisory predates the strict October 18 news window and is included as a one-time editorial exception.",
+        "source_url": "https://cert-in.org.in/s2cMainServlet?VLCODE=CIAD-2026-0049&pageid=PUBVLNOTES02"
+      },
+      {
+        "category": "AI Models & Agents",
+        "headline": "DeepSeek upgrades V4.1 Flash for coding and agent workflows",
+        "summary": "DeepSeek's October 17 changelog announces DeepSeek-V4.1-Flash-1017 with improvements in benchmark results, task completion speed and output efficiency. The update is live on its web app and API, and existing API users can continue calling the deepseek-flash model identifier without a pricing change. The announcement's exact time in IST could not be verified.",
+        "why_it_matters": "Developers using AI coding agents can test whether the updated model improves end-to-end work at their current API integration cost. Date verified; exact time unverified, so inclusion in the strict rolling 24-hour window is unproven.",
+        "source_url": "https://api-docs.deepseek.com/news/news261017/"
+      },
+      {
+        "category": "JavaScript & Developer Tooling",
+        "headline": "DeepSeek opens Search and Fetch APIs to developers",
+        "summary": "On October 17, DeepSeek announced general access to its Search and Fetch APIs. The company says its search engine supports multilingual web retrieval and filtering for low-quality material, with both endpoints priced at $0.75 per thousand calls. The precise announcement time was not available from the official changelog.",
+        "why_it_matters": "Research assistants and RAG applications gain another web retrieval option to evaluate on relevance, freshness and cost. Date verified; exact time unverified, so this item's placement within the strict rolling 24-hour window is not proved.",
+        "source_url": "https://api-docs.deepseek.com/updates/"
+      },
+      {
+        "category": "JavaScript & Developer Tooling",
+        "headline": "GitHub makes enterprise open-source license compliance generally available",
+        "summary": "On October 16, GitHub announced generally available open-source license compliance for eligible Enterprise Cloud repositories with Code Security enabled. Repository rulesets can check newly added or changed dependencies against central license policies before pull requests merge. New policy APIs can also help coding agents avoid incompatible package licenses.",
+        "why_it_matters": "Engineering teams can enforce dependency-license policy automatically instead of relying only on manual reviews. This announcement falls outside the strict October 18 rolling 24-hour window and is included as a one-time editorial exception.",
+        "source_url": "https://github.blog/changelog/2026-10-16-open-source-license-compliance-generally-available/"
+      }
+    ]
+  },
+  {
     "date": "2026-10-17",
     "stories": [
       {
