@@ -1,5 +1,38 @@
 [
   {
+    "date": "2026-10-20",
+    "stories": [
+      {
+        "category": "Cybersecurity & Cloud",
+        "headline": "NorForge uncovers large-scale cyberattacks using autonomous Cairn AI agents",
+        "summary": "On October 19, NorForge published an investigation into exposed control panels for the Cairn autonomous agent framework. Researchers identified more than 20 panels likely tied to malicious operations, including one cluster containing over 1,100 attack projects. Reuters separately reported that AI agents were used in attacks against more than 100 company websites, including sites associated with Deere, SharkNinja and Cummins.",
+        "why_it_matters": "AI-assisted intrusion campaigns can scale vulnerability discovery and exploitation with limited human involvement. Engineering teams should audit exposed applications, strengthen credential controls and monitor for automated attacks. Date verified; exact primary-source announcement time unverified.",
+        "source_url": "https://norforge.com/blog/inside_cairn"
+      },
+      {
+        "category": "AI Models & Agents",
+        "headline": "Microsoft expands Project Perception with security controls for enterprise AI agents",
+        "summary": "On October 19, Microsoft introduced additions to Project Perception aimed at securing AI agents acting across enterprise systems. Its approach includes Guardian Agents, Dynamic Permissions and Dynamic Conditional Access to monitor behavior and limit authority as tasks and risks change. Microsoft recommends granting agents their own short-lived, task-specific permissions rather than inheriting a person's standing access.",
+        "why_it_matters": "As autonomous agents gain access to company data and tools, independent authorization and continuous monitoring become essential. Organizations building AI agents can apply least privilege and human approval boundaries to higher-risk actions. Date verified; exact primary-source announcement time unverified.",
+        "source_url": "https://www.microsoft.com/en-us/security/blog/2026/10/19/agents-are-your-newest-insiders-security-must-move-at-their-speed/"
+      },
+      {
+        "category": "AI & Developer Tooling",
+        "headline": "PyTorch announces TorchNeuron backend for AWS Trainium",
+        "summary": "On October 19, the PyTorch community announced TorchNeuron, a native PyTorch backend designed to run existing models on AWS Trainium2 and Trainium3 accelerators. It supports eager execution, torch.compile and custom kernels, reducing the need to rewrite model code for AWS chips. The announcement said the open-source public beta would become available on October 20.",
+        "why_it_matters": "AI developers gain another accelerator target while keeping familiar PyTorch workflows, potentially reducing platform lock-in. Teams should evaluate supported workloads and performance before migrating. Date verified; exact primary-source announcement time unverified.",
+        "source_url": "https://pytorch.org/blog/introducing-torchneuron-native-pytorch-backend-for-aws-trainium/"
+      },
+      {
+        "category": "AI & Cloud Security",
+        "headline": "US publicly discloses federal civilian agency order to remove DeepSeek products",
+        "summary": "A US Department of Homeland Security public-inspection notice filed on October 19 disclosed an earlier order excluding DeepSeek products from federal civilian agency IT procurement and requiring removal from their systems. The scope includes DeepSeek affiliates and certain third-party products or services developed using DeepSeek implementations. The order itself predates the notice; October 19 marks the public filing, not the original issuance.",
+        "why_it_matters": "Vendors serving US civilian agencies need to review model dependencies and procurement exposure, including embedded third-party implementations. The order is specific to federal civilian IT and does not amount to a general private-sector ban.",
+        "source_url": "https://public-inspection.federalregister.gov/2026-21447.pdf"
+      }
+    ]
+  },
+  {
     "date": "2026-10-18",
     "stories": [
       {
