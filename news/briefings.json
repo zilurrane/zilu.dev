@@ -1,5 +1,31 @@
 [
   {
+    "date": "2026-10-21",
+    "stories": [
+      {
+        "category": "AI Models & Agents",
+        "headline": "Inception introduces Mercury 3, a high-speed diffusion language model",
+        "summary": "On October 19, Inception announced Mercury 3, a diffusion-based language model that the company says reaches over 1,000 tokens per second on NVIDIA GPUs. It offers a one-million-token context window and an OpenAI-compatible API, targeting latency-sensitive applications such as coding agents, voice support and web navigation. Its speed and quality claims are vendor-reported and should be benchmarked independently.",
+        "why_it_matters": "Inference latency adds up across multi-step agent workflows, making substantially faster model output potentially valuable for developers building interactive applications. Its announced price and API compatibility make it practical to compare with existing models.",
+        "source_url": "https://www.inceptionlabs.ai/blog/introducing-mercury-3"
+      },
+      {
+        "category": "AI Models & Agents",
+        "headline": "MiniMax launches M3.1 Flash for coding, computer use and autonomous agents",
+        "summary": "On October 19, MiniMax rolled out M3.1 Flash, an AI model aimed at agentic workflows, coding, computer use and cybersecurity tasks. MiniMax claims almost threefold faster online inference and approximately 70% lower usage costs compared with its previous M3 model. The model is offered through MiniMax's developer services; the official announcement shows a release date but no exact time.",
+        "why_it_matters": "If independently validated, faster and cheaper model execution could improve the economics of long-running coding and business automation agents. Date verified; exact time unverified.",
+        "source_url": "https://www.minimax.io/blog/minimax-m31f"
+      },
+      {
+        "category": "SaaS & AI",
+        "headline": "Salesforce agrees to acquire Braze for approximately $5.66 billion",
+        "summary": "On October 20, Salesforce announced a definitive agreement to acquire customer-engagement platform Braze for approximately $5.66 billion in enterprise value. Braze provides real-time personalized messaging across websites, mobile apps, email, SMS and other channels. Salesforce plans to bring Braze's capabilities together with its marketing, CRM and data products; the transaction remains subject to closing conditions.",
+        "why_it_matters": "The proposed deal is a major consolidation of enterprise marketing software and underscores demand for real-time customer data and AI-driven engagement. Customers and competitors should watch how Salesforce integrates Braze into its platform.",
+        "source_url": "https://investor.salesforce.com/news/news-details/2026/Salesforce-Signs-Definitive-Agreement-to-Acquire-Braze/default.aspx"
+      }
+    ]
+  },
+  {
     "date": "2026-10-20",
     "stories": [
       {
