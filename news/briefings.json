@@ -1,5 +1,45 @@
 [
   {
+    "date": "2026-10-22",
+    "stories": [
+      {
+        "category": "Cybersecurity & Cloud",
+        "headline": "Microsoft links ConnectWise compromise to AI-assisted Storm-0940 campaign",
+        "summary": "In research published on October 21, Microsoft attributed the ConnectWise multi-tenant application supply-chain compromise to the China-state-aligned group Storm-0940. Microsoft says the group used the ARTEX agentic penetration-testing framework to speed up attacks and obtain privileged cloud access, sometimes in under three hours. Investigators observed follow-on activity through Microsoft Graph including reconnaissance, credential changes and attempts to expand privileges.",
+        "why_it_matters": "Organizations using compromised multi-tenant integrations should audit service-principal permissions, unusual Microsoft Graph activity and recently added credentials. The research adds new attribution and technical findings to an earlier incident. Date verified; exact original publication time unverified.",
+        "source_url": "https://www.microsoft.com/en-us/security/blog/2026/10/21/storm-0940-uses-artex-agentic-ai-connectwise-supply-chain-compromise/"
+      },
+      {
+        "category": "JavaScript & Developer Tooling",
+        "headline": "PHP issues emergency updates for two critical remote-code-execution flaws",
+        "summary": "On October 21, the PHP project released versions 8.5.12, 8.4.27, 8.3.36 and 8.2.35 to fix CVE-2026-109618 and CVE-2026-109619. Both flaws can allow unauthenticated remote code execution under affected conditions. PHP says there is no complete mitigation short of updating and advises administrators to apply the releases or vendor backports immediately.",
+        "why_it_matters": "Anyone operating PHP-backed services should inventory deployed runtimes, check distribution security updates and prioritize patching exposed servers. The release was scheduled for October 21 at 14:00 UTC (19:30 IST), as announced by the PHP security team.",
+        "source_url": "https://www.php.net/archive/2026.php"
+      },
+      {
+        "category": "AI & Cybersecurity",
+        "headline": "LiteLLM confirms malicious code in compromised v1.107.0 release",
+        "summary": "LiteLLM disclosed on October 21 that attackers compromised its release pipeline and distributed malicious v1.107.0 packages and container images. The malicious software could steal credentials and load remote-code-execution tools; the affected PyPI version was available from 11:39 to 13:23 UTC, and several container tags also pointed to compromised images. LiteLLM removed the affected releases and says earlier versions and its private enterprise release were unaffected.",
+        "why_it_matters": "Teams that installed the affected artifacts should isolate and rebuild impacted environments, investigate secret exposure and rotate potentially exposed credentials. The exact public-disclosure time is unverified; the compromise window is confirmed by LiteLLM.",
+        "source_url": "https://docs.litellm.ai/blog/security-incident-oct-21-2026"
+      },
+      {
+        "category": "Indian Tech & Cybersecurity",
+        "headline": "CERT-In warns about compromised eMudhra intermediate CA certificates",
+        "summary": "In an October 21 advisory, CERT-In warned that eight eMudhra intermediate certificate-authority keys were generated with insufficient cryptographic randomness, creating a risk of forged trusted website certificates. Google and Mozilla blocked affected intermediates, and eMudhra revoked them on October 18. eMudhra says domestic digital-signature and eSign infrastructure were unaffected, and none of the affected intermediates issued end-entity certificates.",
+        "why_it_matters": "Organizations should update certificate trust stores, check any reliance on the affected CAs and ensure unmanaged devices receive revocation protection. The original key-compromise discovery predates October 21; the CERT-In advisory is a newly issued development. Date verified; exact advisory publication time unverified.",
+        "source_url": "https://www.cert-in.org.in/s2cMainServlet?CACODE=CICA-2026-3649&pageid=PUBADV01"
+      },
+      {
+        "category": "Cybersecurity & Developer Tooling",
+        "headline": "OVHcloud reports malicious CLI release artifacts after developer account compromise",
+        "summary": "OVHcloud disclosed that an attacker compromised a developer account and replaced downloadable CLI binaries for versions 0.11.0 through 0.15.0 on October 19. The modified binaries were designed to collect sensitive local and cloud configuration data. OVHcloud removed affected artifacts, strengthened release controls and provided clean version 0.16.0.",
+        "why_it_matters": "Developers who downloaded or executed affected OVHcloud CLI binaries should review credential exposure, rotate secrets where warranted and install verified clean releases. The affected release incident occurred October 19; the project's GitHub advisory was published October 20.",
+        "source_url": "https://github.com/ovh/ovhcloud-cli/security/advisories/GHSA-862f-55f5-vmvw"
+      }
+    ]
+  },
+  {
     "date": "2026-10-21",
     "stories": [
       {
