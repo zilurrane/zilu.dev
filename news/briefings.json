@@ -1,5 +1,45 @@
 [
   {
+    "date": "2026-10-23",
+    "stories": [
+      {
+        "category": "Cybersecurity & Developer Tooling",
+        "headline": "GitLab patches CVSS 10.0 unauthenticated server RCE; CERT-In issues critical warning",
+        "summary": "GitLab released emergency security fixes on October 21 for Community and Enterprise editions, and CERT-In issued a critical vulnerability note on October 22. CVE-2026-110264 is an integer-overflow flaw in regular-expression compilation that can allow unauthenticated remote code execution under certain conditions; GitLab rates it CVSS 10.0. Fixed releases include 19.5.1, 19.4.3, 19.3.6, 19.2.9, 19.1.9, 19.0.10 and 18.11.13.",
+        "why_it_matters": "Self-managed GitLab servers are part of the software delivery supply chain and can expose source code, CI credentials and deployment access if compromised. GitLab urges affected operators to upgrade immediately; GitLab.com and the identified patched GitLab Dedicated versions already have the fixes. Announcement dates verified (October 21 vendor release and October 22 CERT-In warning); exact times unverified.",
+        "source_url": "https://docs.gitlab.com/releases/patches/patch-release-gitlab-19-5-1-released/"
+      },
+      {
+        "category": "AI Models & Agents",
+        "headline": "Anthropic unveils Claude Duet, a proactive AI agent that works across connected apps",
+        "summary": "On October 21, Anthropic announced Claude Duet, a proactive assistant that reviews connected apps, surfaces what needs attention and can continue executing tasks while the user is away. Built around Claude Opus 5.5, it can handle scheduling, dashboards, forecasts, prototypes and web applications, with approvals and safeguards for sensitive actions. The research preview is waitlisted and initially limited to US Pro and Max subscribers on web, iOS and Android.",
+        "why_it_matters": "The launch signals a shift from chatbots toward agents that monitor work, initiate suggestions and complete multi-step tasks. Teams evaluating such agents should assess data permissions, auditability, approval boundaries and reliability before granting broad app access. Date verified; exact original announcement time unverified.",
+        "source_url": "https://claude.com/resources/articles/claude-duet"
+      },
+      {
+        "category": "Cybersecurity & Java",
+        "headline": "Oracle issues out-of-band critical Java JSSE security alert, CVE-2026-91403",
+        "summary": "Oracle issued a separate security alert on October 21 for CVE-2026-91403, a CVSS 9.1 vulnerability in the JSSE component of Oracle Java SE and GraalVM. Oracle says an unauthenticated network attacker could exploit affected deployments to read or modify critical data, including through applications exposing the relevant APIs. The alert lists affected supported Java SE builds including 8u511, 11.0.33, 17.0.21 and 21.0.13, and links to alert-specific patch instructions.",
+        "why_it_matters": "Java application owners should assess their runtime vendor and affected JSSE exposure and apply the Oracle alert-specific fix or applicable vendor guidance, rather than assuming the routine October update is sufficient. Oracle has not stated that this flaw is actively exploited. Date verified; exact original announcement time unverified.",
+        "source_url": "https://www.oracle.com/security-alerts/alert-cve-2026-91403.html"
+      },
+      {
+        "category": "JavaScript & Developer Tooling",
+        "headline": "Node.js ships security updates for Brotli remote-code execution and TLS validation flaws",
+        "summary": "The Node.js project released security updates on October 21 for supported 26.x, 24.x and 22.x lines, including v26.12.1, v24.22.1 and v22.23.4. High-severity issues include CVE-2026-111497, a Brotli decoder out-of-bounds write that can permit remote code execution, and TLS hostname-validation bypasses. The updates also address other permission-model, DNS, crypto and dependency vulnerabilities.",
+        "why_it_matters": "Teams running Node.js APIs, services or build infrastructure should identify affected runtime versions and deploy the fixed releases promptly. Security-sensitive TLS and decompression paths deserve particular attention. Date verified; exact original release time unverified.",
+        "source_url": "https://nodejs.org/en/blog/vulnerability/october-2026-security-releases"
+      },
+      {
+        "category": "AI & Cloud Security",
+        "headline": "AWS fixes Kiro Crew agent flaw allowing WhatsApp users to control other sessions",
+        "summary": "AWS published an October 20 security bulletin for CVE-2026-112380, an authorization flaw in Kiro Crew's WhatsApp integration and internal subagent control endpoints. In certain non-default configurations, a participant in an allowed WhatsApp group could send instructions to another session's agent, causing tools to execute on the operator's machine while logs attributed the activity to the operator. Versions 0.4.0 through 0.7.1 are affected; version 0.7.2 fixes the issue, while default WhatsApp access settings are not affected.",
+        "why_it_matters": "Agent integrations that bridge chat messages to local tools require strong per-sender authorization and session isolation. Operators using affected Kiro Crew versions should upgrade and restrict or disable WhatsApp group access until patched. AWS timestamps the advisory October 20 at 13:00 PDT, equivalent to October 21 at 01:30 IST.",
+        "source_url": "https://aws.amazon.com/security/security-bulletins/2026-140-aws/"
+      }
+    ]
+  },
+  {
     "date": "2026-10-22",
     "stories": [
       {
