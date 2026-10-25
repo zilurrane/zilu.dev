@@ -1,5 +1,45 @@
 [
   {
+    "date": "2026-10-25",
+    "stories": [
+      {
+        "category": "AI models/agents",
+        "headline": "Moonshot launches Kimi K3.1 Pro with 1M-token context and coding-agent upgrades",
+        "summary": "Moonshot AI introduced Kimi K3.1 Pro and a Highspeed variant on October 23, making both available through Kimi, Kimi Code and its API. The company describes a 3T-class mixture-of-experts model with a one-million-token context window and stronger coding, 3D design and agent workflows; Highspeed is claimed to be two to three times faster. Full downloadable model weights are promised by November 4, and Moonshot says it deliberately reduced cyber-offensive capabilities before the planned open-weight release.",
+        "why_it_matters": "Developers can evaluate a new frontier-class coding and agent model immediately through the API, while teams considering self-hosting must wait for the actual weights. Vendor benchmark and safety claims need independent validation. Launch corroborated October 23 at 17:15 UTC (22:45 IST).",
+        "source_url": "https://www.kimi.ai/blog/kimi-k3-1-pro"
+      },
+      {
+        "category": "cybersecurity/cloud",
+        "headline": "CISA flags actively exploited Collabora CODE Server RCE affecting Nextcloud",
+        "summary": "On October 23, CISA added CVE-2026-110447 to its Known Exploited Vulnerabilities catalog after documented exploitation of the Collabora Online Built-in CODE Server app for Nextcloud. The command-injection vulnerability affects richdocumentscode versions before 26.4.303 and can allow remote code execution when the local CODE server is not running. This is not a newly discovered flaw: attacks were reported in September, but the October 23 KEV addition creates a new urgent remediation signal.",
+        "why_it_matters": "Nextcloud administrators using the optional built-in CODE Server should update to at least 26.4.303, inspect for previous compromise and prioritize the CISA October 26 federal remediation deadline where applicable. Standalone Collabora Online deployments are not affected by this specific issue. Date verified; exact KEV announcement time unverified.",
+        "source_url": "https://nvd.nist.gov/vuln/detail/CVE-2026-110447"
+      },
+      {
+        "category": "cybersecurity/cloud",
+        "headline": "Arista confirms actively exploited 9.9-severity VeloCloud Orchestrator privilege escalation",
+        "summary": "Arista disclosed CVE-2026-114625 on October 22 and CISA added it to the Known Exploited Vulnerabilities catalog on October 23. The SQL-injection flaw lets an authenticated user, including the lowest read-only tenant role, gain operator privileges in on-premises VeloCloud Orchestrator; Arista confirms exploitation in the wild. Affected release trains require updates to VCO 5.2.3.18, 6.1.3.10 or 6.4.2.12, while Arista says hosted and dedicated deployments have already been patched.",
+        "why_it_matters": "SD-WAN orchestrators are sensitive network-management control planes. Self-hosted operators should upgrade, restrict management access and investigate suspicious portal activity, rather than treating a read-only account as harmless. Vendor disclosure and KEV addition dates verified; exact announcement times unverified.",
+        "source_url": "https://www.arista.com/en/support/advisories-notices/security-advisory/24838-security-advisory-0199"
+      },
+      {
+        "category": "cybersecurity/cloud",
+        "headline": "HPE fixes 72 ArubaOS vulnerabilities, including eight maximum-severity flaws",
+        "summary": "HPE's October 22 security advisory HPESBNW05162 addresses 72 vulnerabilities across Aruba Networking AOS-8 and AOS-10 wireless operating systems. Eight are reported as CVSS 10.0, including CVE-2026-79844, an authentication bypass that could allow remote command execution under specified preconditions. HPE published patched releases for supported 10.8, 10.7, 10.4, 8.13 and 8.10 branches and says it was unaware of public exploit code when the bulletin was issued.",
+        "why_it_matters": "Organizations using Aruba access points, gateways and controllers should check affected firmware versions, prioritize upgrades and isolate management interfaces on trusted networks. The breadth and maximum severity justify urgent assessment despite no confirmed exploitation in HPE's initial advisory. Date verified as October 22; exact original publication time unverified.",
+        "source_url": "https://csaf.arubanetworking.hpe.com/2026/hpe_networking_-_hpesbnw05162.txt"
+      },
+      {
+        "category": "JavaScript/developer tooling",
+        "headline": "PHP warns of a separate unpatched session-upload RCE condition after emergency fixes",
+        "summary": "On October 23, the PHP security team published an informational advisory for CVE-2026-115560, a possible remote-code-execution issue not fixed by the October 21 PHP2Shell security releases. Exposure requires an unusual combination: the session serializer starts as php_binary or php_serialize, application code switches it to php before session_start(), and session upload progress remains enabled. PHP says a complete fix will arrive in the next regular bugfix release and recommends disabling session upload progress until then for affected deployments.",
+        "why_it_matters": "PHP application owners should audit runtime serializer changes and, where applicable, set session.upload_progress.enabled=0 at the server level and restart workers. The issue is distinct from the two already-published PHP2Shell CVEs, and the PHP team considers this specific configuration uncommon. Date verified as October 23; exact original publication time unverified.",
+        "source_url": "https://www.php.net/archive/2026.php#2026-10-23-1"
+      }
+    ]
+  },
+  {
     "date": "2026-10-24",
     "stories": [
       {
