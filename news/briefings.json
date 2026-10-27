@@ -1,5 +1,45 @@
 [
   {
+    "date": "2026-10-27",
+    "stories": [
+      {
+        "category": "AI models/agents",
+        "headline": "OpenAI releases GPT-6.1 Terra for computer-use agents at lower API prices",
+        "summary": "OpenAI introduced GPT-6.1 Terra on October 26 as a faster, lower-cost model for visual reasoning, computer use and high-volume professional workflows. It is available in ChatGPT Work, Codex and the API as gpt-6.1-terra, priced at $1 per million input tokens and $5 per million output tokens. OpenAI reports a 50.3% score on Terminal-Bench 4.0 at maximum reasoning effort versus 21.5% for GPT-5.6 Terra, although these are vendor-reported results.",
+        "why_it_matters": "Developers building high-volume coding and computer-use agents can evaluate a lower-cost model rather than defaulting to the most expensive frontier option. The official announcement is dated October 26; independently timestamped coverage appeared at 00:03 IST on October 27, while the exact original launch time remains unverified.",
+        "source_url": "https://openai.com/index/introducing-gpt-6-1-terra/"
+      },
+      {
+        "category": "SaaS & AI business",
+        "headline": "Anthropic publicly files for a Nasdaq IPO under ticker ANT",
+        "summary": "On October 26, Anthropic filed an S-1 registration statement for a proposed Nasdaq listing under ticker ANT, with the share count and offering price not yet determined. The filing reports approximately $16.3 billion in revenue and an $80.7 billion net loss for the first half of 2026, much of the latter reflecting noncash accounting adjustments. It also details substantial AI computing commitments and risks associated with autonomous models and enterprise deployments.",
+        "why_it_matters": "The filing makes the economics, infrastructure dependencies and governance of a leading enterprise AI provider visible to investors and customers. SEC EDGAR accepted the filing on October 26 at 18:30:11 IST; the offering has not yet become effective.",
+        "source_url": "https://www.anthropic.com/news/s1-sec"
+      },
+      {
+        "category": "AI models/agents",
+        "headline": "Cadence launches Maestro AI models for autonomous chip and system design",
+        "summary": "Cadence announced Maestro on October 26, a portfolio of domain-specialized models that work with its AI Super Agents and engineering design tools to automate semiconductor and system-design workflows. The company reports initial results of up to 30% better design quality and fivefold greater token efficiency compared with general-purpose foundation models. Maestro can run in Cadence's cloud, public clouds or customer-controlled on-premises environments, with select early access beginning in the fourth quarter of 2026.",
+        "why_it_matters": "Chipmakers may be able to automate complex design tasks while retaining control over proprietary engineering data, though the claimed gains require independent validation. A timestamped Business Wire distribution places the announcement on October 26 at 18:30 IST.",
+        "source_url": "https://www.cadence.com/en_US/home/company/newsroom/press-releases/pr/2026/cadence-introduces-maestro-a-domain-specialized-ai-model.html"
+      },
+      {
+        "category": "Indian tech/business/markets",
+        "headline": "Tata Communications plans up to $450 million for India's AI data-center network",
+        "summary": "Tata Communications announced plans on October 26 to invest $400 million to $450 million in roughly 10,000 kilometers of new AI-ready long-haul fiber across India. The proposed network will link data-center and cloud hubs, starting with the Mumbai-Pune-Hyderabad-Chennai corridor and expanding to other strategic locations. The company says the project will provide higher-capacity, lower-latency connectivity for hyperscalers, AI workloads and enterprises.",
+        "why_it_matters": "Large AI clusters need reliable high-bandwidth links between data centers as well as GPUs, making this a strategically significant Indian infrastructure commitment rather than a minor product update. A timestamped report described the announcement on October 26 at 14:10 IST; the exact company release time is unverified.",
+        "source_url": "https://www.tatacommunications.com/press-release/tata-communications-to-build-indias-ai-super-highway"
+      },
+      {
+        "category": "Cybersecurity/cloud",
+        "headline": "Microsoft ships emergency .NET security updates for Brotli memory corruption",
+        "summary": "Microsoft issued out-of-band updates for .NET 8, 9 and 10, plus .NET 11 Release Candidate 3, addressing CVE-2026-111497 in Brotli decompression and CVE-2026-114148 involving Linux tarball ownership. The Brotli flaw may let unauthenticated attackers read or corrupt memory when applications process attacker-controlled compressed data through enabled decompression paths; automatic decompression is not enabled by default. The release also completes fixes for two vulnerabilities that Microsoft's October 13 updates did not fully address.",
+        "why_it_matters": "Operators should install .NET 8.0.33, 9.0.22 or 10.0.14 as appropriate, and rebuild self-contained applications and containers; this is a new .NET remediation development distinct from earlier Node.js coverage. Microsoft's official GitHub advisory was opened on October 26 at 00:36:12 IST.",
+        "source_url": "https://devblogs.microsoft.com/dotnet/dotnet-october-2026-oob-security-updates/"
+      }
+    ]
+  },
+  {
     "date": "2026-10-25",
     "stories": [
       {
