@@ -1,5 +1,45 @@
 [
   {
+    "date": "2026-10-28",
+    "stories": [
+      {
+        "category": "AI Models & Developer Tooling",
+        "headline": "Harmonic expands Aristotle into formally verified C software and Verilog hardware",
+        "summary": "On October 27, Harmonic launched software and hardware formal verification in its Aristotle AI system, starting with C and Verilog. The agent proposes properties, proves them using machine-checked reasoning, and reports the assumptions behind each proof so engineers can integrate checks into continuous integration. Harmonic says trials found deep hardware bugs and improved a cryptographic arithmetic routine, but those performance claims are company-reported.",
+        "why_it_matters": "Formal proofs can catch correctness and security defects that ordinary tests miss, especially as AI-generated code expands. Teams building safety-critical software or chips can now evaluate a self-service verification agent, while independently reviewing the properties and assumptions being proved. Launch date verified; exact company publication time unverified, with a Reuters report timestamped October 27 at 22:03 IST.",
+        "source_url": "https://www.harmonic.fun/news/aristotle-software-hardware-verification/"
+      },
+      {
+        "category": "AI Infrastructure & Cloud",
+        "headline": "Oracle and Google bring TPU accelerators to OCI for the first time",
+        "summary": "Oracle and Google announced on October 27 that Google Tensor Processing Units will be offered through Oracle Cloud Infrastructure, the first hyperscale cloud outside Google to offer them. The partners plan to make TPUs available on OCI during calendar 2027, scaling deployments over multiple years. Oracle describes support for model training, reasoning and production inference, including Google's eighth-generation TPU architectures.",
+        "why_it_matters": "AI teams gain a potential alternative to GPU-only infrastructure and a new cloud venue for Google accelerators, though actual capacity, pricing and benchmarks remain to be seen. The primary press release was distributed October 27 at 12:07 ET, or 21:37 IST.",
+        "source_url": "https://www.oracle.com/news/announcement/ai-world-oracle-brings-google-tpus-to-oracle-cloud-infrastructure-2026-10-27/"
+      },
+      {
+        "category": "SaaS & AI Agents",
+        "headline": "SAP expands Joule Studio with cross-system agent orchestration and governance",
+        "summary": "At SAP TechEd on October 27, SAP announced expanded Joule Studio and Joule Work capabilities for building and coordinating enterprise AI agents. Joule Studio supports no-code and pro-code development with a choice of more than 70 AI models, while new gateway and governance capabilities aim to control agent access, policy enforcement and auditing across SAP and third-party systems. SAP also introduced its SAP-RPT-2.0 tabular foundation model and expanded enterprise data integrations; availability varies by feature.",
+        "why_it_matters": "Enterprise developers get a more integrated route to building governed agents around business data and workflows rather than stitching together separate agent and policy systems. Teams should distinguish available capabilities from previews and planned rollouts. SAP's primary announcement was distributed October 27 at 04:00 ET, or 13:30 IST.",
+        "source_url": "https://www.prnewswire.com/news-releases/sap-empowers-ai-developers-to-build-what-matters-and-turn-intent-into-autonomous-execution-302920376.html"
+      },
+      {
+        "category": "Cybersecurity & Developer Tooling",
+        "headline": "CISA confirms active exploitation of two critical PHP2Shell vulnerabilities",
+        "summary": "On October 26 in the United States, CISA added CVE-2026-109618 and CVE-2026-109619 to its Known Exploited Vulnerabilities catalog after obtaining evidence of active exploitation. The memory-corruption and stale internal request-state vulnerabilities were already patched in PHP security releases announced on October 21, but the new KEV additions establish exploitation in real attacks. CISA also updated its critical PHP alert and urged rapid remediation.",
+        "why_it_matters": "This is a material escalation beyond the earlier PHP patch announcement: exposed applications should be patched immediately and checked for signs of compromise, not simply queued for routine maintenance. CISA's bulletin was sent October 26 at 18:56 EDT, equivalent to October 27 at 04:26 IST.",
+        "source_url": "https://content.govdelivery.com/accounts/USDHSCISA/bulletins/4309083"
+      },
+      {
+        "category": "Cybersecurity & Developer Tools",
+        "headline": "Warp discloses third-party breach potentially exposing AI-agent traces",
+        "summary": "Warp's founder disclosed on October 26 that an attacker exploited a vendor used in Warp's infrastructure, potentially accessing a limited amount of AI-agent trace and telemetry data. Warp estimates that up to roughly 1% of users may have been affected, says identified users have been notified, and has engaged CrowdStrike and law enforcement. The company suspects an AI-agent swarm was involved, but the attack method, exposed data fields and final impact are not independently confirmed.",
+        "why_it_matters": "Developer-agent logs can contain sensitive workflow context, so affected teams should follow Warp's notices, review unusual account activity and assess whether secrets may have appeared in recorded sessions. The founder's timestamped public statement was posted October 26 at 19:26 UTC, or October 27 at 00:56 IST.",
+        "source_url": "https://x.com/zachlloydtweets/status/2114800787716972873"
+      }
+    ]
+  },
+  {
     "date": "2026-10-27",
     "stories": [
       {
