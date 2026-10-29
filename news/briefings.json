@@ -1,5 +1,45 @@
 [
   {
+    "date": "2026-10-29",
+    "stories": [
+      {
+        "category": "AI Models & Cybersecurity",
+        "headline": "Google introduces Gemini 4 Carbon, a frontier model focused on cybersecurity and long-running agents",
+        "summary": "On October 28, Google unveiled Gemini 4 Carbon, reporting major gains over Gemini 4 Argon in vulnerability discovery, software patching, secure coding and long-horizon engineering tasks. Google reports scores of 88.2% on SEC-bench Pro, 54.8% on ExploitGym and 71.0% on CWE-bench, but those performance figures require independent scrutiny. Access begins with selected cybersecurity defenders and expands gradually through Google's Fairwind Program, rather than an immediate public API rollout.",
+        "why_it_matters": "A model built to find and fix difficult software vulnerabilities could change security testing and autonomous coding workflows. Teams should monitor access, benchmark defensive performance independently and establish strict controls before connecting such agents to production systems. Announcement dated October 28; independent reporting published by 23:13 IST that day, while the exact first-publication minute is unverified.",
+        "source_url": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-carbon/"
+      },
+      {
+        "category": "JavaScript & Developer Tooling",
+        "headline": "GitHub makes Copilot Fusion generally available for multi-model coding-agent orchestration",
+        "summary": "At GitHub Universe on October 28, GitHub made Copilot Fusion generally available, allowing coding tasks to be routed across one or more AI models according to Standard, High or Max effort settings. GitHub says Fusion Max performs within two points of Claude Code with Opus 5.5 Max on the Artificial Analysis Coding Agent Index at roughly half the API cost per task and 40% less time; those comparisons are company-reported. The release extends the earlier HydraFusion research preview into Copilot workflows across supported development environments.",
+        "why_it_matters": "Model routing shifts coding-agent optimization from manually selecting an LLM to balancing task quality, latency and token spend across models. Engineering teams can compare Fusion with their existing coding agents and verify real-world cost and code-review outcomes. GitHub's October 28 keynote began at 21:30 IST, and contemporaneous reporting confirmed the announcement by approximately 22:00 IST; the precise individual release minute is unverified.",
+        "source_url": "https://github.blog/changelog/2026-10-28-route-and-orchestrate-models-with-github-copilot-fusion/"
+      },
+      {
+        "category": "Cybersecurity & Cloud",
+        "headline": "CISA confirms exploitation of Google Brotli and Adobe Commerce vulnerabilities",
+        "summary": "On October 27, CISA added CVE-2026-111497 in Google's Brotli decoder and CVE-2026-48356 in Adobe Commerce and Magento to its Known Exploited Vulnerabilities catalog after finding evidence of real-world exploitation. The Brotli flaw can corrupt memory when software processes crafted compressed data, while the Adobe flaw involves dangerous file uploads that can lead to code execution. Both vulnerabilities had fixes before this alert; the new development is confirmed exploitation, not a new patch release.",
+        "why_it_matters": "Teams should inventory vulnerable Brotli dependencies across Node.js, .NET, proxies and containers, and check Adobe Commerce or Magento deployments for missing patches and compromise indicators. CISA lists November 10 as the federal remediation deadline, but other exposed organizations should not wait. CISA timestamped the announcement October 27 at 15:30 EDT, equivalent to October 28 at 01:00 IST.",
+        "source_url": "https://content.govdelivery.com/accounts/USDHSCISA/bulletins/430af9d"
+      },
+      {
+        "category": "AI Models & Developer Tooling",
+        "headline": "Liquid AI releases six LFM3 open-weight multimodal models designed for on-device use",
+        "summary": "On October 27, Liquid AI introduced LFM3, a family of six approximately 2-billion-parameter models spanning text, vision, audio, multimodal interaction and structured decision-making. The LFM3-1.7B text model supports a 256,000-token context window, and Liquid says its architecture allows customization on a single GPU and deployment across phones, laptops and servers. Weights and APIs are available, subject to the LFM Open License rather than an unrestricted open-source license.",
+        "why_it_matters": "Developers building private, offline or low-latency AI applications gain a new set of small models to benchmark without depending entirely on hosted frontier APIs. Commercial teams should check licensing limits and validate performance on their own hardware and workloads. Liquid AI's timestamped launch post appeared October 27 at 17:07 UTC, or 22:37 IST.",
+        "source_url": "https://www.liquid.ai/blog/lfm3"
+      },
+      {
+        "category": "AI Infrastructure & Cloud",
+        "headline": "Akamai launches managed AI inference and WebAssembly-isolated agent execution services",
+        "summary": "On October 27, Akamai introduced Akamai Inference and Akamai Agent Sandbox in beta as part of its cloud platform. The inference service offers OpenAI-compatible access to hosted or custom open-weight models, with serverless and dedicated deployment options; the initial catalog includes 12 models. The sandbox, available through the Spin SDK, uses WebAssembly isolation to constrain agent-generated code, including its compute, memory, network and system capabilities.",
+        "why_it_matters": "Secure execution is becoming as important as model access for agents that write and run code. Developers can evaluate Akamai's integrated inference-and-sandbox approach against containers and microVMs, while treating beta availability and security claims as requiring validation. Akamai's investor release was timestamped October 27 at 06:30 EDT, equivalent to 16:00 IST.",
+        "source_url": "https://www.akamai.com/newsroom/press-release/akamai-launches-ai-inference-service-and-agent-execution-environment"
+      }
+    ]
+  },
+  {
     "date": "2026-10-28",
     "stories": [
       {
