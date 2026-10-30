@@ -1,5 +1,45 @@
 [
   {
+    "date": "2026-10-30",
+    "stories": [
+      {
+        "category": "AI Models & Developer Tooling",
+        "headline": "Mistral releases improved Large 4 open weights for coding agents and cyber defense",
+        "summary": "On October 29, Mistral released downloadable weights for an improved Mistral Large 4, following its October 6 API preview. The trillion-parameter mixture-of-experts model supports image input and long-context reasoning, with official FP8 and NVFP4 checkpoints available for self-hosting. Mistral reports gains in coding, cybersecurity and token efficiency; its Ecosystem Open-Weight License requires a separate commercial license for model-as-a-service operators.",
+        "why_it_matters": "Security and engineering teams can now evaluate, fine-tune and run a frontier-scale model within their own infrastructure rather than sending sensitive code and incident data to a hosted API. The weight release was reported at 10:00 PDT on October 29 (22:30 IST), confirming this new development within the research window; benchmark claims require independent testing.",
+        "source_url": "https://mistral.ai/news/mistral-large-4-oss/"
+      },
+      {
+        "category": "Cybersecurity & Cloud",
+        "headline": "CISA flags actively exploited GitLab server RCE and Cisco firewall VPN flaw",
+        "summary": "On October 29, CISA added CVE-2026-97229 in GitLab CE/EE and CVE-2026-76418 in Cisco ASA/FTD to its Known Exploited Vulnerabilities catalog. The GitLab flaw is a CVSS 10.0 unauthenticated code-execution issue involving crafted CI configuration regular expressions, while the Cisco flaw can let a remote unauthenticated attacker crash affected SSL VPN devices under specified conditions. Both vulnerabilities were disclosed earlier; confirmed exploitation and a November 1 federal remediation deadline are the new developments.",
+        "why_it_matters": "Self-managed GitLab and Cisco firewall administrators should prioritize vendor-fixed releases, investigate possible compromise where applicable and review exposed VPN configurations. The KEV additions are dated October 29 and were independently reported the same day; exact CISA catalog publication times are unverified.",
+        "source_url": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog"
+      },
+      {
+        "category": "Cybersecurity & Developer Tooling",
+        "headline": "WordPress 7.1.4 fixes upgrade-window remote code execution and multiple XSS flaws",
+        "summary": "The WordPress project released version 7.1.4 on October 28 to fix multiple security issues, including a weakness that can allow remote code execution during the upgrade process. The release also addresses stored cross-site scripting in blocks, the Interactivity API and other features, plus access-control and privacy issues. WordPress recommends immediate updates and is backporting fixes to eligible older branches.",
+        "why_it_matters": "Operators of WordPress sites should confirm that core and supported branches have received security fixes and that automatic updates completed successfully. The official release is dated October 28; a hosting provider confirmed active deployment by October 28 at 18:33 EDT (October 29, 04:03 IST), while the exact WordPress announcement time is unverified.",
+        "source_url": "https://wordpress.org/news/2026/10/wordpress-7-1-4/"
+      },
+      {
+        "category": "Cybersecurity & Infrastructure",
+        "headline": "CISA confirms exploited Linux kernel privilege flaw and VMware ESX logging bypass",
+        "summary": "On October 28, CISA added CVE-2026-46300 in the Linux kernel and CVE-2026-41709 in VMware ESX to its Known Exploited Vulnerabilities catalog. The Linux missing-initialization flaw can be chained with other weaknesses to gain elevated access, while the VMware flaw can let an attacker who already has administrator privileges perform some operations without logging them. Both issues were previously disclosed and patched; the new event is confirmation of exploitation, with federal remediation deadlines of October 31 and November 11 respectively.",
+        "why_it_matters": "Infrastructure teams should patch affected kernel and hypervisor builds, investigate pre-patch activity and avoid relying solely on ESX host logs when assessing a suspected compromise. The CISA additions are dated October 28 and were publicly circulated that day; exact initial CISA posting times are unverified.",
+        "source_url": "https://www.cisa.gov/news-events/alerts/2026/10/28/cisa-adds-two-known-exploited-vulnerabilities-catalog"
+      },
+      {
+        "category": "AI Agents & Developer Tooling",
+        "headline": "GitHub previews Copilot Projects and desktop computer use for multi-agent work",
+        "summary": "At GitHub Universe on October 28, GitHub introduced Copilot Projects in public preview to coordinate agents and context across repositories, designs and connected tools. The GitHub Copilot app can also work across desktop applications using computer use, with a public preview on Windows and macOS and user approval before controlling an app. These capabilities extend beyond the Copilot Fusion model-routing release covered previously.",
+        "why_it_matters": "Development teams can assess a more autonomous workflow that turns project goals into coordinated tasks and pull requests, while applying approval boundaries and limiting connected-app permissions. GitHub's dated announcement coincided with its October 28 keynote, which began at 21:30 IST; the exact individual product announcement time is unverified.",
+        "source_url": "https://github.blog/changelog/2026-10-28-github-copilot-app-universe-releases/"
+      }
+    ]
+  },
+  {
     "date": "2026-10-29",
     "stories": [
       {
