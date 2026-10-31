@@ -1,5 +1,45 @@
 [
   {
+    "date": "2026-10-31",
+    "stories": [
+      {
+        "category": "Cybersecurity & Cloud",
+        "headline": "Binance confirms $6.3 billion hot-wallet breach and reserves funds to cover losses",
+        "summary": "Binance confirmed that unauthorized withdrawals beginning on October 29 at 20:05 UTC affected hot wallets across multiple blockchains, with estimated losses of about $6.3 billion. In an October 30 update, the exchange said it had reserved more than $6.34 billion in company funds, frozen roughly $3 billion on-chain with partners, and temporarily suspended withdrawals while strengthening controls. Its investigation initially pointed to a compromised employee laptop but later identified additional intrusion points; Binance says it has found no evidence of leaked wallet private keys.",
+        "why_it_matters": "The incident highlights the risk of compromise spreading from developer or operations endpoints into transaction-signing infrastructure, and the importance of separated approvals and monitoring. The official update is timestamped October 30 at 19:33 by Binance, but the publisher does not label its timezone; the breach itself is precisely timed to October 30 at 01:35 IST, and contemporaneous reporting confirms the disclosure occurred within the research window.",
+        "source_url": "https://www.binance.com/en/support/announcement/detail/d3306d9dca5243548c813b605e1d1751"
+      },
+      {
+        "category": "Cybersecurity & Developer Tooling",
+        "headline": "Cursor marketplace serves trojanized Claude Code extension with persistent SSH backdoor",
+        "summary": "Cursor disclosed that malicious versions 2.1.312 and 2.1.313 of the Anthropic.claude-code extension were distributed through its own extension marketplace on October 29 between 02:27 and 13:35 Pacific time. The tampered packages attempted to add an attacker-controlled SSH key, install persistence and transmit host details; Cursor says up to 5,000 users may have been affected, although the reverse tunnel failed on most systems because of implementation errors. Cursor removed the packages, rebuilt the marketplace and published checks and remediation scripts; Anthropic did not develop the malicious versions.",
+        "why_it_matters": "Teams using Cursor should identify affected installations, check for the svc-telemetry SSH key and persistence, and rotate credentials reachable from compromised hosts; uninstalling the extension alone may not remove the payload. The distribution window corresponds to October 29, 14:57 IST through October 30, 02:05 IST; Cursor's original notice is dated October 29, with exact initial publication time unverified.",
+        "source_url": "https://cursor.com/blog/claude-code-extension-security-notice"
+      },
+      {
+        "category": "Cybersecurity & Cloud Infrastructure",
+        "headline": "AWS patches Nitro Enclaves SDK flaws enabling enclave code execution and forged KMS responses",
+        "summary": "On October 30, AWS disclosed CVE-2026-119116, a use-after-free in the kmstool-enclave example that could allow code executing on a parent EC2 instance to corrupt enclave memory and run arbitrary code through crafted vsock messages. A separate SDK input-validation issue, CVE-2026-119148, could let a caller-controlled region string redirect KMS communication and inject forged responses, including attacker-selected key material. Both affect the Nitro Enclaves SDK for C through version 0.4.5 and are fixed in 0.4.6; AWS says affected enclave images must be rebuilt.",
+        "why_it_matters": "Confidential-computing deployments should inventory enclave images built with the SDK, upgrade to 0.4.6 and rebuild rather than relying on a configuration workaround, which AWS says is unavailable. AWS published the advisory October 30 at 09:00 PDT, equivalent to 21:30 IST.",
+        "source_url": "https://aws.amazon.com/security/security-bulletins/2026-157-aws/"
+      },
+      {
+        "category": "Cybersecurity & Kubernetes",
+        "headline": "AWS fixes Kubernetes Private CA Connector authorization bypass that could issue unauthorized CA certificates",
+        "summary": "AWS disclosed CVE-2026-119115 in aws-privateca-issuer, where certain authenticated users approved only for namespace-scoped certificate issuers could obtain certificates, including subordinate CA certificates, from an unauthorized cluster-scoped issuer. The issue affects connector versions before 1.10.1 and EKS add-on builds before 1.10.1-eksbuild.1. AWS warns that the stricter issuer-kind validation in the fix can stop certificate renewals unless CertificateRequest, Certificate and Ingress issuer references are corrected before upgrading.",
+        "why_it_matters": "Kubernetes platform teams should audit issuer RBAC and certificate approval policies, correct issuerRef.kind values, and deploy the fixed connector or add-on without disrupting renewals. AWS published the advisory October 29 at 09:30 PDT, equivalent to 22:00 IST.",
+        "source_url": "https://aws.amazon.com/security/security-bulletins/2026-156-aws/"
+      },
+      {
+        "category": "AI Agents & Cybersecurity",
+        "headline": "AWS fixes prompt-injection path that exposed agent host environment secrets in Strands Agents Tools",
+        "summary": "AWS disclosed CVE-2026-115415 in the Strands Agents Tools environment tool, which let an LLM-controlled masking argument disable secret redaction when processing a crafted prompt. In affected versions 0.1.0 through 0.8.5, an agent could return cleartext host environment variables, including cloud credentials and API keys, without asking the operator. Version 0.8.6 removes model control over masking and deprecates the environment tool.",
+        "why_it_matters": "Agent developers should upgrade to at least 0.8.6, remove the environment tool if immediate patching is impossible, and assess whether credentials in agent process environments need rotation. AWS published the advisory October 28 at 12:30 PDT, equivalent to October 29 at 01:00 IST.",
+        "source_url": "https://aws.amazon.com/security/security-bulletins/2026-154-aws/"
+      }
+    ]
+  },
+  {
     "date": "2026-10-30",
     "stories": [
       {
